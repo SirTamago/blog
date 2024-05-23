@@ -17,12 +17,12 @@
   <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f9fafb">
   <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000">
   
-  <title>标签：math - Rimrose's Blog</title>
+  <title>标签：record - Rimrose's Blog</title>
 
   
     <meta property="og:type" content="website">
 <meta property="og:title" content="Rimrose&#39;s Blog">
-<meta property="og:url" content="https://sirtamago.github.io/blog/tags/math/index.html">
+<meta property="og:url" content="https://sirtamago.github.io/blog/tags/record/index.html">
 <meta property="og:site_name" content="Rimrose&#39;s Blog">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="RimroseLim">
@@ -73,20 +73,15 @@
 
 
 
-<div class="navbar top"><nav class="post"><a href="/">近期发布</a><a class="active" href="/tags">标签：math</a><a href="/archives">归档</a></nav></div>
-<div class="post-list post"><a class="post-card post" href="/2024/05/23/%E5%B9%B3%E6%96%B9%E6%95%B0%E5%88%97%E6%B1%82%E5%92%8C%E7%9A%84%E4%B8%80%E7%A7%8D%E9%9D%9E%E6%AD%A3%E5%B8%B8%E6%B1%82%E6%B3%95/">
-<article class="md-text"><h2 class="post-title">平方数列求和的一种非正常求法</h2><div class="excerpt"><p>在高中数学的学习过程中，我们应该会知道这样一个公式：
-
-\sum^n_{k=1}\left(2k-1\right)=n^2那么我们就会想到
-
-\sum^n_{k=1}k^2=\sum^n_{k=1}\left(\sum^n_{k=1}\left(2k-1\right)\right)展开来写，便是：
-
-\begin{split} 
-\sum_{k=1}^n k^2 &= 1+(1+3)+(1+...</p></div><div class="meta cap"><span class="cap" id="post-meta"><svg style="margin-bottom:2px" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M6.94 2c.416 0 .753.324.753.724v1.46c.668-.012 1.417-.012 2.26-.012h4.015c.842 0 1.591 0 2.259.013v-1.46c0-.4.337-.725.753-.725s.753.324.753.724V4.25c1.445.111 2.394.384 3.09 1.055c.698.67.982 1.582 1.097 2.972L22 9H2v-.724c.116-1.39.4-2.302 1.097-2.972c.697-.67 1.645-.944 3.09-1.055V2.724c0-.4.337-.724.753-.724"/><path fill="currentColor" d="M22 14v-2c0-.839-.004-2.335-.017-3H2.01c-.013.665-.01 2.161-.01 3v2c0 3.771 0 5.657 1.172 6.828C4.343 22 6.228 22 10 22h4c3.77 0 5.656 0 6.828-1.172C22 19.658 22 17.772 22 14" opacity=".5"/><path fill="currentColor" d="M18 17a1 1 0 1 1-2 0a1 1 0 0 1 2 0m0-4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m-5 4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m0-4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m-5 4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m0-4a1 1 0 1 1-2 0a1 1 0 0 1 2 0"/></svg><time datetime="2024-05-23T07:56:26.476Z">2024-05-23</time></span></div></article>
-</a><a class="post-card post" href="/2024/05/23/%E4%B8%80%E8%88%AC%E6%83%85%E5%86%B5%E4%B8%8B%E7%9A%84%E9%98%BF%E6%B3%A2%E7%BD%97%E5%B0%BC%E6%96%AF%E5%9C%86%E7%9A%84%E6%96%B9%E7%A8%8B%E7%9A%84%E6%8E%A8%E5%AF%BC%E8%BF%87%E7%A8%8B/">
-<article class="md-text"><h2 class="post-title">一般情况下的阿波罗尼斯圆的方程的推导过程</h2><div class="excerpt"><p>首先介绍一下什么是阿波罗尼斯圆:
-已知平面上两点 $A, B$, 则所有满足 $\frac{PA}{PB}=k$ 且不等于 $1$ 的点 $P$ 的轨迹是一个以定比 $m:n$ 内分和外分定线段 $AB$ 的两个分点的连线为直径的圆. 这个轨迹最先由古希腊数学家阿波罗尼斯发现, 故称作阿氏圆.
-我翻了半天知乎, 发现没有人写阿波罗尼斯圆在最一般的情况下方程的推导, 遂作此文. 当然, 很大一...</p></div><div class="meta cap"><span class="cap" id="post-meta"><svg style="margin-bottom:2px" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M6.94 2c.416 0 .753.324.753.724v1.46c.668-.012 1.417-.012 2.26-.012h4.015c.842 0 1.591 0 2.259.013v-1.46c0-.4.337-.725.753-.725s.753.324.753.724V4.25c1.445.111 2.394.384 3.09 1.055c.698.67.982 1.582 1.097 2.972L22 9H2v-.724c.116-1.39.4-2.302 1.097-2.972c.697-.67 1.645-.944 3.09-1.055V2.724c0-.4.337-.724.753-.724"/><path fill="currentColor" d="M22 14v-2c0-.839-.004-2.335-.017-3H2.01c-.013.665-.01 2.161-.01 3v2c0 3.771 0 5.657 1.172 6.828C4.343 22 6.228 22 10 22h4c3.77 0 5.656 0 6.828-1.172C22 19.658 22 17.772 22 14" opacity=".5"/><path fill="currentColor" d="M18 17a1 1 0 1 1-2 0a1 1 0 0 1 2 0m0-4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m-5 4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m0-4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m-5 4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m0-4a1 1 0 1 1-2 0a1 1 0 0 1 2 0"/></svg><time datetime="2024-05-23T05:26:04.000Z">2024-05-23</time></span></div></article>
+<div class="navbar top"><nav class="post"><a href="/">近期发布</a><a class="active" href="/tags">标签：record</a><a href="/archives">归档</a></nav></div>
+<div class="post-list post"><a class="post-card post" href="/2024/05/23/Multipass%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98%E7%9A%84%E4%B8%80%E4%BA%9B%E8%AE%B0%E5%BD%95/">
+<article class="md-text"><h2 class="post-title">Multipass安装与使用中遇到的问题的一些记录</h2><div class="excerpt"><p>按时间顺序记录首先是Multipass的安装（在这之前我应该已经安装又卸载过十几次），参考的教程为：轻量虚拟机 Multipass 的部署和使用
+一、部署
+在window环境下进行部署，下载最新安装包后别着急执行，先进行multipass数据目录的配置：
+以管理身份运行powershell：输入以下命令：
+1Set-ItemProperty -Path &quot;HKLM:System\C...</p></div><div class="meta cap"><span class="cap" id="post-meta"><svg style="margin-bottom:2px" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M6.94 2c.416 0 .753.324.753.724v1.46c.668-.012 1.417-.012 2.26-.012h4.015c.842 0 1.591 0 2.259.013v-1.46c0-.4.337-.725.753-.725s.753.324.753.724V4.25c1.445.111 2.394.384 3.09 1.055c.698.67.982 1.582 1.097 2.972L22 9H2v-.724c.116-1.39.4-2.302 1.097-2.972c.697-.67 1.645-.944 3.09-1.055V2.724c0-.4.337-.724.753-.724"/><path fill="currentColor" d="M22 14v-2c0-.839-.004-2.335-.017-3H2.01c-.013.665-.01 2.161-.01 3v2c0 3.771 0 5.657 1.172 6.828C4.343 22 6.228 22 10 22h4c3.77 0 5.656 0 6.828-1.172C22 19.658 22 17.772 22 14" opacity=".5"/><path fill="currentColor" d="M18 17a1 1 0 1 1-2 0a1 1 0 0 1 2 0m0-4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m-5 4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m0-4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m-5 4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m0-4a1 1 0 1 1-2 0a1 1 0 0 1 2 0"/></svg><time datetime="2024-05-23T07:56:26.471Z">2024-05-23</time></span></div></article>
+</a><a class="post-card post photo" href="/2024/05/23/%E4%B8%AA%E4%BA%BA%E7%BD%91%E7%AB%99%E6%90%AD%E5%BB%BA%E8%AE%B0%E5%BD%95/">
+<div class="cover"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://images.rimrose.site/images/150_[MoeHui]AshimaCG060.jpg"/><div class="cover-info"position="top"><div class="cap">标题上方的小字</div><div class="title">Blog搭建记录</div></div></div>
 </a></div>
 
 
