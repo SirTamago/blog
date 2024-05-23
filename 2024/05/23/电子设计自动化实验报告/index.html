@@ -1,0 +1,1080 @@
+
+<!DOCTYPE html><html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="hexo-theme" content="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.28.1" theme-name="Stellar" theme-version="1.28.1">
+  
+  <meta name="generator" content="Hexo 7.2.0">
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f9fafb">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000">
+  
+  <title>电子设计自动化实验报告 - Hexo-Rim</title>
+
+  
+    <meta name="description" content="电子设计自动化-实验报告 实验一：LED流水灯设计  一、实验目的 熟悉QuartusII开发环境  掌握FPGA开发流程   二、实验内容及原理1. 实验内容通过设计计数器，实现LED流水灯的效果 2. 实验原理 LED硬件电路     从上面的 LED 部分原理图可以看出，LED 电路有两个方式，AX301 开发板将 IO 经过一个电阻和 LED 串联接地，IO 输出高电平点亮 LED。其中的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="电子设计自动化实验报告">
+<meta property="og:url" content="https://sirtamago.github.io/blog/2024/05/23/%E7%94%B5%E5%AD%90%E8%AE%BE%E8%AE%A1%E8%87%AA%E5%8A%A8%E5%8C%96%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A/index.html">
+<meta property="og:site_name" content="Hexo-Rim">
+<meta property="og:description" content="电子设计自动化-实验报告 实验一：LED流水灯设计  一、实验目的 熟悉QuartusII开发环境  掌握FPGA开发流程   二、实验内容及原理1. 实验内容通过设计计数器，实现LED流水灯的效果 2. 实验原理 LED硬件电路     从上面的 LED 部分原理图可以看出，LED 电路有两个方式，AX301 开发板将 IO 经过一个电阻和 LED 串联接地，IO 输出高电平点亮 LED。其中的">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://images.rimrose.site/images/EDA_expt-1_led_test%20(2).png">
+<meta property="og:image" content="https://images.rimrose.site/images/EDA_expt-1_led_test-flow_summary.png">
+<meta property="og:image" content="https://images.rimrose.site/images/EDA_expt-1_led_test-RTL.png">
+<meta property="og:image" content="https://images.rimrose.site/images/EDA_expt-1_led_test-pin_planner.png">
+<meta property="og:image" content="https://images.rimrose.site/images/EDA_expt-2_Fig2.1.png">
+<meta property="og:image" content="https://images.rimrose.site/images/EDA_expt-2_Fig2.2.jpg">
+<meta property="og:image" content="https://images.rimrose.site/images/EDA_expt-2_Fig2.3.jpg">
+<meta property="og:image" content="https://images.rimrose.site/images/EDA_expt-2_Fig2.4.png">
+<meta property="og:image" content="https://images.rimrose.site/images/EDA_expt-2_Fig2.5.jpg">
+<meta property="og:image" content="https://images.rimrose.site/images/EDA_expt-2_Fig2.6.jpg">
+<meta property="og:image" content="https://images.rimrose.site/images/EDA_expt-2_Fig2.7.png">
+<meta property="og:image" content="https://images.rimrose.site/images/EDA_expt-2_Fig2.8.png">
+<meta property="og:image" content="https://images.rimrose.site/images/EDA_expt-2_Fig2.9.png">
+<meta property="og:image" content="https://images.rimrose.site/images/EDA_expt-2_Fig2.10.png">
+<meta property="og:image" content="https://images.rimrose.site/images/EDA_expt-2_Fig2.11.png">
+<meta property="og:image" content="https://images.rimrose.site/images/EDA_expt-2_Fig2.12.png">
+<meta property="og:image" content="https://images.rimrose.site/images/EDA_expt-3_Fig3.0.png">
+<meta property="og:image" content="https://images.rimrose.site/images/EDA_expt-2_Fig2.1.png">
+<meta property="og:image" content="https://images.rimrose.site/images/EDA_expt-2_Fig2.2.jpg">
+<meta property="og:image" content="https://images.rimrose.site/images/EDA_expt-2_Fig2.3.jpg">
+<meta property="og:image" content="https://images.rimrose.site/images/EDA_expt-2_Fig2.4.png">
+<meta property="og:image" content="https://images.rimrose.site/images/EDA_expt-2_Fig2.5.jpg">
+<meta property="og:image" content="https://images.rimrose.site/images/EDA_expt-2_Fig2.6.jpg">
+<meta property="og:image" content="https://images.rimrose.site/images/EDA_expt-2_Fig2.7.png">
+<meta property="og:image" content="https://images.rimrose.site/images/EDA_expt-2_Fig2.8.png">
+<meta property="og:image" content="https://images.rimrose.site/images/EDA_expt-3_Fig3.11.png">
+<meta property="og:image" content="https://images.rimrose.site/images/EDA_expt-3_Fig3.10.png">
+<meta property="og:image" content="https://images.rimrose.site/images/EDA_expt-2_Fig2.12.png">
+<meta property="og:image" content="https://images.rimrose.site/images/EDA_expt-4_Fig2.jpg">
+<meta property="og:image" content="https://images.rimrose.site/images/EDA_expt-4_Fig3.png">
+<meta property="og:image" content="https://images.rimrose.site/images/EDA_expt-4_Fig4.png">
+<meta property="og:image" content="https://images.rimrose.site/images/EDA_expt-5_Fig1.png">
+<meta property="og:image" content="https://images.rimrose.site/images/EDA_expt-5_Fig2.jpg">
+<meta property="og:image" content="https://images.rimrose.site/images/EDA_expt-5_Fig3.png">
+<meta property="og:image" content="https://images.rimrose.site/images/EDA_expt-5_Fig4.png">
+<meta property="og:image" content="https://images.rimrose.site/images/EDA_expt-5_Fig5.png">
+<meta property="og:image" content="https://images.rimrose.site/images/EDA_expt-6_Fig1.png">
+<meta property="og:image" content="https://images.rimrose.site/images/EDA_expt-6_Fig2.png">
+<meta property="og:image" content="https://images.rimrose.site/images/EDA_expt-6_Fig3.png">
+<meta property="article:published_time" content="2024-05-23T07:56:26.474Z">
+<meta property="article:modified_time" content="2024-05-23T07:58:41.981Z">
+<meta property="article:author" content="Rimrose">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://images.rimrose.site/images/EDA_expt-1_led_test%20(2).png">
+  
+  
+  
+  
+
+  <!-- feed -->
+  
+
+  <link rel="stylesheet" href="/css/main.css?v=1.28.1">
+
+  
+
+  
+
+  
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+<!-- hexo injector head_end end --></head>
+<body>
+
+<div class="l_body s:aa content tech" id="start" layout="post" ><aside class="l_left"><div class="leftbar-container">
+
+
+<header class="header"><div class="logo-wrap"><a class="avatar" href="/about/"><div class="bg" style="opacity:0;background-image:url(https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/avatar/round/rainbow64@3x.webp);"></div><img no-lazy class="avatar" src="https://images.rimrose.site/images/QQ图片20240517130109.jpg" onerror="javascript:this.classList.add('error');this.src='https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/image/2659360.svg';"></a><a class="title" href="/"><div class="main" ff="title">Hexo-Rim</div></a></div></header>
+
+<div class="nav-area">
+<div class="search-wrapper" id="search-wrapper"><form class="search-form"><a class="search-button" onclick="document.getElementById(&quot;search-input&quot;).focus();"><svg t="1705074644177" viewBox="0 0 1025 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1560" width="200" height="200"><path d="M1008.839137 935.96571L792.364903 719.491476a56.783488 56.783488 0 0 0-80.152866 0 358.53545 358.53545 0 1 1 100.857314-335.166073 362.840335 362.840335 0 0 1-3.689902 170.145468 51.248635 51.248635 0 1 0 99.217358 26.444296 462.057693 462.057693 0 1 0-158.255785 242.303546l185.930047 185.725053a51.248635 51.248635 0 0 0 72.568068 0 51.248635 51.248635 0 0 0 0-72.978056z" p-id="1561"></path><path d="M616.479587 615.969233a50.428657 50.428657 0 0 0-61.498362-5.534852 174.655348 174.655348 0 0 1-177.525271 3.484907 49.403684 49.403684 0 0 0-58.833433 6.76482l-3.074918 2.869923a49.403684 49.403684 0 0 0 8.609771 78.10292 277.767601 277.767601 0 0 0 286.992355-5.739847 49.403684 49.403684 0 0 0 8.404776-76.667958z" p-id="1562"></path></svg></a><input type="text" class="search-input" id="search-input" placeholder="站内搜索"></form><div id="search-result"></div><div class="search-no-result">没有找到内容！</div></div>
+
+
+<nav class="menu dis-select"></nav>
+</div>
+<div class="widgets">
+
+
+<widget class="widget-wrapper post-list"><div class="widget-header dis-select"><span class="name">最近更新</span></div><div class="widget-body fs14"><a class="item title" href="/2024/05/23/%E7%94%B5%E5%AD%90%E8%AE%BE%E8%AE%A1%E8%87%AA%E5%8A%A8%E5%8C%96%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A/"><span class="title">电子设计自动化实验报告</span></a><a class="item title" href="/2024/05/23/%E4%B8%80%E8%88%AC%E6%83%85%E5%86%B5%E4%B8%8B%E7%9A%84%E9%98%BF%E6%B3%A2%E7%BD%97%E5%B0%BC%E6%96%AF%E5%9C%86%E7%9A%84%E6%96%B9%E7%A8%8B%E7%9A%84%E6%8E%A8%E5%AF%BC%E8%BF%87%E7%A8%8B/"><span class="title">一般情况下的阿波罗尼斯圆的方程的推导过程</span></a><a class="item title" href="/2024/05/23/%E4%B8%AA%E4%BA%BA%E7%BD%91%E7%AB%99%E6%90%AD%E5%BB%BA%E8%AE%B0%E5%BD%95/"><span class="title">搭建记录</span></a><a class="item title" href="/2024/05/22/hello-world/"><span class="title">Hello World</span></a></div></widget>
+</div>
+
+</div></aside><div class="l_main" id="main">
+
+
+
+
+
+<div class="article banner top">
+  <div class="content">
+    <div class="top bread-nav footnote"><div class="left"><div class="flex-row" id="breadcrumb"><a class="cap breadcrumb" href="/">主页</a>
+<span class="sep"></span><a class="cap breadcrumb" href="/">文章</a></div>
+<div class="flex-row" id="post-meta"><span class="text created">发布于：<time datetime="2024-05-23T07:56:26.474Z">2024-05-23</time></span><span class="sep updated"></span><span class="text updated">更新于：<time datetime="2024-05-23T07:58:41.981Z">2024-05-23</time></span></div></div></div>
+    
+    <div class="bottom only-title">
+      
+      <div class="text-area">
+        <h1 class="text title"><span>电子设计自动化实验报告</span></h1>
+        
+      </div>
+    </div>
+    
+  </div>
+  </div><article class="md-text content"><p><a target="_blank" rel="noopener" href="https://xzqi2q6kpm.feishu.cn/docx/YJQ9dlY4NooN5zxSEK3c6LNlneb?from=from_copylink">电子设计自动化-实验报告</a></p>
+<center><h1>实验一：LED流水灯设计</h1></center>
+
+<h2 id="一、实验目的"><a href="#一、实验目的" class="headerlink" title="一、实验目的"></a>一、实验目的</h2><ol>
+<li><p>熟悉QuartusII开发环境</p>
+</li>
+<li><p>掌握FPGA开发流程</p>
+</li>
+</ol>
+<h2 id="二、实验内容及原理"><a href="#二、实验内容及原理" class="headerlink" title="二、实验内容及原理"></a>二、实验内容及原理</h2><h3 id="1-实验内容"><a href="#1-实验内容" class="headerlink" title="1. 实验内容"></a>1. 实验内容</h3><p>通过设计计数器，实现LED流水灯的效果</p>
+<h3 id="2-实验原理"><a href="#2-实验原理" class="headerlink" title="2. 实验原理"></a>2. 实验原理</h3><ul>
+<li>LED硬件电路</li>
+</ul>
+<center><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://images.rimrose.site/images/EDA_expt-1_led_test (2).png" alt="Fig.2.1 AX301 开发板LED 部分原理图"></center>
+
+
+<p>从上面的 LED 部分原理图可以看出，LED 电路有两个方式，AX301 开发板将 IO 经过一个电阻和 LED 串联接地，IO 输出高电平点亮 LED。其中的串联电阻是为了限制电流。</p>
+<ul>
+<li>程序设计</li>
+</ul>
+<p>FPGA 的设计中通常使用计数器来计时，对于 50Mhz 的系统时钟，一个时钟周期是 20ns，那 么表示一秒需要 50000000 个时钟周期，如果一个时钟周期计数器累加一次，那么计数器从 0 到 49999999 正好是 50000000 个周期，就是 1 秒的时钟。 程序中定义了一个 32 位的计数器：</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Define the time counter </span></span><br><span class="line"><span class="keyword">reg</span> [<span class="number">31</span>:<span class="number">0</span>] timer;</span><br></pre></td></tr></table></figure>
+<p>最大可以表示 4294967295，十六进制就是 FFFFFFFF，如果计数器到最大值，可以表示 85.89934592 秒。程序设计中是每隔 1 秒 LED 变化一次，一共消耗 4 秒做一个循环。</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">always</span>@(<span class="keyword">posedge</span> clk <span class="keyword">or</span> <span class="keyword">negedge</span> rst_n)</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line"><span class="keyword">if</span> (rst_n == <span class="number">1&#x27;b0</span>) </span><br><span class="line">timer &lt;= <span class="number">32&#x27;d0</span>; </span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span> (timer == <span class="number">32&#x27;d199_999_999</span>) </span><br><span class="line">timer &lt;= <span class="number">32&#x27;d0</span>; </span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">timer &lt;= timer + <span class="number">32&#x27;d1</span>; </span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p>在第一秒、第二秒、第三秒、第四秒到来的时候分别改变 LED 的状态，其他时候都保持原来 的值不变。</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// LED control</span></span><br><span class="line"><span class="keyword">always</span>@(<span class="keyword">posedge</span> clk <span class="keyword">or</span> <span class="keyword">negedge</span> rst_n)</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line"><span class="keyword">if</span> (rst_n == <span class="number">1&#x27;b0</span>)</span><br><span class="line">led &lt;= <span class="number">4&#x27;b0000</span>; </span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span> (timer == <span class="number">32&#x27;d49_999_999</span>) </span><br><span class="line">led &lt;= <span class="number">4&#x27;b0001</span>;</span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span> (timer == <span class="number">32&#x27;d99_999_999</span>) </span><br><span class="line">led &lt;= <span class="number">4&#x27;b0010</span>;</span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span> (timer == <span class="number">32&#x27;d149_999_999</span>) </span><br><span class="line">led &lt;= <span class="number">4&#x27;b0100</span>;</span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span> (timer == <span class="number">32&#x27;d199_999_999</span>) </span><br><span class="line">led &lt;= <span class="number">4&#x27;b1000</span>;</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<h2 id="三、实验步骤及结果"><a href="#三、实验步骤及结果" class="headerlink" title="三、实验步骤及结果"></a>三、实验步骤及结果</h2><h3 id="1-建立工程"><a href="#1-建立工程" class="headerlink" title="1. 建立工程"></a>1. 建立工程</h3><p>（1） 启动 Quartus (Quartus Prime 17.1) Lite Edition 开发环境，选择菜单 File-&gt;New Project Wizerd</p>
+<p>（2） 选择“Next&gt;”</p>
+<p>（3） 添加工程路径，工程名称，顶层设计实体名称，顶层设计实体名称默认和工程名称一 致，可以修改为不一致。顶层设计实体名称在设计中必须存在而且和这里设置的一致， 本实验顶层设计指定为 led_test，设计中就要有 module led_test，大小写敏感。在 quartus 软件中也可以指定某一个模块为顶层模块。</p>
+<p>（4） 工程类型选择空工程</p>
+<p>（5） 添加文件，这个时候没有任何设计文件，直接 Next</p>
+<p>（6） 芯片选择，AX301 开发板 器件选择 Cyclone IV E（EP4CE6F17C8）</p>
+<p>（7） EDA 工具设置，这里默认即可</p>
+<p>（8） 完成工程向导</p>
+<p>（9） 返回 Quartus 工作界面</p>
+<h3 id="2-编写代码"><a href="#2-编写代码" class="headerlink" title="2. 编写代码"></a>2. 编写代码</h3><p>（1） 新建 Verilog HDL 文件</p>
+<p>（2） 编写 Verilog 代码</p>
+<p>（3） 代码写入完成后点击保存。这里默认将这个文件添加到工程中。</p>
+<p>（4） 查看工程里的文件，在工程导航的下拉菜单里选择 Files 即可。</p>
+<p>（5）文件的操作。选择某个文件，右键，可以看到一些操作选项，“Remove File from Project”，将文件移除工程，“Set as Top-Level Entity”设置为顶层实体，如果建立工 程时指定的顶层实体名称不对，可以在这里修改。本实验这里无需做任何修改和操作。</p>
+<h3 id="3-其他设置"><a href="#3-其他设置" class="headerlink" title="3. 其他设置"></a>3. 其他设置</h3><p>（1）设置未用管脚和默认电平标准，选择 Assignments -&gt; Device 即可打开器件配置，如果 前面选择选择不正确，这里可以重新选择器件。</p>
+<p>（2）点击“Device and Pin Options”在“Unused Pins”选项中”Reserve unused pins”,设置为 “As input tri-stated”，这里是把没有使用的管脚做为三态输入。</p>
+<p>（3）在“Voltage”选项，将“Default I/O standard:”设置为“3.3-V LVTTL”，这个设置是 和 FPGA 硬件设计的 bank 电压有关，黑金的大部分开发板的 IO BNAK 电压为 3.3V，所 以设置为“3.3-V LVTTL”。输出电压和设置没有关系，如果 BANK 电压是 3.3V，你这 里设置 2.5V，也不会改变 IO 输出的电压幅度。这里设置完成以后 IO 的默认电压为 “3.3-V LVTTL”，我们也可以根据需要为每个 IO 分配不一样的 IO 电平标准。</p>
+<p>（4）多用途管脚设置。在选项“Dual-Purpose Pins”中设置多用途 IO，全部做为普通 IO。 这些多用途管脚，在 FPGA 配置阶段有特殊用途，配置完成后可以做为普通 IO。</p>
+<p>（5）预编译。没有分配管脚，但是我们需要预编译一下（完成第一阶段综合过程），让 quartus 分析设计中的输入输出管脚。编译过程中信息显示窗口不断显示出各种信息， 如果出现红色，表示有错误，双击这条信息可以定位具体错误位置。</p>
+<p>（6）IO 管脚分配。管脚分配的目的是为设计和实际的硬件电路关联起来，这里的连接关系 从硬件原理图得来。</p>
+<p>（7） 在“Location”列填入 led、时钟、的管脚名称，需要注意是：一定要在“Location” 列填写。小技巧：这个表格可以像 EXCEL 表格一样复制粘贴，可以从其他工程的管脚 分配复制过来，然后粘贴，也可以在一个 EXCEL 表格里复制过来。管脚分配完成以后 关闭窗口就可以。需要注意的是：每个 IO 都必须分配管脚，如果有未分配的 IO，软 件可能会随机分配，造成不可预料的后果，严重时可烧坏 FPGA 芯片。</p>
+<h3 id="4-编译下载"><a href="#4-编译下载" class="headerlink" title="4. 编译下载"></a>4. 编译下载</h3><p>（1）再次编译。上次编译时还没有分配管脚，分配管脚后我们在任务流程窗口可以看到只 有第一下流程“综合”是“√”状态，其他都是“？”状态，“？”状态表示需要重 新编译才行。为了方便，这里双击“Compile Design”，完成全部编译流程。</p>
+<p>（2）编译完成以后可以看到一个编译报告，主要报告各种资源的使用情况。在 output_files 文件夹我们可以看到一个 test_led.sof 文件，这个文件可以通过 JTAG 方式下载到 FPGA 运行，但不能直接固化到 Flash。</p>
+<p>（3）将下载器连接 PC 和开发板，接通电源（注意要先插下载器的 JTAG 排线，然后再 上电）</p>
+<p>（4）打开下载界面，这里通过工具栏快捷方式点击下载按钮。很多操作都可以在这里快速 点击进行。</p>
+<p>（5）正常情况下弹出的窗口 Mode 已经选择 JTAG 模式，下载器已经识别到了，并且下载 文件都已经找好。需要注意的是：芯片型号跟开发板必须一致，否则会无法下载；下 载的 sof 文件一次只能添加一个。一切正常，点击“start”按钮，进度条开始滚动， 遇到错误时，Quartus 信息窗口会显示出具体的错误。</p>
+<p>（6）如果没有识别到下载器，可以点击“Hardware Setup”，双击列表中的下载器即可。 如果列表中没有任何下载器，检查设备管理器里是不是有“Altera USB-Blaster”，如 果硬件设备管理器中有，Quartus 无法识别，通常是装了多个版本的 Quartus 造成的。</p>
+<h3 id="5-固化程序到flash"><a href="#5-固化程序到flash" class="headerlink" title="5. 固化程序到flash"></a>5. 固化程序到flash</h3><p>在黑金 FPGA 开发板中使用 SPI Flash 固化 FPGA 程序。</p>
+<h4 id="5-1-转换jic文件"><a href="#5-1-转换jic文件" class="headerlink" title="5.1. 转换jic文件"></a>5.1. 转换jic文件</h4><p>（1） Quartus 里选择菜单“File -&gt; Convert Programming Files….”</p>
+<p>（2） 选择“Programming file type”为“JTAG Indirect Configuration File(.jic)”。 “Configuration device”根据开发板型号选择，AX301 开发板、AX4010 开发板选择 EPCS16（指 16M Flash），AX515 开发板、AX530 开发板选择 EPCS64（指 64M Flash）。</p>
+<p>（3） “Flash Loader”选中，点击“Add Device”</p>
+<p>（4） 器件选择根据开发板型号选择，AX301 开发板选择“EP4CE6”</p>
+<p>（5） 选择“SOF Data”栏，点击“Add File…”</p>
+<p>（6） 选择要固化的 sof 文件, 这里我们选择前面生成的流水灯 led_test.sof 文件。</p>
+<p>（7） 点击“Genrate”就可以生成 jic 文件</p>
+<h4 id="5-2-固化到flash"><a href="#5-2-固化到flash" class="headerlink" title="5.2. 固化到flash"></a>5.2. 固化到flash</h4><p>（1） 打开下载管理界面，删除其他已有的下载文件，添加上面生成的 jic 文件，注意，只保 留一个 jic 文件。在”Program/Configure”打钩“√”。点击“Start”按钮。</p>
+<p>（2） 下载 Flash 后，断电重启开发板，程序就可以运行了</p>
+<h3 id="6-擦除Flash中已有的程序"><a href="#6-擦除Flash中已有的程序" class="headerlink" title="6. 擦除Flash中已有的程序"></a>6. 擦除Flash中已有的程序</h3><p>（1） 如果要擦除 Flash 中的程序，先添加一个 jic 文件（只有一个 jic 文件），选择“Erase” 列，点击“Start”，完成擦写。</p>
+<center><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://images.rimrose.site/images/EDA_expt-1_led_test-flow_summary.png" alt="Fig.2.2 FlowSummary"></center>
+
+<center><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://images.rimrose.site/images/EDA_expt-1_led_test-RTL.png" alt="Fig.2.3 RTL电路图" title=""></center>
+
+<center><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://images.rimrose.site/images/EDA_expt-1_led_test-pin_planner.png" alt="Fig.2.4 PinPlanner" title=""></center>
+
+<h2 id="四、实验中遇到的问题及解决方法"><a href="#四、实验中遇到的问题及解决方法" class="headerlink" title="四、实验中遇到的问题及解决方法"></a>四、实验中遇到的问题及解决方法</h2><p>跟着实验步骤一次实现，所以暂无遇到问题。</p>
+<h2 id="五、源程序和testbench代码"><a href="#五、源程序和testbench代码" class="headerlink" title="五、源程序和testbench代码"></a>五、源程序和testbench代码</h2><blockquote>
+<p>led_test.v</p>
+</blockquote>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">`<span class="keyword">timescale</span> 1ns / 1ps</span></span><br><span class="line"><span class="keyword">module</span> led_test</span><br><span class="line">(</span><br><span class="line"><span class="keyword">input</span> clk, <span class="comment">// system clock 50Mhz on board</span></span><br><span class="line"><span class="keyword">input</span> rst_n, <span class="comment">// reset ,low active</span></span><br><span class="line"><span class="keyword">output</span> <span class="keyword">reg</span>[<span class="number">3</span>:<span class="number">0</span>] led <span class="comment">// LED,use for control the LED signal on board</span></span><br><span class="line">);</span><br><span class="line"><span class="comment">//define the time counter</span></span><br><span class="line"><span class="keyword">reg</span> [<span class="number">31</span>:<span class="number">0</span>] timer;</span><br><span class="line"><span class="comment">// cycle counter:from 0 to 4 sec</span></span><br><span class="line"><span class="keyword">always</span>@(<span class="keyword">posedge</span> clk <span class="keyword">or</span> <span class="keyword">negedge</span> rst_n)</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line"><span class="keyword">if</span> (rst_n == <span class="number">1&#x27;b0</span>)</span><br><span class="line">timer &lt;= <span class="number">32&#x27;d0</span>; <span class="comment">//when the reset signal valid,time counter clearing</span></span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span> (timer == <span class="number">32&#x27;d199_999_999</span>) <span class="comment">//4 seconds count(50M*4-1=199999999)</span></span><br><span class="line">timer &lt;= <span class="number">32&#x27;d0</span>; <span class="comment">//count done,clearing the time counter</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">timer &lt;= timer + <span class="number">32&#x27;d1</span>; <span class="comment">//timer counter = timer counter + 1</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="comment">// LED control</span></span><br><span class="line"><span class="keyword">always</span>@(<span class="keyword">posedge</span> clk <span class="keyword">or</span> <span class="keyword">negedge</span> rst_n)</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line"><span class="keyword">if</span> (rst_n == <span class="number">1&#x27;b0</span>)</span><br><span class="line">led &lt;= <span class="number">4&#x27;b0000</span>; <span class="comment">//when the reset signal active</span></span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span> (timer == <span class="number">32&#x27;d49_999_999</span>) <span class="comment">//time counter count to 1st sec,LED1 lighten</span></span><br><span class="line">led &lt;= <span class="number">4&#x27;b0001</span>;</span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span> (timer == <span class="number">32&#x27;d99_999_999</span>) <span class="comment">//time counter count to 2nd sec,LED2 lighten</span></span><br><span class="line">led &lt;= <span class="number">4&#x27;b0010</span>;</span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span> (timer == <span class="number">32&#x27;d149_999_999</span>) <span class="comment">//time counter count to 3rd sec,LED3 lighten</span></span><br><span class="line">led &lt;= <span class="number">4&#x27;b0100</span>;</span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span> (timer == <span class="number">32&#x27;d199_999_999</span>) <span class="comment">//time counter count to 4th sec,LED4 lighten</span></span><br><span class="line">led &lt;= <span class="number">4&#x27;b1000</span>;</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
+<h2 id="六、心得体会"><a href="#六、心得体会" class="headerlink" title="六、心得体会"></a>六、心得体会</h2><p>在学习FPGA开发过程中，我尝试了基于AX301开发板的LED流水灯设计实验。以下是我的心得体会：</p>
+<p>AX301开发板概述：</p>
+<p>AX301是一款基础的学生实验板，用于学习FPGA开发。它采用ALTERA公司的CYCLONE IV系列FPGA，型号为EP4CE6F17C8，具有256个引脚。AX301的资源包括逻辑单元、乘法器、RAM、IO口等。</p>
+<p>流水灯实验：</p>
+<p>我使用Quartus II软件编写了流水灯实验的Verilog代码。通过计数器对系统时钟进行计数，实现LED灯的循环点亮和熄灭。通过移位寄存器控制IO口的高低电平，改变LED的显示状态。</p>
+<p>开发板下载流程：</p>
+<p>编译Verilog代码并进行引脚分配。使用USB-Blaster下载文件到开发板。注意将sof文件转化为jic文件，以避免掉电丢失数据。</p>
+<p>AX301开发板是学习FPGA的良好选择，流水灯实验帮助我更好地理解了FPGA开发和调试过程。</p>
+<p>（心得体会的内容由newbing生成，望知悉）</p>
+<hr>
+<center><h1>实验二：数码管动态显示</h1></center>
+
+<h2 id="一、实验目的-1"><a href="#一、实验目的-1" class="headerlink" title="一、实验目的"></a>一、实验目的</h2><ol>
+<li><p>熟悉数码管动态显示原理</p>
+</li>
+<li><p>掌握组合电路和时序电路设计方法</p>
+</li>
+</ol>
+<h2 id="二、实验内容及原理-1"><a href="#二、实验内容及原理-1" class="headerlink" title="二、实验内容及原理"></a>二、实验内容及原理</h2><h3 id="1-实验内容-1"><a href="#1-实验内容-1" class="headerlink" title="1. 实验内容"></a>1. 实验内容</h3><p>两位数码管动态显示</p>
+<h3 id="2-实验原理-1"><a href="#2-实验原理-1" class="headerlink" title="2. 实验原理"></a>2. 实验原理</h3><h4 id="2-1-硬件介绍"><a href="#2-1-硬件介绍" class="headerlink" title="2.1. 硬件介绍"></a>2.1. 硬件介绍</h4><p>开发板上安装了 6 个共阳数码管，可以显示 6 个数字(包含小数点) 。电路用 PNP 管来反向驱 动并且控制列扫描信号（SEL0_T~SEL5_T）来选择哪个数码管。而且所有的 6 个数码管的“段选信 号”（LEDA .. LEDH）都共用驱动引脚(LED_A~LEDH)。数码管的所有驱动信号都是“低电平有效”。 具体的原理图设计如下图所示:</p>
+<center><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://images.rimrose.site/images/EDA_expt-2_Fig2.1.png" alt="Fig-2.1 AX301开发板数码管电路"></center>
+
+<h4 id="2-2-数码管扫描原理"><a href="#2-2-数码管扫描原理" class="headerlink" title="2.2. 数码管扫描原理"></a>2.2. 数码管扫描原理</h4><p>单个数码管可以采用静态显示方式，如图所示，数码管被分成 a、b、c、d、e、f、g 和小数 点，每段可以单独控制亮灭，通过点亮不同的段显示不同的数字和字符。</p>
+<center><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://images.rimrose.site/images/EDA_expt-2_Fig2.2.jpg" alt="Fig-2.2"></center>
+
+<p>对于共阳极的数码管，显示数字和字符的编码如下：</p>
+<center><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://images.rimrose.site/images/EDA_expt-2_Fig2.3.jpg" alt="Fig-2.3"></center>
+
+<center><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://images.rimrose.site/images/EDA_expt-2_Fig2.4.png" alt="Fig-2.4"></center>
+
+<p>对于多位数码管，利用视觉暂留原理，快速交替显示，让眼睛看上去是多个数码管同时显示的。</p>
+<center><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://images.rimrose.site/images/EDA_expt-2_Fig2.5.jpg" alt="Fig-2.5"></center>
+
+<center><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://images.rimrose.site/images/EDA_expt-2_Fig2.6.jpg" alt="Fig-2.6"></center>
+
+<h2 id="三、实验步骤及结果-1"><a href="#三、实验步骤及结果-1" class="headerlink" title="三、实验步骤及结果"></a>三、实验步骤及结果</h2><h3 id="1-程序设计"><a href="#1-程序设计" class="headerlink" title="1. 程序设计"></a>1. 程序设计</h3><p>本实验设计一个 2 位六十进制计数器模块（由一个十进制计数器和一个六进制计数器实现），然后通过译码模块译码后送到数码管扫描模块扫描显示。</p>
+<h3 id="2-模块设计"><a href="#2-模块设计" class="headerlink" title="2. 模块设计"></a>2. 模块设计</h3><h4 id="2-1-译码模块"><a href="#2-1-译码模块" class="headerlink" title="2.1. 译码模块"></a>2.1. 译码模块</h4><p>主要作用是将二进制码转换成数码管的段控制信号。</p>
+<center><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://images.rimrose.site/images/EDA_expt-2_Fig2.7.png" alt="Fig-2.7 译码模块（seg_decoder）端口"></center>
+
+<h4 id="2-2-数码管扫描模块"><a href="#2-2-数码管扫描模块" class="headerlink" title="2.2. 数码管扫描模块"></a>2.2. 数码管扫描模块</h4><p>将多位数码管的段控制信号分时送出。</p>
+<center><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://images.rimrose.site/images/EDA_expt-2_Fig2.8.png" alt="Fig-2.8 数码管扫描模块（seg_scan）端口"></center>
+
+<h4 id="2-3-模-10-计数器模块"><a href="#2-3-模-10-计数器模块" class="headerlink" title="2.3. 模 10 计数器模块"></a>2.3. 模 10 计数器模块</h4><p>模块有同步复位，计数使能，进位输出功能，计数值从 0-9，并在等于 9 时进位。</p>
+<h4 id="2-4-模-6-计数器模块"><a href="#2-4-模-6-计数器模块" class="headerlink" title="2.4. 模 6 计数器模块"></a>2.4. 模 6 计数器模块</h4><p>模块有同步复位，计数使能，进位输出功能，计数值从 0-5，并在等于 5 时进位。</p>
+<h3 id="3-实验结果"><a href="#3-实验结果" class="headerlink" title="3. 实验结果"></a>3. 实验结果</h3><center><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://images.rimrose.site/images/EDA_expt-2_Fig2.9.png" alt="Fig-2.9 Flow Summary"></center>
+
+<center><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://images.rimrose.site/images/EDA_expt-2_Fig2.10.png" alt= "Fig-2.10 RTL电路图"></center>
+
+<center><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://images.rimrose.site/images/EDA_expt-2_Fig2.11.png" alt="Fig-2.11 pin-planner"></center>
+
+<center><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://images.rimrose.site/images/EDA_expt-2_Fig2.12.png" alt="Fig-2.12 仿真结果"></center>
+
+<blockquote>
+<p>附：源程序代码</p>
+</blockquote>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//seg_test.v</span></span><br><span class="line"><span class="keyword">module</span> seg_test(</span><br><span class="line">                <span class="keyword">input</span>      clk,</span><br><span class="line">                <span class="keyword">input</span>      rst_n,</span><br><span class="line">                <span class="keyword">output</span>[<span class="number">5</span>:<span class="number">0</span>]seg_sel,</span><br><span class="line">                <span class="keyword">output</span>[<span class="number">7</span>:<span class="number">0</span>]seg_data</span><br><span class="line">                );</span><br><span class="line">      </span><br><span class="line"><span class="keyword">reg</span>[<span class="number">31</span>:<span class="number">0</span>] timer_cnt;</span><br><span class="line"><span class="keyword">reg</span> en_1hz;                          <span class="comment">//1 second , 1 counter enable</span></span><br><span class="line"><span class="keyword">always</span>@(<span class="keyword">posedge</span> clk <span class="keyword">or</span> <span class="keyword">negedge</span> rst_n)</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">    <span class="keyword">if</span>(rst_n == <span class="number">1&#x27;b0</span>)</span><br><span class="line">    <span class="keyword">begin</span></span><br><span class="line">        en_1hz &lt;= <span class="number">1&#x27;b0</span>;</span><br><span class="line">        timer_cnt &lt;= <span class="number">32&#x27;d0</span>;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(timer_cnt &gt;= <span class="number">32&#x27;d49_999_999</span>)</span><br><span class="line">    <span class="keyword">begin</span></span><br><span class="line">        en_1hz &lt;= <span class="number">1&#x27;b1</span>;</span><br><span class="line">        timer_cnt &lt;= <span class="number">32&#x27;d0</span>;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    <span class="keyword">begin</span></span><br><span class="line">        en_1hz &lt;= <span class="number">1&#x27;b0</span>;</span><br><span class="line">        timer_cnt &lt;= timer_cnt + <span class="number">32&#x27;d1</span>; </span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="keyword">wire</span>[<span class="number">3</span>:<span class="number">0</span>] count0;</span><br><span class="line"><span class="keyword">wire</span> t0;</span><br><span class="line">count_m10 count10_m0(</span><br><span class="line">    <span class="variable">.clk</span>    (clk),</span><br><span class="line">    <span class="variable">.rst_n</span>  (rst_n),</span><br><span class="line">    <span class="variable">.en</span>     (en_1hz),</span><br><span class="line">    <span class="variable">.clr</span>    (<span class="number">1&#x27;b0</span>),</span><br><span class="line">    <span class="variable">.data</span>   (count0),</span><br><span class="line">    <span class="variable">.t</span>      (t0)</span><br><span class="line"> );</span><br><span class="line"><span class="keyword">wire</span>[<span class="number">3</span>:<span class="number">0</span>] count1;</span><br><span class="line"><span class="keyword">wire</span> t1;</span><br><span class="line">count_m6 count6_m1( <span class="comment">//oringin: count_m10 count10_m1</span></span><br><span class="line">     <span class="variable">.clk</span>    (clk),</span><br><span class="line">     <span class="variable">.rst_n</span>  (rst_n),</span><br><span class="line">     <span class="variable">.en</span>     (t0),</span><br><span class="line">     <span class="variable">.clr</span>    (<span class="number">1&#x27;b0</span>),</span><br><span class="line">     <span class="variable">.data</span>   (count1),</span><br><span class="line">     <span class="variable">.t</span>      (t1)</span><br><span class="line"> );</span><br><span class="line"> </span><br><span class="line"><span class="keyword">wire</span>[<span class="number">3</span>:<span class="number">0</span>] count2;</span><br><span class="line"><span class="keyword">wire</span> t2;</span><br><span class="line">count_m10 count10_m2(</span><br><span class="line">    <span class="variable">.clk</span>   (clk),</span><br><span class="line">    <span class="variable">.rst_n</span> (rst_n),</span><br><span class="line">    <span class="variable">.en</span>    (t1),</span><br><span class="line">    <span class="variable">.clr</span>   (<span class="number">1&#x27;b0</span>),</span><br><span class="line">    <span class="variable">.data</span>  (count2),</span><br><span class="line">    <span class="variable">.t</span>     (t2)</span><br><span class="line">);</span><br><span class="line"> </span><br><span class="line"><span class="keyword">wire</span>[<span class="number">3</span>:<span class="number">0</span>] count3;</span><br><span class="line"><span class="keyword">wire</span> t3;</span><br><span class="line">count_m10 count10_m3(</span><br><span class="line">    <span class="variable">.clk</span>   (clk),</span><br><span class="line">    <span class="variable">.rst_n</span> (rst_n),</span><br><span class="line">    <span class="variable">.en</span>    (t2),</span><br><span class="line">    <span class="variable">.clr</span>   (<span class="number">1&#x27;b0</span>),</span><br><span class="line">    <span class="variable">.data</span>  (count3),</span><br><span class="line">    <span class="variable">.t</span>     (t3)</span><br><span class="line">);</span><br><span class="line"> </span><br><span class="line"><span class="keyword">wire</span>[<span class="number">3</span>:<span class="number">0</span>] count4;</span><br><span class="line"><span class="keyword">wire</span> t4;</span><br><span class="line">count_m10 count10_m4( </span><br><span class="line">    <span class="variable">.clk</span>   (clk),</span><br><span class="line">    <span class="variable">.rst_n</span> (rst_n),</span><br><span class="line">    <span class="variable">.en</span>    (t3),</span><br><span class="line">    <span class="variable">.clr</span>   (<span class="number">1&#x27;b0</span>),</span><br><span class="line">    <span class="variable">.data</span>  (count4),</span><br><span class="line">    <span class="variable">.t</span>     (t4)</span><br><span class="line">);</span><br><span class="line"> </span><br><span class="line"><span class="keyword">wire</span>[<span class="number">3</span>:<span class="number">0</span>] count5;</span><br><span class="line"><span class="keyword">wire</span> t5;</span><br><span class="line">count_m10 count10_m5(</span><br><span class="line">    <span class="variable">.clk</span>   (clk),</span><br><span class="line">    <span class="variable">.rst_n</span> (rst_n),</span><br><span class="line">    <span class="variable">.en</span>    (t4),</span><br><span class="line">    <span class="variable">.clr</span>   (<span class="number">1&#x27;b0</span>),</span><br><span class="line">    <span class="variable">.data</span>  (count5),</span><br><span class="line">    <span class="variable">.t</span>     (t5)</span><br><span class="line">);</span><br><span class="line"> </span><br><span class="line"><span class="keyword">wire</span>[<span class="number">6</span>:<span class="number">0</span>] seg_data_0;</span><br><span class="line">seg_decoder seg_decoder_m0(</span><br><span class="line">    <span class="variable">.bin_data</span>  (count5),</span><br><span class="line">    <span class="variable">.seg_data</span>  (seg_data_0)</span><br><span class="line">);</span><br><span class="line"><span class="keyword">wire</span>[<span class="number">6</span>:<span class="number">0</span>] seg_data_1;</span><br><span class="line">seg_decoder seg_decoder_m1(</span><br><span class="line">    <span class="variable">.bin_data</span>  (count4),</span><br><span class="line">    <span class="variable">.seg_data</span>  (seg_data_1)</span><br><span class="line">);</span><br><span class="line"><span class="keyword">wire</span>[<span class="number">6</span>:<span class="number">0</span>] seg_data_2;</span><br><span class="line">seg_decoder seg_decoder_m2(</span><br><span class="line">    <span class="variable">.bin_data</span>  (count3),</span><br><span class="line">    <span class="variable">.seg_data</span>  (seg_data_2)</span><br><span class="line">);</span><br><span class="line"><span class="keyword">wire</span>[<span class="number">6</span>:<span class="number">0</span>] seg_data_3;</span><br><span class="line">seg_decoder seg_decoder_m3(</span><br><span class="line">    <span class="variable">.bin_data</span>  (count2),</span><br><span class="line">    <span class="variable">.seg_data</span>  (seg_data_3)</span><br><span class="line">);</span><br><span class="line"><span class="keyword">wire</span>[<span class="number">6</span>:<span class="number">0</span>] seg_data_4;</span><br><span class="line">seg_decoder seg_decoder_m4(</span><br><span class="line">    <span class="variable">.bin_data</span>  (count1), <span class="comment">//attention, this is COUNT1</span></span><br><span class="line">    <span class="variable">.seg_data</span>  (seg_data_4)</span><br><span class="line">);</span><br><span class="line"> </span><br><span class="line"><span class="keyword">wire</span>[<span class="number">6</span>:<span class="number">0</span>] seg_data_5;</span><br><span class="line">seg_decoder seg_decoder_m5(</span><br><span class="line">    <span class="variable">.bin_data</span>  (count0),</span><br><span class="line">    <span class="variable">.seg_data</span>  (seg_data_5)</span><br><span class="line">);</span><br><span class="line"> </span><br><span class="line">seg_scan seg_scan_m0(</span><br><span class="line">    <span class="variable">.clk</span>        (clk),</span><br><span class="line">    <span class="variable">.rst_n</span>      (rst_n),</span><br><span class="line">    <span class="variable">.seg_sel</span>    (seg_sel),</span><br><span class="line">    <span class="variable">.seg_data</span>   (seg_data),</span><br><span class="line">    <span class="variable">.seg_data_4</span> (&#123;<span class="number">1&#x27;b1</span>,seg_data_4&#125;),</span><br><span class="line">    <span class="variable">.seg_data_5</span> (&#123;<span class="number">1&#x27;b1</span>,seg_data_5&#125;)</span><br><span class="line">);</span><br><span class="line"><span class="keyword">endmodule</span> </span><br></pre></td></tr></table></figure>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//count_m10.v</span></span><br><span class="line"><span class="keyword">module</span> count_m10(</span><br><span class="line">                 <span class="keyword">input</span>          clk,</span><br><span class="line">                 <span class="keyword">input</span>          rst_n,</span><br><span class="line">                 <span class="keyword">input</span>          en,    <span class="comment">//Counter enable</span></span><br><span class="line">                 <span class="keyword">input</span>          clr,   <span class="comment">//Counter synchronous reset   </span></span><br><span class="line">                 <span class="keyword">output</span> <span class="keyword">reg</span>[<span class="number">3</span>:<span class="number">0</span>]data,  <span class="comment">//counter value</span></span><br><span class="line">                 <span class="keyword">output</span> <span class="keyword">reg</span>     t      <span class="comment">// carry enable signal</span></span><br><span class="line">                );</span><br><span class="line"><span class="keyword">always</span>@(<span class="keyword">posedge</span> clk <span class="keyword">or</span> <span class="keyword">negedge</span> rst_n) </span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">    <span class="keyword">if</span>(rst_n==<span class="number">0</span>)</span><br><span class="line">    <span class="keyword">begin</span></span><br><span class="line">        data &lt;= <span class="number">4&#x27;d0</span>;</span><br><span class="line">        t &lt;= <span class="number">1&#x27;d0</span>;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(clr)</span><br><span class="line">    <span class="keyword">begin</span></span><br><span class="line">        data &lt;= <span class="number">4&#x27;d0</span>;</span><br><span class="line">        t &lt;= <span class="number">1&#x27;d0</span>;      </span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(en)</span><br><span class="line">    <span class="keyword">begin</span></span><br><span class="line">        <span class="keyword">if</span>(data==<span class="number">4&#x27;d9</span>)</span><br><span class="line">        <span class="keyword">begin</span></span><br><span class="line">            t&lt;= <span class="number">1&#x27;b1</span>;    <span class="comment">//Counter to 9 to generate carry</span></span><br><span class="line">            data &lt;= <span class="number">4&#x27;d0</span>;<span class="comment">//Counter to 9 reset</span></span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        <span class="keyword">begin</span></span><br><span class="line">            t &lt;= <span class="number">1&#x27;b0</span>;</span><br><span class="line">            data &lt;= data + <span class="number">4&#x27;d1</span>;</span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        t &lt;= <span class="number">1&#x27;b0</span>;</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//count_m6.v</span></span><br><span class="line"><span class="keyword">module</span> count_m6(</span><br><span class="line">                 <span class="keyword">input</span>          clk,</span><br><span class="line">                 <span class="keyword">input</span>          rst_n,</span><br><span class="line">                 <span class="keyword">input</span>          en,    <span class="comment">//Counter enable</span></span><br><span class="line">                 <span class="keyword">input</span>          clr,   <span class="comment">//Counter synchronous reset   </span></span><br><span class="line">                 <span class="keyword">output</span> <span class="keyword">reg</span>[<span class="number">3</span>:<span class="number">0</span>]data,  <span class="comment">//counter value</span></span><br><span class="line">                 <span class="keyword">output</span> <span class="keyword">reg</span>     t      <span class="comment">// carry enable signal</span></span><br><span class="line">                );</span><br><span class="line"><span class="keyword">always</span>@(<span class="keyword">posedge</span> clk <span class="keyword">or</span> <span class="keyword">negedge</span> rst_n) </span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">    <span class="keyword">if</span>(rst_n==<span class="number">0</span>)</span><br><span class="line">    <span class="keyword">begin</span></span><br><span class="line">        data &lt;= <span class="number">4&#x27;d0</span>;</span><br><span class="line">        t &lt;= <span class="number">1&#x27;d0</span>;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(clr)</span><br><span class="line">    <span class="keyword">begin</span></span><br><span class="line">        data &lt;= <span class="number">4&#x27;d0</span>;</span><br><span class="line">        t &lt;= <span class="number">1&#x27;d0</span>;      </span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(en)</span><br><span class="line">    <span class="keyword">begin</span></span><br><span class="line">        <span class="keyword">if</span>(data==<span class="number">4&#x27;d5</span>)</span><br><span class="line">        <span class="keyword">begin</span></span><br><span class="line">            t&lt;= <span class="number">1&#x27;b1</span>;    <span class="comment">//Counter to 5 to generate carry</span></span><br><span class="line">            data &lt;= <span class="number">4&#x27;d0</span>;<span class="comment">//Counter to 5 reset</span></span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        <span class="keyword">begin</span></span><br><span class="line">            t &lt;= <span class="number">1&#x27;b0</span>;</span><br><span class="line">            data &lt;= data + <span class="number">4&#x27;d1</span>;</span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        t &lt;= <span class="number">1&#x27;b0</span>;</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//seg_decoder.v</span></span><br><span class="line"><span class="keyword">module</span> seg_decoder</span><br><span class="line">(</span><br><span class="line"> <span class="keyword">input</span>[<span class="number">3</span>:<span class="number">0</span>]      bin_data,     <span class="comment">// bin data input</span></span><br><span class="line"> <span class="keyword">output</span> <span class="keyword">reg</span>[<span class="number">6</span>:<span class="number">0</span>] seg_data      <span class="comment">// seven segments LED output  //origin: [6:0]</span></span><br><span class="line">);</span><br><span class="line"> </span><br><span class="line"><span class="keyword">always</span>@(*)</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line"> <span class="keyword">case</span>(bin_data)</span><br><span class="line">  <span class="number">4&#x27;d0</span>:seg_data &lt;= <span class="number">7&#x27;b100_0000</span>;</span><br><span class="line">  <span class="number">4&#x27;d1</span>:seg_data &lt;= <span class="number">7&#x27;b111_1001</span>;</span><br><span class="line">  <span class="number">4&#x27;d2</span>:seg_data &lt;= <span class="number">7&#x27;b010_0100</span>;</span><br><span class="line">  <span class="number">4&#x27;d3</span>:seg_data &lt;= <span class="number">7&#x27;b011_0000</span>;</span><br><span class="line">  <span class="number">4&#x27;d4</span>:seg_data &lt;= <span class="number">7&#x27;b001_1001</span>;</span><br><span class="line">  <span class="number">4&#x27;d5</span>:seg_data &lt;= <span class="number">7&#x27;b001_0010</span>;</span><br><span class="line">  <span class="number">4&#x27;d6</span>:seg_data &lt;= <span class="number">7&#x27;b000_0010</span>;</span><br><span class="line">  <span class="number">4&#x27;d7</span>:seg_data &lt;= <span class="number">7&#x27;b111_1000</span>;</span><br><span class="line">  <span class="number">4&#x27;d8</span>:seg_data &lt;= <span class="number">7&#x27;b000_0000</span>;</span><br><span class="line">  <span class="number">4&#x27;d9</span>:seg_data &lt;= <span class="number">7&#x27;b001_0000</span>;</span><br><span class="line">  <span class="number">4&#x27;ha</span>:seg_data &lt;= <span class="number">7&#x27;b000_1000</span>;</span><br><span class="line">  <span class="number">4&#x27;hb</span>:seg_data &lt;= <span class="number">7&#x27;b000_0011</span>;</span><br><span class="line">  <span class="number">4&#x27;hc</span>:seg_data &lt;= <span class="number">7&#x27;b100_0110</span>;</span><br><span class="line">  <span class="number">4&#x27;hd</span>:seg_data &lt;= <span class="number">7&#x27;b010_0001</span>;</span><br><span class="line">  <span class="number">4&#x27;he</span>:seg_data &lt;= <span class="number">7&#x27;b000_0110</span>;</span><br><span class="line">  <span class="number">4&#x27;hf</span>:seg_data &lt;= <span class="number">7&#x27;b000_1110</span>;</span><br><span class="line">  <span class="keyword">default</span>:seg_data &lt;= <span class="number">7&#x27;b111_1111</span>;</span><br><span class="line"> <span class="keyword">endcase</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
+<h2 id="四、实验中遇到的问题及解决方法-1"><a href="#四、实验中遇到的问题及解决方法-1" class="headerlink" title="四、实验中遇到的问题及解决方法"></a>四、实验中遇到的问题及解决方法</h2><h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><p>数码管显示不完整</p>
+<h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><p>发现是因为修改代码的过程中把数码管段控制修改错误，应是seg_data_5和seg_data_6，错改成了1和2，改回来即可；以及修改过程中将管脚配置写错，改回默认即可。</p>
+<h2 id="五、心得体会"><a href="#五、心得体会" class="headerlink" title="五、心得体会"></a>五、心得体会</h2><p>通过本次实验，我深入理解了数码管的工作原理和动态扫描显示的实现方法。</p>
+<p>我学会了如何在 FPGA 上设计和连接不同模块，实现复杂的功能。</p>
+<p>首先，我们设计了一个十进制计数器模块，用于计时秒数。当计数到 9 时，它会自动清零并触发六进制计数器开始新一轮计数。</p>
+<p>其次，我们实现了一个六进制计数器模块，用于计数分钟。当六进制计数器达到 6 时，它会自动清零，并通知译码模块开始新一轮计数。</p>
+<p>我们使用了七段显示译码器，将计数器的输出转换为七段数码管的控制信号。</p>
+<p>最后，我们编写了数码管扫描模块，控制数码管的显示。</p>
+<p>我们成功地实现了一个 2 位六十进制计数器，可以准确地显示秒数和分钟数。</p>
+<p>数码管的扫描显示效果流畅，没有闪烁或乱码。</p>
+<p>通过这次实验，我不仅掌握了硬件描述语言的基本知识，还提高了问题解决能力。</p>
+<p>我对 FPGA 的应用有了更深入的了解，希望在今后的学习和工作中能继续探索更多有趣的项目。</p>
+<p>这次实验让我更加熟悉了数字电路设计和 FPGA 编程，也为我未来的职业发展打下了坚实的基础。</p>
+<p>（心得体会由newbing生成，望知悉）</p>
+<hr>
+<center><h1>实验三：数字时钟设计</h1></center>
+
+<h2 id="一、实验目的-2"><a href="#一、实验目的-2" class="headerlink" title="一、实验目的"></a>一、实验目的</h2><ol>
+<li><p>掌握元件例化方法</p>
+</li>
+<li><p>掌握自上而下的电路设计方法</p>
+</li>
+</ol>
+<h2 id="二、实验内容及原理-2"><a href="#二、实验内容及原理-2" class="headerlink" title="二、实验内容及原理"></a>二、实验内容及原理</h2><h3 id="1-实验内容-2"><a href="#1-实验内容-2" class="headerlink" title="1. 实验内容"></a>1. 实验内容</h3><p>设计一个数字时钟，通过6个数码管分别显示小时、分钟和秒。</p>
+<center><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://images.rimrose.site/images/EDA_expt-3_Fig3.0.png"></center>
+
+<h3 id="2-实验原理-2"><a href="#2-实验原理-2" class="headerlink" title="2. 实验原理"></a>2. 实验原理</h3><h4 id="2-1-硬件介绍-1"><a href="#2-1-硬件介绍-1" class="headerlink" title="2.1. 硬件介绍"></a>2.1. 硬件介绍</h4><p>开发板上安装了 6 个共阳数码管，可以显示 6 个数字(包含小数点) 。电路用 PNP 管来反向驱 动并且控制列扫描信号（SEL0_T~SEL5_T）来选择哪个数码管。而且所有的 6 个数码管的“段选信 号”（LEDA .. LEDH）都共用驱动引脚(LED_A~LEDH)。数码管的所有驱动信号都是“低电平有效”。 具体的原理图设计如下图所示:</p>
+<center><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://images.rimrose.site/images/EDA_expt-2_Fig2.1.png" alt="Fig-3.1 AX301开发板数码管电路"></center>
+
+<h4 id="2-2-数码管扫描原理-1"><a href="#2-2-数码管扫描原理-1" class="headerlink" title="2.2. 数码管扫描原理"></a>2.2. 数码管扫描原理</h4><p>单个数码管可以采用静态显示方式，如图所示，数码管被分成 a、b、c、d、e、f、g 和小数 点，每段可以单独控制亮灭，通过点亮不同的段显示不同的数字和字符。</p>
+<center><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://images.rimrose.site/images/EDA_expt-2_Fig2.2.jpg" alt="Fig-3.2"></center>
+
+<p>对于共阳极的数码管，显示数字和字符的编码如下：</p>
+<center><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://images.rimrose.site/images/EDA_expt-2_Fig2.3.jpg" alt="Fig-3.3"></center>
+
+<center><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://images.rimrose.site/images/EDA_expt-2_Fig2.4.png" alt="Fig-3.4"></center>
+
+<p>对于多位数码管，利用视觉暂留原理，快速交替显示，让眼睛看上去是多个数码管同时显示的。</p>
+<center><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://images.rimrose.site/images/EDA_expt-2_Fig2.5.jpg" alt="Fig-3.5"></center>
+
+<center><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://images.rimrose.site/images/EDA_expt-2_Fig2.6.jpg" alt="Fig-3.6"></center>
+
+<h2 id="三、实验步骤及结果-2"><a href="#三、实验步骤及结果-2" class="headerlink" title="三、实验步骤及结果"></a>三、实验步骤及结果</h2><h3 id="1-程序设计-1"><a href="#1-程序设计-1" class="headerlink" title="1. 程序设计"></a>1. 程序设计</h3><p>本实验设计一个 2 位60进制计数器模块（由一个十进制计数器和一个六进制计数器实现）和一个2位24进制计数器模块，然后通过译码模块译码后送到数码管扫描模块扫描显示。</p>
+<h3 id="2-模块设计-1"><a href="#2-模块设计-1" class="headerlink" title="2. 模块设计"></a>2. 模块设计</h3><h4 id="2-1-译码模块-1"><a href="#2-1-译码模块-1" class="headerlink" title="2.1. 译码模块"></a>2.1. 译码模块</h4><p>主要作用是将二进制码转换成数码管的段控制信号。</p>
+<center><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://images.rimrose.site/images/EDA_expt-2_Fig2.7.png" alt="Fig-3.7 译码模块（seg_decoder）端口"></center>
+
+<h4 id="2-2-数码管扫描模块-1"><a href="#2-2-数码管扫描模块-1" class="headerlink" title="2.2. 数码管扫描模块"></a>2.2. 数码管扫描模块</h4><p>将多位数码管的段控制信号分时送出。</p>
+<center><img src="https://images.rimrose.site/images/EDA_expt-2_Fig2.8.png" alt="Fig-3.8 数码管扫描模块（seg_scan）端口
+"></center>
+
+<h4 id="2-3-模-10-计数器模块-1"><a href="#2-3-模-10-计数器模块-1" class="headerlink" title="2.3. 模 10 计数器模块"></a>2.3. 模 10 计数器模块</h4><p>模块有同步复位，计数使能，进位输出功能，计数值从 0-9，并在等于 9 时进位。</p>
+<h4 id="2-4-模-6-计数器模块-1"><a href="#2-4-模-6-计数器模块-1" class="headerlink" title="2.4. 模 6 计数器模块"></a>2.4. 模 6 计数器模块</h4><p>模块有同步复位，计数使能，进位输出功能，计数值从 0-5，并在等于 5 时进位。</p>
+<h4 id="2-5-模-24-计数器模块"><a href="#2-5-模-24-计数器模块" class="headerlink" title="2.5. 模 24 计数器模块"></a>2.5. 模 24 计数器模块</h4><p>此模块右两部分构成，一部分是十位（count_m24_x）另一部分是个位（count_m24_y）。十位数字通过逢2进位实现24进制的“2”，个位数字通过两次十进制和一次五进制来实现24进制的“4”。</p>
+<center><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://images.rimrose.site/images/EDA_expt-3_Fig3.11.png" alt="Fig-3.9 RTL"></center>
+
+<center><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://images.rimrose.site/images/EDA_expt-3_Fig3.10.png" alt="Fig-3.10 Flow Summary"></center>
+
+<center><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://images.rimrose.site/images/EDA_expt-2_Fig2.12.png" alt="Fig-3.11 simulation"></center>
+
+<blockquote>
+<p>附：完整代码</p>
+</blockquote>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 此代码基于实验二的seg_test.v</span></span><br><span class="line"><span class="comment">// 在实验二的seg_test.v的第129行后边插入以下代码：</span></span><br><span class="line">    <span class="variable">.seg_data_0</span> (&#123;<span class="number">1&#x27;b1</span>,seg_data_0&#125;),      <span class="comment">//The  decimal point at the highest bit,and low level effecitve</span></span><br><span class="line">    <span class="variable">.seg_data_1</span> (&#123;<span class="number">1&#x27;b1</span>,seg_data_1&#125;), </span><br><span class="line">    <span class="variable">.seg_data_2</span> (&#123;<span class="number">1&#x27;b1</span>,seg_data_2&#125;),</span><br><span class="line">    <span class="variable">.seg_data_3</span> (&#123;<span class="number">1&#x27;b1</span>,seg_data_3&#125;),</span><br></pre></td></tr></table></figure>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 此代码基于实验二的seg_scan.v</span></span><br><span class="line"><span class="comment">// 在实验二的seg_scan模块代码的基础上进行以下修改：</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 在第5行后边插入：</span></span><br><span class="line"> <span class="keyword">input</span>[<span class="number">7</span>:<span class="number">0</span>]      seg_data_0,</span><br><span class="line"> <span class="keyword">input</span>[<span class="number">7</span>:<span class="number">0</span>]      seg_data_1,</span><br><span class="line"> <span class="keyword">input</span>[<span class="number">7</span>:<span class="number">0</span>]      seg_data_2,</span><br><span class="line"> <span class="keyword">input</span>[<span class="number">7</span>:<span class="number">0</span>]      seg_data_3,</span><br><span class="line"> </span><br><span class="line"><span class="comment">// 在第49行后边插入</span></span><br><span class="line">   <span class="comment">//first digital led</span></span><br><span class="line">   <span class="number">4&#x27;d0</span>:</span><br><span class="line">   <span class="keyword">begin</span></span><br><span class="line">    seg_sel &lt;= <span class="number">6&#x27;b11_1110</span>;</span><br><span class="line">    seg_data &lt;= seg_data_0;</span><br><span class="line">   <span class="keyword">end</span></span><br><span class="line">   <span class="comment">//second digital led</span></span><br><span class="line">   <span class="number">4&#x27;d1</span>:</span><br><span class="line">   <span class="keyword">begin</span></span><br><span class="line">    seg_sel &lt;= <span class="number">6&#x27;b11_1101</span>;</span><br><span class="line">    seg_data &lt;= seg_data_1;</span><br><span class="line">   <span class="keyword">end</span></span><br><span class="line">   <span class="comment">//...</span></span><br><span class="line">   <span class="number">4&#x27;d2</span>:</span><br><span class="line">   <span class="keyword">begin</span></span><br><span class="line">    seg_sel &lt;= <span class="number">6&#x27;b11_1011</span>;</span><br><span class="line">    seg_data &lt;= seg_data_2;</span><br><span class="line">   <span class="keyword">end</span></span><br><span class="line">   <span class="number">4&#x27;d3</span>:</span><br><span class="line">   <span class="keyword">begin</span></span><br><span class="line">    seg_sel &lt;= <span class="number">6&#x27;b11_0111</span>;</span><br><span class="line">    seg_data &lt;= seg_data_3;</span><br><span class="line">   <span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//count_m24_x.v</span></span><br><span class="line"><span class="keyword">module</span> count_m24_x(</span><br><span class="line">                 <span class="keyword">input</span>          clk,</span><br><span class="line">                 <span class="keyword">input</span>          rst_n,</span><br><span class="line">                 <span class="keyword">input</span>          en,    <span class="comment">//Counter enable</span></span><br><span class="line">                 <span class="keyword">input</span>          clr,   <span class="comment">//Counter synchronous reset   </span></span><br><span class="line">                 <span class="keyword">output</span> <span class="keyword">reg</span>[<span class="number">3</span>:<span class="number">0</span>]data,  <span class="comment">//counter value</span></span><br><span class="line">                 <span class="keyword">output</span> <span class="keyword">reg</span>     t      <span class="comment">// carry enable signal</span></span><br><span class="line">                );</span><br><span class="line"><span class="keyword">always</span>@(<span class="keyword">posedge</span> clk <span class="keyword">or</span> <span class="keyword">negedge</span> rst_n) </span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">    <span class="keyword">if</span>(rst_n==<span class="number">0</span>)</span><br><span class="line">    <span class="keyword">begin</span></span><br><span class="line">        data &lt;= <span class="number">4&#x27;d0</span>;</span><br><span class="line">        t &lt;= <span class="number">1&#x27;d0</span>;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(clr)</span><br><span class="line">    <span class="keyword">begin</span></span><br><span class="line">        data &lt;= <span class="number">4&#x27;d0</span>;</span><br><span class="line">        t &lt;= <span class="number">1&#x27;d0</span>;      </span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(en)</span><br><span class="line">    <span class="keyword">begin</span></span><br><span class="line">        <span class="keyword">if</span>(data==<span class="number">4&#x27;d2</span>)</span><br><span class="line">        <span class="keyword">begin</span></span><br><span class="line">            t&lt;= <span class="number">1&#x27;b1</span>;    <span class="comment">//Counter to 2 to generate carry</span></span><br><span class="line">            data &lt;= <span class="number">4&#x27;d0</span>;<span class="comment">//Counter to 2 reset</span></span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        <span class="keyword">begin</span></span><br><span class="line">            t &lt;= <span class="number">1&#x27;b0</span>;</span><br><span class="line">            data &lt;= data + <span class="number">4&#x27;d1</span>;</span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        t &lt;= <span class="number">1&#x27;b0</span>;</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//count_m24_y.v</span></span><br><span class="line"><span class="keyword">module</span> count_m24_y(</span><br><span class="line">                 <span class="keyword">input</span>          clk,</span><br><span class="line">                 <span class="keyword">input</span>          rst_n,</span><br><span class="line">                 <span class="keyword">input</span>          en,    <span class="comment">//Counter enable</span></span><br><span class="line">                 <span class="keyword">input</span>          clr,   <span class="comment">//Counter synchronous reset   </span></span><br><span class="line">                 <span class="keyword">output</span> <span class="keyword">reg</span>[<span class="number">3</span>:<span class="number">0</span>]data,  <span class="comment">//counter value</span></span><br><span class="line">                 <span class="keyword">output</span> <span class="keyword">reg</span>     t      <span class="comment">// carry enable signal</span></span><br><span class="line">                );</span><br><span class="line">      </span><br><span class="line"><span class="keyword">reg</span>[<span class="number">3</span>:<span class="number">0</span>] y_timer; <span class="comment">// 24_y timer</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">always</span>@(<span class="keyword">posedge</span> clk <span class="keyword">or</span> <span class="keyword">negedge</span> rst_n)</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">    <span class="keyword">if</span>(rst_n==<span class="number">0</span>)</span><br><span class="line">    <span class="keyword">begin</span></span><br><span class="line">        data &lt;= <span class="number">4&#x27;d0</span>;</span><br><span class="line">        t &lt;= <span class="number">1&#x27;d0</span>;</span><br><span class="line">    y_timer &lt;= <span class="number">4&#x27;d0</span>;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(clr)</span><br><span class="line">    <span class="keyword">begin</span></span><br><span class="line">        data &lt;= <span class="number">4&#x27;d0</span>;</span><br><span class="line">        t &lt;= <span class="number">1&#x27;d0</span>;</span><br><span class="line">    y_timer &lt;= <span class="number">4&#x27;d0</span>;    </span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(en)</span><br><span class="line">    <span class="keyword">begin</span></span><br><span class="line">        <span class="keyword">if</span>(data==<span class="number">4&#x27;d9</span>)</span><br><span class="line">        <span class="keyword">begin</span></span><br><span class="line">            t&lt;= <span class="number">1&#x27;b1</span>;    <span class="comment">//Counter to 9 to generate carry</span></span><br><span class="line">            data &lt;= <span class="number">4&#x27;d0</span>;<span class="comment">//Counter to 9 reset</span></span><br><span class="line">    y_timer &lt;= y_timer + <span class="number">4&#x27;d1</span>; </span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(data==<span class="number">4&#x27;d3</span> &amp;&amp; y_timer==<span class="number">4&#x27;d2</span>)</span><br><span class="line">    <span class="keyword">begin</span></span><br><span class="line">    t &lt;= <span class="number">1&#x27;b1</span>;</span><br><span class="line">    data &lt;= <span class="number">4&#x27;d0</span>;</span><br><span class="line">    y_timer &lt;= <span class="number">4&#x27;d0</span>;</span><br><span class="line">   <span class="keyword">end</span></span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        <span class="keyword">begin</span></span><br><span class="line">            t &lt;= <span class="number">1&#x27;b0</span>;</span><br><span class="line">            data &lt;= data + <span class="number">4&#x27;d1</span>;</span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        t &lt;= <span class="number">1&#x27;b0</span>;</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>然后，在<code>seg_test.v</code>里边，第89行的<code>wire t3</code>的<code>count_m10</code>改成<code>count_m6</code>，然后把第100行和111行的<code>wire t4</code>和<code>wire t5</code>的<code>count_m10</code>分别改为<code>count_m24_y</code>和<code>count_m24_x</code>即可实现。</p>
+</blockquote>
+<h2 id="四、实验中遇到的问题及解决方法-2"><a href="#四、实验中遇到的问题及解决方法-2" class="headerlink" title="四、实验中遇到的问题及解决方法"></a>四、实验中遇到的问题及解决方法</h2><h3 id="其一"><a href="#其一" class="headerlink" title="其一"></a>其一</h3><p>时钟计数速度过慢（对于调试来说），解决方法是：</p>
+<p>可以修改<code>seg_test.v</code>第45行的<code>32&#39;d49_999_999</code>为<code>32&#39;d49_999</code>，这样分钟的十位会按比秒稍微快一点的速度计数。</p>
+<h3 id="其二"><a href="#其二" class="headerlink" title="其二"></a>其二</h3><p>如何实现24进制：</p>
+<p>由于时钟的每一位数字是单独控制的，所以24进制通过两个数字分别控制来实现，也就是一部分是十位（count_m24_x）另一部分是个位（count_m24_y）。十位数字通过逢2进位实现24进制的“2”，个位数字通过两次十进制和一次五进制来实现24进制的“4”。</p>
+<h2 id="五、心得体会-1"><a href="#五、心得体会-1" class="headerlink" title="五、心得体会"></a>五、心得体会</h2><p>这次的数字时钟设计实验是一个有趣且具有挑战性的任务。在设计过程中，我深刻体会到了模块化设计的重要性，以及如何将不同功能的模块协调工作。以下是我在这个实验中的一些感受：</p>
+<p>模块化设计的优势：</p>
+<p>通过将整个系统拆分为不同的模块，我们可以更好地管理复杂性。每个模块专注于特定的功能，使得代码更易于维护和调试。这次实验中，我学到了如何设计独立的计时模块和数码管显示模块，并将它们组合在一起。</p>
+<p>时序控制的挑战：</p>
+<p>在数码管显示模块中，动态扫描的时序控制是一个关键问题。我们需要确保数码管按照正确的顺序点亮，以显示出完整的时间。这让我意识到了时序设计的重要性，以及如何避免潜在的冲突。</p>
+<p>仿真的重要性：</p>
+<p>在设计过程中，我进行了详细的仿真测试。通过仿真，我能够观察到时、分、秒各自的跳变过程，并验证整点报时控制信号的正确性。这次实验让我明白了仿真在硬件设计中的关键作用。</p>
+<p>（心得体会由newbing生成，望知悉）</p>
+<hr>
+<center><h1>实验四：正弦信号发生器设计</h1></center>
+
+<h2 id="一、实验目的-3"><a href="#一、实验目的-3" class="headerlink" title="一、实验目的"></a>一、实验目的</h2><ol>
+<li><p>掌握ROM存储器 IP核的使用</p>
+</li>
+<li><p>掌握IP核的仿真方法</p>
+</li>
+<li><p>掌握signal Tap嵌入式逻辑分析仪的使用方法</p>
+</li>
+</ol>
+<h2 id="二、实验内容及原理-3"><a href="#二、实验内容及原理-3" class="headerlink" title="二、实验内容及原理"></a>二、实验内容及原理</h2><h3 id="1-实验内容-3"><a href="#1-实验内容-3" class="headerlink" title="1. 实验内容"></a>1. 实验内容</h3><p>产生一定频率的正弦信号，信号频率可设置或选择</p>
+<h3 id="2-实验原理-3"><a href="#2-实验原理-3" class="headerlink" title="2. 实验原理"></a>2. 实验原理</h3><p>首先是 FPGA 中的波形发生器控制电路，它通过外来控制信号和高速时钟 信号，向波形数据 ROM 发出地址信号。波形数据 ROM 中存有发生器的波形数据，如正弦 波或三角波数据。当接受来自 FPGA 的地址信号后，将从数据线输出相应的波形数据。</p>
+<h2 id="三、实验步骤及结果-3"><a href="#三、实验步骤及结果-3" class="headerlink" title="三、实验步骤及结果"></a>三、实验步骤及结果</h2><ol>
+<li><p>打开 Quartus 软件，点击 File，找到并点击 New Project Wizard，新建工程。为工程命名， 选择 Cyclone IV E 器件，将管脚个数选为 256，速度选 8，然后选中器件栏中的第一行器件。</p>
+</li>
+<li><p>然后在界面的最右边 IP 核目录库下的 Basic Function 中找到 On Chip Memory，选择 ROM:1-PORT。然后出现一个窗口，为最后生成的文件命名，点击 OK。接着又出现一个界 面，主要是对 IP 核进行参数的设置，将位数设置为 8，将数据个数设置为 256 即可，点击 NEXT。在新出现的窗口中找到 Create a ‘rden’ read enable signal 打上对号，再点击 NEXT。 这时候需要添加存储器的初始化文件，注意该文件的后缀是.mif，然后继续往下进行，最后 结束。结束后又出现一个窗口，窗口主要是询问刚才生成的 IP 核文件是否加入工程里，点 击 YES，在当行窗口点击 Files 即可看到自动生成的文件。</p>
+</li>
+<li><p>使用 IP 核。新建文件，写入程序代码。具体代码如下:</p>
+</li>
+</ol>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//sinwave1.v</span></span><br><span class="line"><span class="keyword">module</span> sinwave1(clk, rst_n, dout);</span><br><span class="line"><span class="keyword">input</span> clk, rst_n;</span><br><span class="line"><span class="keyword">output</span> [<span class="number">7</span>:<span class="number">0</span>] dout;</span><br><span class="line"><span class="keyword">reg</span> [<span class="number">7</span>:<span class="number">0</span>] address;</span><br><span class="line"><span class="keyword">reg</span> rden;</span><br><span class="line"><span class="keyword">always</span>@(<span class="keyword">posedge</span> clk <span class="keyword">or</span> <span class="keyword">negedge</span> rst_n)</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">    <span class="keyword">if</span> (!rst_n)</span><br><span class="line">        rden ≤<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        rden ≤<span class="number">1</span>;</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="keyword">always</span>@(<span class="keyword">posedge</span> clk <span class="keyword">or</span> <span class="keyword">negedge</span> rst_n)</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">    <span class="keyword">if</span> (!rst_n)</span><br><span class="line">        address≤<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        address ≤address+<span class="number">1</span>;</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">myrom1 u1(<span class="variable">.address</span>(address) ,<span class="variable">.clock</span>(clk) ,<span class="variable">.rden</span>(rden),<span class="variable">.q</span>(dout));</span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
+<ol>
+<li>使用 Signal Tap Logic Analyzer File。点击 File—&gt;new—&gt;Signal Tap Logic Analyzer File—&gt;OK。在出现的界面做三个设置，第一个：双击空白窗口，在出现的窗口中 Filter 找到 Pins all 并点击选择，再点击 list，然后选择 dout—&gt;insert—&gt;closed；第二个：窗口右边找到 Clock—&gt;…—&gt;Filter—&gt;Pins all—&gt;list—&gt;clk—&gt;insert—&gt;OK；第三个：在右边窗口，找到 Sample depth 将其改为 1K，即可。然后保存。接着出现一个窗口提示是否把当前这个加入工程里， 点击 YES。再次编译。结果如下图示。</li>
+</ol>
+<center><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://images.rimrose.site/images/EDA_expt-4_Fig2.jpg" alt="Fig-2 Flow Summary"></center>
+
+<ol>
+<li>把电路板的与电脑连接。然后在刚才的界面右边找到 Hardware—&gt;USB-Blaster,然后选择 需要下载的文件，点击下载的图标，然后程序就下载进去了，接着点击运行，然后波形就出现了。右键点击 dout[7:0]—&gt;Bus Display Format—&gt;Unsigned Line Chart， 即可看到正弦波，如下图示。</li>
+</ol>
+<center><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://images.rimrose.site/images/EDA_expt-4_Fig3.png" alt="Fig-3 wave"></center>
+
+<center><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://images.rimrose.site/images/EDA_expt-4_Fig4.png" alt="Fig-4 RTL图"></center>
+
+<h2 id="四、实验中遇到的问题及解决方法-3"><a href="#四、实验中遇到的问题及解决方法-3" class="headerlink" title="四、实验中遇到的问题及解决方法"></a>四、实验中遇到的问题及解决方法</h2><p>遇到的问题主要在于软件使用上的操作问题，经过点击不同的位置试错之后解决问题。</p>
+<h2 id="五、心得体会-2"><a href="#五、心得体会-2" class="headerlink" title="五、心得体会"></a>五、心得体会</h2><p>我将波形数据存入FPGA的ROM中，同时在FPGA中实现了外部控制逻辑单元，通过仿真测试，我成功地实现了正弦信号发生器的设计要求。这次实验让我更深入地理解了数字电路设计和信号处理的原理。</p>
+<hr>
+<center><h1>实验五：任意波形发生器设计</h1></center>
+
+<h2 id="一、实验目的-4"><a href="#一、实验目的-4" class="headerlink" title="一、实验目的"></a>一、实验目的</h2><ol>
+<li><p>熟练掌握IP核的使用</p>
+</li>
+<li><p>掌握自上而下的电路设计方法</p>
+</li>
+</ol>
+<h2 id="二、实验内容及原理-4"><a href="#二、实验内容及原理-4" class="headerlink" title="二、实验内容及原理"></a>二、实验内容及原理</h2><h3 id="1-实验内容-4"><a href="#1-实验内容-4" class="headerlink" title="1. 实验内容"></a>1. 实验内容</h3><ol>
+<li><p>生成4种基本波形，例如正弦波、方波等，具体波形和参数自定。</p>
+</li>
+<li><p>输出4种基本波形的任意叠加结果，共16种波形可供选择。</p>
+</li>
+</ol>
+<h3 id="2-实验原理-4"><a href="#2-实验原理-4" class="headerlink" title="2. 实验原理"></a>2. 实验原理</h3><ul>
+<li><p><strong>模块输入和输出：</strong></p>
+<ul>
+<li>输入：时钟信号clk和复位信号rst。</li>
+<li>输出：共有15个输出信号，分别是q1到q15，它们的位宽分别为8位到11位。</li>
+</ul>
+</li>
+<li><p><strong>寄存器address：</strong></p>
+<ul>
+<li><p>定义了一个9位宽的寄存器address，用于存储地址信息。</p>
+</li>
+<li><p>在每个时钟下降沿或复位信号下降沿时，根据复位状态更新 address 的值。  </p>
+</li>
+</ul>
+</li>
+<li><p><strong>四个ROM模块：</strong></p>
+<ul>
+<li><p>sinewave、fangbo、jvchibo和sanjiaobo是四个 ROM 模块。</p>
+</li>
+<li><p>每个模块都有相同的输入信号address和时钟信号clk，以及不同的输出信号q1、q2、q3和q4。</p>
+</li>
+<li><p>这些模块根据给定的地址从ROM中读取数据，并将结果存储在相应的输出信号中。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>输出信号的计算：</strong></p>
+<ul>
+<li>q5到q15是通过对输入信号q1、q2、q3和q4进行不同的运算得到的。</li>
+<li>例如，q5是q1和q2的和，q6是q1和q3的和，以此类推。</li>
+</ul>
+</li>
+</ul>
+<p>总之，这段代码实现了一个多输出的模块，其中包含了四个ROM模块和一些逻辑运算。每个ROM模块根据地址从ROM中读取数据，并将结果存储在相应的输出信号中。</p>
+<p>（实验原理部分的内容由newbing生成，望知悉）</p>
+<h2 id="三、实验步骤及结果-4"><a href="#三、实验步骤及结果-4" class="headerlink" title="三、实验步骤及结果"></a>三、实验步骤及结果</h2><ol>
+<li><p>新建工程与波形文件生成不再赘述，之前实验中已经说明。</p>
+</li>
+<li><p>在IP核库里的Basic Function – On Chip Memory，选择ROM:1-PORT，为每一个波形对应的实例化ROM核命名，比如本程序里将正弦波对应的ROM核命名为“sinewave”，对应的就是“sinewave.qip”和“sinewave.v”，然后一直点next，在需要选择波形文件以进行初始化时选择在步骤0中生成的正弦波文件，然后继续next。最后在询问是否将刚才生成的IP核加入工程的窗口点击YES，这样即可在Files里看到刚刚生成的文件，如Fig-1所示。</p>
+</li>
+</ol>
+<center><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://images.rimrose.site/images/EDA_expt-5_Fig1.png" alt="Fig-1 Files"></center>
+
+<ol>
+<li><p>重复步骤1，将另外的三个波形也写入ROM核。</p>
+</li>
+<li><p>编写顶层文件，完整代码如下。</p>
+</li>
+</ol>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//hechengbo.v</span></span><br><span class="line"><span class="keyword">module</span> hechengbo(</span><br><span class="line">    <span class="keyword">input</span> clk,</span><br><span class="line">    <span class="keyword">input</span> rst,</span><br><span class="line">    <span class="keyword">output</span> [<span class="number">7</span>:<span class="number">0</span>] q1,</span><br><span class="line">    <span class="keyword">output</span> [<span class="number">7</span>:<span class="number">0</span>] q2, </span><br><span class="line">    <span class="keyword">output</span> [<span class="number">7</span>:<span class="number">0</span>] q3, </span><br><span class="line">    <span class="keyword">output</span> [<span class="number">7</span>:<span class="number">0</span>] q4, </span><br><span class="line">    <span class="keyword">output</span> [<span class="number">8</span>:<span class="number">0</span>] q5, </span><br><span class="line">    <span class="keyword">output</span> [<span class="number">8</span>:<span class="number">0</span>] q6, </span><br><span class="line">    <span class="keyword">output</span> [<span class="number">8</span>:<span class="number">0</span>] q7, </span><br><span class="line">    <span class="keyword">output</span> [<span class="number">8</span>:<span class="number">0</span>] q8, </span><br><span class="line">    <span class="keyword">output</span> [<span class="number">8</span>:<span class="number">0</span>] q9, </span><br><span class="line">    <span class="keyword">output</span> [<span class="number">8</span>:<span class="number">0</span>] q10,</span><br><span class="line">    <span class="keyword">output</span> [<span class="number">9</span>:<span class="number">0</span>] q11,</span><br><span class="line">    <span class="keyword">output</span> [<span class="number">9</span>:<span class="number">0</span>] q12, </span><br><span class="line">    <span class="keyword">output</span> [<span class="number">9</span>:<span class="number">0</span>] q13, </span><br><span class="line">    <span class="keyword">output</span> [<span class="number">9</span>:<span class="number">0</span>] q14, </span><br><span class="line">    <span class="keyword">output</span> [<span class="number">10</span>:<span class="number">0</span>] q15 </span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">reg</span> [<span class="number">8</span>:<span class="number">0</span>] address;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">always</span> @ (<span class="keyword">negedge</span> clk <span class="keyword">or</span> <span class="keyword">negedge</span> rst)</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">    <span class="keyword">if</span>(!rst)</span><br><span class="line">       address &lt;= <span class="number">1&#x27;b0</span>;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">       address &lt;= address+<span class="number">1&#x27;b1</span>;</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">sinewave       ROM_1</span><br><span class="line">(</span><br><span class="line"> <span class="variable">.address</span>(address),</span><br><span class="line"> <span class="variable">.clock</span> (clk),</span><br><span class="line"> <span class="variable">.q</span> (q1)</span><br><span class="line">);</span><br><span class="line">fangbo     ROM_2</span><br><span class="line">(</span><br><span class="line"> <span class="variable">.address</span>(address),</span><br><span class="line"> <span class="variable">.clock</span> (clk),</span><br><span class="line"> <span class="variable">.q</span> (q2)</span><br><span class="line">);</span><br><span class="line">jvchibo    ROM_3</span><br><span class="line">(</span><br><span class="line"> <span class="variable">.address</span>(address),</span><br><span class="line"> <span class="variable">.clock</span> (clk),</span><br><span class="line"> <span class="variable">.q</span> (q3)</span><br><span class="line">);</span><br><span class="line">sanjiaobo   ROM_4</span><br><span class="line">(</span><br><span class="line"> <span class="variable">.address</span>(address),</span><br><span class="line"> <span class="variable">.clock</span> (clk),</span><br><span class="line"> <span class="variable">.q</span> (q4)</span><br><span class="line">);</span><br><span class="line"><span class="keyword">assign</span> q5=q1+q2;</span><br><span class="line"><span class="keyword">assign</span> q6=q1+q3;</span><br><span class="line"><span class="keyword">assign</span> q7=q1+q4;</span><br><span class="line"><span class="keyword">assign</span> q8=q3+q2;</span><br><span class="line"><span class="keyword">assign</span> q9=q4+q2;</span><br><span class="line"><span class="keyword">assign</span> q10=q1+q3+q4;</span><br><span class="line"><span class="keyword">assign</span> q11=q1+q2+q3;</span><br><span class="line"><span class="keyword">assign</span> q12=q1+q2+q4;</span><br><span class="line"><span class="keyword">assign</span> q13=q2+q3+q4;</span><br><span class="line"><span class="keyword">assign</span> q14=q3+q4;</span><br><span class="line"><span class="keyword">assign</span> q15=q1+q2+q3+q4;</span><br><span class="line"></span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
+<ol>
+<li>使用 Signal Tap Logic Analyzer File。点击 File—&gt;new—&gt;Signal Tap Logic Analyzer File—&gt;OK。在出现的界面做两个设置，第一个：双击空白窗口，在出现的窗口中 Filter 找到 Pins all 并点击选择，再点击 list，然后选择 q1~q15—&gt;insert—&gt;closed；第二个：窗口右边找到 Clock—&gt;…—&gt;Filter—&gt;Pins all—&gt;list—&gt;clk—&gt;insert—&gt;OK。然后保存。接着出现一个窗口提示是否把当前这个加入工程里， 点击 YES。编译。结果如下图示。</li>
+</ol>
+<center><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://images.rimrose.site/images/EDA_expt-5_Fig2.jpg" "Fig-2 Flow Summary"></center>
+
+<ol>
+<li>把电路板的与电脑连接。然后在刚才的界面右边找到 Hardware—&gt;USB-Blaster,然后选择 需要下载的文件，点击下载的图标，然后程序就下载进去了，接着点击运行，然后波形就出现了。按ctrl+A全选节点q1~q15—&gt;Bus Display Format—&gt;Unsigned Line Chart，即可看到q1~q4四个基本波形以及q5~q15的波形合成结果，如下图示。</li>
+</ol>
+<center><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://images.rimrose.site/images/EDA_expt-5_Fig3.png" alt="Fig-3 Signal Tap运行结果"></center>
+
+<center><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://images.rimrose.site/images/EDA_expt-5_Fig4.png" alt="Fig-4 RTL图"></center>
+
+<center><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://images.rimrose.site/images/EDA_expt-5_Fig5.png" alt="Fig-5 Pin Planner配置图"></center>
+
+<h2 id="四、实验中遇到的问题及解决方法-4"><a href="#四、实验中遇到的问题及解决方法-4" class="headerlink" title="四、实验中遇到的问题及解决方法"></a>四、实验中遇到的问题及解决方法</h2><p>Signal Tap运行之后看不到波形，看到的不是正弦形状等。解决方法就是Bus Display Format—&gt;Unsigned Line Chart，将波形显示模式改为Line Chart。</p>
+<h2 id="五、心得体会-3"><a href="#五、心得体会-3" class="headerlink" title="五、心得体会"></a>五、心得体会</h2><p>学到了一些逻辑运算，以下是一些常见的逻辑运算：</p>
+<ul>
+<li>与运算（AND）：</li>
+</ul>
+<p>AND 运算将两个输入值进行比较，如果两者都为真，则结果为真；否则，结果为假。</p>
+<p>例如，如果输入 A 和输入 B 都为真，那么 A AND B 的结果为真。</p>
+<ul>
+<li>或运算（OR）：</li>
+</ul>
+<p>OR 运算将两个输入值进行比较，如果其中至少一个为真，则结果为真；否则，结果为假。</p>
+<p>例如，如果输入 A 或输入 B 中至少有一个为真，那么 A OR B 的结果为真。</p>
+<ul>
+<li>非运算（NOT）：</li>
+</ul>
+<p>NOT 运算将单个输入值进行比较，如果输入为真，则结果为假；如果输入为假，则结果为真。</p>
+<p>例如，如果输入 A 为真，那么 NOT A 的结果为假。</p>
+<ul>
+<li>异或运算（XOR）：</li>
+</ul>
+<p>XOR 运算也称为“互斥或”运算。它将两个输入值进行比较，如果两者不相等，则结果为真；如果两者相等，则结果为假。</p>
+<p>例如，如果输入 A 和输入 B 不相等，那么 A XOR B 的结果为真。</p>
+<p>学到了如何进行波的叠加运算。</p>
+<p>（心得体会由newbing生成，望知悉）</p>
+<hr>
+<center><h1>实验六：硬件消抖电路设计</h1></center>
+
+<h2 id="一、实验目的-5"><a href="#一、实验目的-5" class="headerlink" title="一、实验目的"></a>一、实验目的</h2><ol>
+<li><p>熟悉硬件消抖原理</p>
+</li>
+<li><p>熟悉状态机的设计方法</p>
+</li>
+</ol>
+<h2 id="二、实验内容及原理-5"><a href="#二、实验内容及原理-5" class="headerlink" title="二、实验内容及原理"></a>二、实验内容及原理</h2><h3 id="1-实验内容："><a href="#1-实验内容：" class="headerlink" title="1. 实验内容："></a>1. 实验内容：</h3><p>每按一次按键，数码管显示的60进制计数结果加1</p>
+<h3 id="2-实验原理-5"><a href="#2-实验原理-5" class="headerlink" title="2. 实验原理:"></a>2. 实验原理:</h3><p>（此部分内容由newbing生成，望知悉）</p>
+<ul>
+<li><p><strong>顶层文件key_debounce模块</strong></p>
+<ul>
+<li>模块输入和输出：<ul>
+<li>输入：时钟信号 clk、复位信号 rst_n 和按键输入信号 key1。</li>
+<li>输出：6 位选择信号 seg_sel 和 8 位的七段显示数据信号 seg_data。</li>
+</ul>
+</li>
+<li>按键去抖动逻辑：  <ul>
+<li>使用 ax_debounce 模块对输入的按键信号 key1 进行去抖动处理。  </li>
+<li>button_negedge 是检测到按键下降沿的信号。  </li>
+<li>去抖动后的输出作为计数器的使能信号。  </li>
+</ul>
+</li>
+<li>两个计数器：<ul>
+<li>count10_m0 和 count10_m1 是两个 4 位计数器。</li>
+<li>count10_m0 在去抖动后的按键下降沿触发，用于计数按键按下的次数。</li>
+<li>count10_m1 在 t0（从 count10_m0 得到的进位信号）为高电平时触发，用于进一步计数。</li>
+</ul>
+</li>
+<li>计数器值解码：<ul>
+<li>两个 seg_decoder 模块将计数器的值（count 和 count1）解码为 7 段显示数据。</li>
+<li>解码后的数据存储在 seg_data_0 和 seg_data_1 中。</li>
+</ul>
+</li>
+<li>7 段扫描：<ul>
+<li>seg_scan 模块扫描 7 段显示。</li>
+<li>它选择六个段之一（由 seg_sel 控制），并提供相应的数据（seg_data）。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>按键消抖ax_debounce模块：</strong></p>
+<ul>
+<li>模块输入和输出：<ul>
+<li>输入：时钟信号 clk、复位信号 rst 和按键输入信号 button_in。</li>
+<li>输出：去抖动后的按键信号 button_out，以及按键上升沿和下降沿的标志 button_posedge 和 button_negedge。</li>
+</ul>
+</li>
+<li>内部常数和变量：<ul>
+<li>N：去抖动计时器的位宽。</li>
+<li>FREQ：模型时钟频率（以 MHz 为单位）。</li>
+<li>MAX_TIME：最大去抖动时间（以毫秒为单位）。</li>
+<li>TIMER_MAX_VAL：计时器的最大值，根据最大去抖动时间计算得出。</li>
+</ul>
+</li>
+<li>计时器控制：<ul>
+<li>q_reset：通过异或运算检测输入翻转，用于重置计时器。</li>
+<li>q_add：当 q_reg 的最高位为 0 时，允许计数器增加。</li>
+</ul>
+</li>
+<li>计数器逻辑：<ul>
+<li>q_next：根据 q_reset 和 q_add 计算下一个计数器值。 </li>
+<li>DFF1 和 DFF2：输入的触发器。</li>
+<li>q_reg：计数器的当前值。</li>
+</ul>
+</li>
+<li>按键输出控制：<ul>
+<li>button_out：在计数器达到最大值时，将按键输出设置为 DFF2 的值。</li>
+<li>button_out_d0：按键输出的初始值。</li>
+<li>button_posedge 和 button_negedge：用于检测按键上升沿和下降沿。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>4位6进制计数器count_m6模块</strong></p>
+<ul>
+<li>模块输入和输出：<ul>
+<li>输入：时钟信号 clk、复位信号 rst_n、计数器使能信号 en 和同步清零信号 clr。</li>
+<li>输出：4 位计数器值 data 和进位使能信号 t。</li>
+</ul>
+</li>
+<li>计数器逻辑：在时钟上升沿或复位信号下降沿时，执行以下操作：<ul>
+<li>如果复位信号 rst_n 为低电平（0），则将计数器值 data 和进位使能信号 t 都重置为 0。</li>
+<li>如果同步清零信号 clr 为高电平（1），也将计数器值 data 和进位使能信号 t 都重置为 0。</li>
+<li>如果计数器使能信号 en 为高电平（1）：</li>
+<li>如果计数器值 data 等于 5，将进位使能信号 t 设置为 1（用于产生进位）并将计数器值 data 重置为 0。</li>
+<li>否则，将进位使能信号 t 设置为 0，计数器值 data 加 1。</li>
+<li>否则，将进位使能信号 t 设置为 0。</li>
+</ul>
+</li>
+<li>计数器行为：<ul>
+<li>计数器从 0 开始计数，每次递增 1。</li>
+<li>当计数器值达到 5 时，产生进位信号 t 并将计数器值重置为 0。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>4位10进制计数器count_m10模块</strong></p>
+<ul>
+<li>原理与上边的6进制计数器一样，只是进位的数字不一样。</li>
+</ul>
+</li>
+<li><p><strong>解码模块seg_decoder，用于将 4 位二进制输入 bin_data 解码为七段显示的输出 seg_data</strong></p>
+<ul>
+<li>always 块：<ul>
+<li>这个模块中的 always 块是组合逻辑，它在任何输入变化时都会执行。</li>
+<li>always @(*) 表示敏感于所有输入信号的变化。</li>
+</ul>
+</li>
+<li>case 语句：<ul>
+<li>case(bin_data) 根据输入的 bin_data 的值进行匹配。</li>
+<li>对于每个可能的 bin_data 值，都有一个对应的七段显示模式。</li>
+</ul>
+</li>
+<li>七段显示模式：<ul>
+<li>七段显示器通常由 7 个段（a、b、c、d、e、f、g）组成，每个段可以点亮或熄灭。</li>
+<li>在这里，七段显示的每个段用一个位表示，其中 1 表示点亮，0 表示熄灭。</li>
+<li>每个 seg_data 的 7 位对应于 a、b、c、d、e、f、g 段的状态。</li>
+</ul>
+</li>
+<li>具体的解码：<ul>
+<li>例如，当 bin_data 为 4’d0（表示十进制 0）时，seg_data 被设置为 7’b100_0000（点亮 a 段，其他段熄灭，显示数字 0）。</li>
+<li>类似地，对于其他的 bin_data 值，都有相应的七段显示模式。</li>
+</ul>
+</li>
+<li>默认情况：<ul>
+<li>如果 bin_data 的值不在 0 到 15 之间，default 分支将 seg_data 设置为 7’b111_1111（所有段都熄灭）。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>扫描模块seg_scan，用于控制七段显示器的扫描</strong></p>
+<ul>
+<li><p>模块输入和输出：</p>
+<ul>
+<li>输入：时钟信号 clk、复位信号 rst_n 和六个七段显示器的数据信号 seg_data_0 到 seg_data_5。</li>
+<li>输出：6 位选择信号 seg_sel 和 8 位的七段显示数据信号 seg_data。</li>
+</ul>
+</li>
+<li>计时器和选择逻辑：<ul>
+<li>scan_timer 是一个 32 位计时器，用于控制扫描的时间。</li>
+<li>scan_sel 是一个 4 位计数器，用于选择要扫描的七段显示器。</li>
+</ul>
+</li>
+<li>计时器和选择逻辑的实现：  在时钟上升沿或复位信号下降沿时，执行以下操作：<ul>
+<li>如果复位信号 rst_n 为低电平（0），则重置计时器和选择计数器。</li>
+<li>如果计时器达到预定的扫描周期（SCAN_COUNT），则重置计时器并更新选择计数器。</li>
+<li>否则，继续递增计时器。</li>
+</ul>
+</li>
+<li>七段显示器选择和数据输出：<ul>
+<li>根据选择计数器的值，选择要扫描的七段显示器。</li>
+<li>每个选择对应一个七段显示器的段选信号 seg_sel 和相应的数据 seg_data。</li>
+<li>例如，当 scan_sel 为 4’d0 时，选择第一个七段显示器，设置 seg_sel 为 6’b11_1110，并将 seg_data 设置为 seg_data_0。</li>
+</ul>
+</li>
+<li>默认情况：<ul>
+<li>如果选择计数器的值不在 0 到 5 之间，将 seg_sel 设置为 6’b11_1111，并将 seg_data 设置为 8’hff（所有段都熄灭）。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="三、实验步骤及结果-5"><a href="#三、实验步骤及结果-5" class="headerlink" title="三、实验步骤及结果"></a>三、实验步骤及结果</h2><p>编写程序代码编译即可。各模块代码按照实验原理中的模块顺序依次如下：</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//key_debounce.v</span></span><br><span class="line"><span class="keyword">module</span> key_debounce(</span><br><span class="line">    <span class="keyword">input</span>        clk,</span><br><span class="line">    <span class="keyword">input</span>        rst_n,</span><br><span class="line">    <span class="keyword">input</span>        key1,</span><br><span class="line">    <span class="keyword">output</span> [<span class="number">5</span>:<span class="number">0</span>] seg_sel,</span><br><span class="line">    <span class="keyword">output</span> [<span class="number">7</span>:<span class="number">0</span>] seg_data</span><br><span class="line">);</span><br><span class="line"><span class="keyword">wire</span> button_negedge; <span class="comment">//Key falling edge</span></span><br><span class="line">ax_debounce ax_debounce_m0</span><br><span class="line">(</span><br><span class="line">    <span class="variable">.clk</span>             (clk),</span><br><span class="line">    <span class="variable">.rst</span>             (~rst_n),</span><br><span class="line">    <span class="variable">.button_in</span>       (key1),</span><br><span class="line">    <span class="variable">.button_posedge</span>  (),</span><br><span class="line">    <span class="variable">.button_negedge</span>  (button_negedge),</span><br><span class="line">    <span class="variable">.button_out</span>      ()</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">wire</span>[<span class="number">3</span>:<span class="number">0</span>] count;</span><br><span class="line"><span class="keyword">wire</span> t0;</span><br><span class="line">count_m10 count10_m0(</span><br><span class="line">    <span class="variable">.clk</span>    (clk),</span><br><span class="line">    <span class="variable">.rst_n</span>  (rst_n),</span><br><span class="line">    <span class="variable">.en</span>     (button_negedge),</span><br><span class="line">    <span class="variable">.clr</span>    (<span class="number">1&#x27;b0</span>),</span><br><span class="line">    <span class="variable">.data</span>   (count),</span><br><span class="line">    <span class="variable">.t</span>      (t0)</span><br><span class="line">);</span><br><span class="line"><span class="keyword">wire</span>[<span class="number">3</span>:<span class="number">0</span>] count1;</span><br><span class="line"><span class="keyword">wire</span> t1;</span><br><span class="line">count_m6 count10_m1(</span><br><span class="line">    <span class="variable">.clk</span>    (clk),</span><br><span class="line">    <span class="variable">.rst_n</span>  (rst_n),</span><br><span class="line">    <span class="variable">.en</span>     (t0),</span><br><span class="line">    <span class="variable">.clr</span>    (<span class="number">1&#x27;b0</span>),</span><br><span class="line">    <span class="variable">.data</span>   (count1),</span><br><span class="line">    <span class="variable">.t</span>      (t1)</span><br><span class="line">);</span><br><span class="line"><span class="comment">//Count decoding</span></span><br><span class="line"><span class="keyword">wire</span>[<span class="number">6</span>:<span class="number">0</span>] seg_data_0;</span><br><span class="line">seg_decoder seg_decoder_m0(</span><br><span class="line">    <span class="variable">.bin_data</span>  (count),</span><br><span class="line">    <span class="variable">.seg_data</span>  (seg_data_0)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">wire</span>[<span class="number">6</span>:<span class="number">0</span>] seg_data_1;</span><br><span class="line">seg_decoder seg_decoder_m1(</span><br><span class="line">    <span class="variable">.bin_data</span>  (count1),</span><br><span class="line">    <span class="variable">.seg_data</span>  (seg_data_1)</span><br><span class="line">);</span><br><span class="line">seg_scan seg_scan_m0(</span><br><span class="line">    <span class="variable">.clk</span>        (clk),</span><br><span class="line">    <span class="variable">.rst_n</span>      (rst_n),</span><br><span class="line">    <span class="variable">.seg_sel</span>    (seg_sel),</span><br><span class="line">    <span class="variable">.seg_data</span>   (seg_data),</span><br><span class="line">    <span class="variable">.seg_data_0</span> (&#123;<span class="number">1&#x27;b1</span>,<span class="number">7&#x27;b1111_111</span>&#125;),</span><br><span class="line">    <span class="variable">.seg_data_1</span> (&#123;<span class="number">1&#x27;b1</span>,<span class="number">7&#x27;b1111_111</span>&#125;),</span><br><span class="line">    <span class="variable">.seg_data_2</span> (&#123;<span class="number">1&#x27;b1</span>,<span class="number">7&#x27;b1111_111</span>&#125;),</span><br><span class="line">    <span class="variable">.seg_data_3</span> (&#123;<span class="number">1&#x27;b1</span>,<span class="number">7&#x27;b1111_111</span>&#125;),</span><br><span class="line">    <span class="variable">.seg_data_4</span> (&#123;<span class="number">1&#x27;b1</span>,seg_data_1&#125;),</span><br><span class="line">    <span class="variable">.seg_data_5</span> (&#123;<span class="number">1&#x27;b1</span>,seg_data_0&#125;)</span><br><span class="line">);</span><br><span class="line"><span class="keyword">endmodule</span> </span><br></pre></td></tr></table></figure>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//ax_debounce.v</span></span><br><span class="line"><span class="meta">`<span class="keyword">timescale</span> 1 ns / 100 ps</span></span><br><span class="line"><span class="keyword">module</span>  ax_debounce </span><br><span class="line">(</span><br><span class="line">    <span class="keyword">input</span>       clk, </span><br><span class="line">    <span class="keyword">input</span>       rst, </span><br><span class="line">    <span class="keyword">input</span>       button_in,</span><br><span class="line">    <span class="keyword">output</span> <span class="keyword">reg</span>  button_posedge,</span><br><span class="line">    <span class="keyword">output</span> <span class="keyword">reg</span>  button_negedge,</span><br><span class="line">    <span class="keyword">output</span> <span class="keyword">reg</span>  button_out</span><br><span class="line">);</span><br><span class="line"><span class="comment">//// ---------------- internal constants --------------</span></span><br><span class="line"><span class="keyword">parameter</span> N = <span class="number">32</span> ;           <span class="comment">// debounce timer bitwidth</span></span><br><span class="line"><span class="keyword">parameter</span> FREQ = <span class="number">50</span>;         <span class="comment">//model clock :Mhz</span></span><br><span class="line"><span class="keyword">parameter</span> MAX_TIME = <span class="number">20</span>;     <span class="comment">//ms</span></span><br><span class="line"><span class="keyword">localparam</span> TIMER_MAX_VAL =   MAX_TIME * <span class="number">1000</span> * FREQ;</span><br><span class="line"><span class="comment">////---------------- internal variables ---------------</span></span><br><span class="line"><span class="keyword">reg</span>  [N-<span class="number">1</span> : <span class="number">0</span>]  q_reg;      <span class="comment">// timing regs</span></span><br><span class="line"><span class="keyword">reg</span>  [N-<span class="number">1</span> : <span class="number">0</span>]  q_next;</span><br><span class="line"><span class="keyword">reg</span> DFF1, DFF2;             <span class="comment">// input flip-flops</span></span><br><span class="line"><span class="keyword">wire</span> q_add;                 <span class="comment">// control flags</span></span><br><span class="line"><span class="keyword">wire</span> q_reset;</span><br><span class="line"><span class="keyword">reg</span> button_out_d0;</span><br><span class="line"><span class="comment">//// ------------------------------------------------------</span></span><br><span class="line"></span><br><span class="line"><span class="comment">////contenious assignment for counter control</span></span><br><span class="line"><span class="keyword">assign</span> q_reset = (DFF1  ^ DFF2);          <span class="comment">// xor input flip flops to look for level chage to reset counter</span></span><br><span class="line"><span class="keyword">assign</span> q_add = ~(q_reg == TIMER_MAX_VAL); <span class="comment">// add to counter when q_reg msb is equal to 0</span></span><br><span class="line">    </span><br><span class="line"><span class="comment">//// combo counter to manage q_next </span></span><br><span class="line"><span class="keyword">always</span> @ ( q_reset, q_add, q_reg)</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">    <span class="keyword">case</span>( &#123;q_reset , q_add&#125;)</span><br><span class="line">        <span class="number">2&#x27;b00</span> :</span><br><span class="line">                q_next &lt;= q_reg;</span><br><span class="line">        <span class="number">2&#x27;b01</span> :</span><br><span class="line">                q_next &lt;= q_reg + <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">default</span> :</span><br><span class="line">                q_next &lt;= &#123; N &#123;<span class="number">1&#x27;b0</span>&#125; &#125;;</span><br><span class="line">    <span class="keyword">endcase</span>     </span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//// Flip flop inputs and q_reg update</span></span><br><span class="line"><span class="keyword">always</span> @ ( <span class="keyword">posedge</span> clk <span class="keyword">or</span> <span class="keyword">posedge</span> rst)</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">    <span class="keyword">if</span>(rst == <span class="number">1&#x27;b1</span>)</span><br><span class="line">    <span class="keyword">begin</span></span><br><span class="line">        DFF1 &lt;= <span class="number">1&#x27;b0</span>;</span><br><span class="line">        DFF2 &lt;= <span class="number">1&#x27;b0</span>;</span><br><span class="line">        q_reg &lt;= &#123; N &#123;<span class="number">1&#x27;b0</span>&#125; &#125;;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    <span class="keyword">begin</span></span><br><span class="line">        DFF1 &lt;= button_in;</span><br><span class="line">        DFF2 &lt;= DFF1;</span><br><span class="line">        q_reg &lt;= q_next;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//// counter control</span></span><br><span class="line"><span class="keyword">always</span> @ ( <span class="keyword">posedge</span> clk <span class="keyword">or</span> <span class="keyword">posedge</span> rst)</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">    <span class="keyword">if</span>(rst == <span class="number">1&#x27;b1</span>)</span><br><span class="line">       button_out &lt;= <span class="number">1&#x27;b1</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(q_reg == TIMER_MAX_VAL)</span><br><span class="line">        button_out &lt;= DFF2;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        button_out &lt;= button_out;</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">always</span> @ ( <span class="keyword">posedge</span> clk <span class="keyword">or</span> <span class="keyword">posedge</span> rst)</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">    <span class="keyword">if</span>(rst == <span class="number">1&#x27;b1</span>)</span><br><span class="line">    <span class="keyword">begin</span></span><br><span class="line">       button_out_d0 &lt;= <span class="number">1&#x27;b1</span>;</span><br><span class="line">       button_posedge &lt;= <span class="number">1&#x27;b0</span>;</span><br><span class="line">       button_negedge &lt;= <span class="number">1&#x27;b0</span>;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    <span class="keyword">begin</span></span><br><span class="line">       button_out_d0 &lt;= button_out;</span><br><span class="line">       button_posedge &lt;= ~button_out_d0 &amp; button_out;</span><br><span class="line">       button_negedge &lt;= button_out_d0 &amp; ~button_out;</span><br><span class="line">    <span class="keyword">end</span>    </span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//count_m6.v</span></span><br><span class="line"><span class="keyword">module</span> count_m6(</span><br><span class="line">                 <span class="keyword">input</span>          clk,</span><br><span class="line">                 <span class="keyword">input</span>          rst_n,</span><br><span class="line">                 <span class="keyword">input</span>          en,    <span class="comment">//Counter enable</span></span><br><span class="line">                 <span class="keyword">input</span>          clr,   <span class="comment">//Counter synchronous reset   </span></span><br><span class="line">                 <span class="keyword">output</span> <span class="keyword">reg</span>[<span class="number">3</span>:<span class="number">0</span>]data,  <span class="comment">//counter value</span></span><br><span class="line">                 <span class="keyword">output</span> <span class="keyword">reg</span>     t      <span class="comment">// carry enable signal</span></span><br><span class="line">                );</span><br><span class="line"><span class="keyword">always</span>@(<span class="keyword">posedge</span> clk <span class="keyword">or</span> <span class="keyword">negedge</span> rst_n) </span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">    <span class="keyword">if</span>(rst_n==<span class="number">0</span>)</span><br><span class="line">    <span class="keyword">begin</span></span><br><span class="line">        data &lt;= <span class="number">4&#x27;d0</span>;</span><br><span class="line">        t &lt;= <span class="number">1&#x27;d0</span>;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(clr)</span><br><span class="line">    <span class="keyword">begin</span></span><br><span class="line">        data &lt;= <span class="number">4&#x27;d0</span>;</span><br><span class="line">        t &lt;= <span class="number">1&#x27;d0</span>;      </span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(en)</span><br><span class="line">    <span class="keyword">begin</span></span><br><span class="line">        <span class="keyword">if</span>(data==<span class="number">4&#x27;d5</span>)</span><br><span class="line">        <span class="keyword">begin</span></span><br><span class="line">            t&lt;= <span class="number">1&#x27;b1</span>;    <span class="comment">//Counter to 5 to generate carry</span></span><br><span class="line">            data &lt;= <span class="number">4&#x27;d0</span>;<span class="comment">//Counter to 5 reset</span></span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        <span class="keyword">begin</span></span><br><span class="line">            t &lt;= <span class="number">1&#x27;b0</span>;</span><br><span class="line">            data &lt;= data + <span class="number">4&#x27;d1</span>;</span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        t &lt;= <span class="number">1&#x27;b0</span>;</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//count_m10.v</span></span><br><span class="line"><span class="keyword">module</span> count_m10(</span><br><span class="line">                 <span class="keyword">input</span>          clk,</span><br><span class="line">                 <span class="keyword">input</span>          rst_n,</span><br><span class="line">                 <span class="keyword">input</span>          en,    <span class="comment">//Counter enable</span></span><br><span class="line">                 <span class="keyword">input</span>          clr,   <span class="comment">//Counter synchronous reset   </span></span><br><span class="line">                 <span class="keyword">output</span> <span class="keyword">reg</span>[<span class="number">3</span>:<span class="number">0</span>]data,  <span class="comment">//counter value</span></span><br><span class="line">                 <span class="keyword">output</span> <span class="keyword">reg</span>     t      <span class="comment">// carry enable signal</span></span><br><span class="line">                );</span><br><span class="line"><span class="keyword">always</span>@(<span class="keyword">posedge</span> clk <span class="keyword">or</span> <span class="keyword">negedge</span> rst_n) </span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">    <span class="keyword">if</span>(rst_n==<span class="number">0</span>)</span><br><span class="line">    <span class="keyword">begin</span></span><br><span class="line">        data &lt;= <span class="number">4&#x27;d0</span>;</span><br><span class="line">        t &lt;= <span class="number">1&#x27;d0</span>;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(clr)</span><br><span class="line">    <span class="keyword">begin</span></span><br><span class="line">        data &lt;= <span class="number">4&#x27;d0</span>;</span><br><span class="line">        t &lt;= <span class="number">1&#x27;d0</span>;      </span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(en)</span><br><span class="line">    <span class="keyword">begin</span></span><br><span class="line">        <span class="keyword">if</span>(data==<span class="number">4&#x27;d9</span>)</span><br><span class="line">        <span class="keyword">begin</span></span><br><span class="line">            t&lt;= <span class="number">1&#x27;b1</span>;    <span class="comment">//Counter to 9 to generate carry</span></span><br><span class="line">            data &lt;= <span class="number">4&#x27;d0</span>;<span class="comment">//Counter to 9 reset</span></span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        <span class="keyword">begin</span></span><br><span class="line">            t &lt;= <span class="number">1&#x27;b0</span>;</span><br><span class="line">            data &lt;= data + <span class="number">4&#x27;d1</span>;</span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        t &lt;= <span class="number">1&#x27;b0</span>;</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//seg_decoder.v</span></span><br><span class="line"><span class="keyword">module</span> seg_decoder</span><br><span class="line">(</span><br><span class="line">    <span class="keyword">input</span>[<span class="number">3</span>:<span class="number">0</span>]      bin_data,     <span class="comment">// bin data input</span></span><br><span class="line">    <span class="keyword">output</span> <span class="keyword">reg</span>[<span class="number">6</span>:<span class="number">0</span>] seg_data      <span class="comment">// seven segments LED output</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">always</span>@(*)</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">    <span class="keyword">case</span>(bin_data)</span><br><span class="line">       <span class="number">4&#x27;d0</span>:seg_data &lt;= <span class="number">7&#x27;b100_0000</span>;</span><br><span class="line">       <span class="number">4&#x27;d1</span>:seg_data &lt;= <span class="number">7&#x27;b111_1001</span>;</span><br><span class="line">       <span class="number">4&#x27;d2</span>:seg_data &lt;= <span class="number">7&#x27;b010_0100</span>;</span><br><span class="line">       <span class="number">4&#x27;d3</span>:seg_data &lt;= <span class="number">7&#x27;b011_0000</span>;</span><br><span class="line">       <span class="number">4&#x27;d4</span>:seg_data &lt;= <span class="number">7&#x27;b001_1001</span>;</span><br><span class="line">       <span class="number">4&#x27;d5</span>:seg_data &lt;= <span class="number">7&#x27;b001_0010</span>;</span><br><span class="line">       <span class="number">4&#x27;d6</span>:seg_data &lt;= <span class="number">7&#x27;b000_0010</span>;</span><br><span class="line">       <span class="number">4&#x27;d7</span>:seg_data &lt;= <span class="number">7&#x27;b111_1000</span>;</span><br><span class="line">       <span class="number">4&#x27;d8</span>:seg_data &lt;= <span class="number">7&#x27;b000_0000</span>;</span><br><span class="line">       <span class="number">4&#x27;d9</span>:seg_data &lt;= <span class="number">7&#x27;b001_0000</span>;</span><br><span class="line">       <span class="number">4&#x27;ha</span>:seg_data &lt;= <span class="number">7&#x27;b000_1000</span>;</span><br><span class="line">       <span class="number">4&#x27;hb</span>:seg_data &lt;= <span class="number">7&#x27;b000_0011</span>;</span><br><span class="line">       <span class="number">4&#x27;hc</span>:seg_data &lt;= <span class="number">7&#x27;b100_0110</span>;</span><br><span class="line">       <span class="number">4&#x27;hd</span>:seg_data &lt;= <span class="number">7&#x27;b010_0001</span>;</span><br><span class="line">       <span class="number">4&#x27;he</span>:seg_data &lt;= <span class="number">7&#x27;b000_0110</span>;</span><br><span class="line">       <span class="number">4&#x27;hf</span>:seg_data &lt;= <span class="number">7&#x27;b000_1110</span>;</span><br><span class="line">       <span class="keyword">default</span>:seg_data &lt;= <span class="number">7&#x27;b111_1111</span>;</span><br><span class="line">    <span class="keyword">endcase</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//seg_scan.v</span></span><br><span class="line"><span class="keyword">module</span> seg_scan(</span><br><span class="line">    <span class="keyword">input</span>           clk,</span><br><span class="line">    <span class="keyword">input</span>           rst_n,</span><br><span class="line">    <span class="keyword">output</span> <span class="keyword">reg</span>[<span class="number">5</span>:<span class="number">0</span>] seg_sel,      <span class="comment">//digital led chip select</span></span><br><span class="line">    <span class="keyword">output</span> <span class="keyword">reg</span>[<span class="number">7</span>:<span class="number">0</span>] seg_data,     <span class="comment">//eight segment digital tube output,MSB is the decimal point</span></span><br><span class="line">    <span class="keyword">input</span>[<span class="number">7</span>:<span class="number">0</span>]      seg_data_0,</span><br><span class="line">    <span class="keyword">input</span>[<span class="number">7</span>:<span class="number">0</span>]      seg_data_1,</span><br><span class="line">    <span class="keyword">input</span>[<span class="number">7</span>:<span class="number">0</span>]      seg_data_2,</span><br><span class="line">    <span class="keyword">input</span>[<span class="number">7</span>:<span class="number">0</span>]      seg_data_3,</span><br><span class="line">    <span class="keyword">input</span>[<span class="number">7</span>:<span class="number">0</span>]      seg_data_4,</span><br><span class="line">    <span class="keyword">input</span>[<span class="number">7</span>:<span class="number">0</span>]      seg_data_5</span><br><span class="line">);</span><br><span class="line"><span class="keyword">parameter</span> SCAN_FREQ = <span class="number">200</span>;     <span class="comment">//scan frequency</span></span><br><span class="line"><span class="keyword">parameter</span> CLK_FREQ = <span class="number">50000000</span>; <span class="comment">//clock frequency</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">parameter</span> SCAN_COUNT = CLK_FREQ /(SCAN_FREQ * <span class="number">6</span>) - <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">reg</span>[<span class="number">31</span>:<span class="number">0</span>] scan_timer;  <span class="comment">//scan time counter</span></span><br><span class="line"><span class="keyword">reg</span>[<span class="number">3</span>:<span class="number">0</span>] scan_sel;     <span class="comment">//Scan select counter</span></span><br><span class="line"><span class="keyword">always</span>@(<span class="keyword">posedge</span> clk <span class="keyword">or</span> <span class="keyword">negedge</span> rst_n)</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">    <span class="keyword">if</span>(rst_n == <span class="number">1&#x27;b0</span>)</span><br><span class="line">    <span class="keyword">begin</span></span><br><span class="line">       scan_timer &lt;= <span class="number">32&#x27;d0</span>;</span><br><span class="line">       scan_sel &lt;= <span class="number">4&#x27;d0</span>;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(scan_timer &gt;= SCAN_COUNT)</span><br><span class="line">    <span class="keyword">begin</span></span><br><span class="line">       scan_timer &lt;= <span class="number">32&#x27;d0</span>;</span><br><span class="line">       <span class="keyword">if</span>(scan_sel == <span class="number">4&#x27;d5</span>)</span><br><span class="line">          scan_sel &lt;= <span class="number">4&#x27;d0</span>;</span><br><span class="line">       <span class="keyword">else</span></span><br><span class="line">          scan_sel &lt;= scan_sel + <span class="number">4&#x27;d1</span>;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">       <span class="keyword">begin</span></span><br><span class="line">          scan_timer &lt;= scan_timer + <span class="number">32&#x27;d1</span>;</span><br><span class="line">       <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="keyword">always</span>@(<span class="keyword">posedge</span> clk <span class="keyword">or</span> <span class="keyword">negedge</span> rst_n)</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">    <span class="keyword">if</span>(rst_n == <span class="number">1&#x27;b0</span>)</span><br><span class="line">    <span class="keyword">begin</span></span><br><span class="line">       seg_sel &lt;= <span class="number">6&#x27;b111111</span>;</span><br><span class="line">       seg_data &lt;= <span class="number">8&#x27;hff</span>;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    <span class="keyword">begin</span></span><br><span class="line">       <span class="keyword">case</span>(scan_sel)</span><br><span class="line">          <span class="comment">//first digital led</span></span><br><span class="line">          <span class="number">4&#x27;d0</span>:</span><br><span class="line">          <span class="keyword">begin</span></span><br><span class="line">             seg_sel &lt;= <span class="number">6&#x27;b11_1110</span>;</span><br><span class="line">             seg_data &lt;= seg_data_0;</span><br><span class="line">          <span class="keyword">end</span></span><br><span class="line">          <span class="comment">//second digital led</span></span><br><span class="line">          <span class="number">4&#x27;d1</span>:</span><br><span class="line">          <span class="keyword">begin</span></span><br><span class="line">             seg_sel &lt;= <span class="number">6&#x27;b11_1101</span>;</span><br><span class="line">             seg_data &lt;= seg_data_1;</span><br><span class="line">          <span class="keyword">end</span></span><br><span class="line">          <span class="comment">//...</span></span><br><span class="line">          <span class="number">4&#x27;d2</span>:</span><br><span class="line">          <span class="keyword">begin</span></span><br><span class="line">             seg_sel &lt;= <span class="number">6&#x27;b11_1011</span>;</span><br><span class="line">             seg_data &lt;= seg_data_2;</span><br><span class="line">          <span class="keyword">end</span></span><br><span class="line">          <span class="number">4&#x27;d3</span>:</span><br><span class="line">          <span class="keyword">begin</span></span><br><span class="line">             seg_sel &lt;= <span class="number">6&#x27;b11_0111</span>;</span><br><span class="line">             seg_data &lt;= seg_data_3;</span><br><span class="line">          <span class="keyword">end</span></span><br><span class="line">          <span class="number">4&#x27;d4</span>:</span><br><span class="line">          <span class="keyword">begin</span></span><br><span class="line">             seg_sel &lt;= <span class="number">6&#x27;b10_1111</span>;</span><br><span class="line">             seg_data &lt;= seg_data_4;</span><br><span class="line">          <span class="keyword">end</span></span><br><span class="line">          <span class="number">4&#x27;d5</span>:</span><br><span class="line">          <span class="keyword">begin</span></span><br><span class="line">             seg_sel &lt;= <span class="number">6&#x27;b01_1111</span>;</span><br><span class="line">             seg_data &lt;= seg_data_5;</span><br><span class="line">          <span class="keyword">end</span></span><br><span class="line">          <span class="keyword">default</span>:</span><br><span class="line">          <span class="keyword">begin</span></span><br><span class="line">             seg_sel &lt;= <span class="number">6&#x27;b11_1111</span>;</span><br><span class="line">             seg_data &lt;= <span class="number">8&#x27;hff</span>;</span><br><span class="line">          <span class="keyword">end</span></span><br><span class="line">       <span class="keyword">endcase</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
+<p>运行结果：</p>
+<center><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://images.rimrose.site/images/EDA_expt-6_Fig1.png" alt="Fig-1 Flow Summary"></center>
+
+<center><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://images.rimrose.site/images/EDA_expt-6_Fig2.png" alt="Fig-2 RTL图"></center>
+
+<center><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://images.rimrose.site/images/EDA_expt-6_Fig3.png" alt="Fig-3 Pin Planner配置"></center>
+
+<p>实际结果就是每按一次按键，数码管上的数字+1。</p>
+<h2 id="四、实验中遇到的问题及解决方法-5"><a href="#四、实验中遇到的问题及解决方法-5" class="headerlink" title="四、实验中遇到的问题及解决方法"></a>四、实验中遇到的问题及解决方法</h2><p>这次实验采用了demo中的按键消抖解决方案，并未遇到什么问题。</p>
+<h2 id="五、心得体会-4"><a href="#五、心得体会-4" class="headerlink" title="五、心得体会"></a>五、心得体会</h2><p>按键去抖动的原理：</p>
+<p>按键在物理上按下或释放时，可能会产生多个电平变化，导致微小的抖动。</p>
+<p>去抖动的目标是确保只有一个有效的按键状态被记录，而不受抖动的影响。</p>
+<p>硬件去抖动：</p>
+<p>硬件去抖动通常使用 RC 电路或者 Schmitt 触发器来实现。</p>
+<p>RC 电路通过电容和电阻的组合，延迟电平变化，从而减少抖动。</p>
+<p>Schmitt 触发器具有两个阈值电平，可以有效地抑制抖动。</p>
+<p>软件去抖动：</p>
+<p>软件去抖动通常在数字电路中使用。</p>
+<p>我们可以使用计数器来跟踪按键状态的持续时间，只有在一定时间内保持稳定状态时才认为按键有效。</p>
+<p>这需要合理的计时器设计和状态机控制。</p>
+<p>Verilog HDL 中的实现：</p>
+<p>在 Verilog HDL 中，我们可以使用 always 块来实现按键去抖动逻辑。</p>
+<p>计数器、状态机和选择逻辑都可以在 Verilog 中方便地实现。</p>
+<p>（心得体会由newbing生成，望知悉）</p>
+
+<div class="article-footer fs14">
+    <section id="license">
+      <div class="header"><span>许可协议</span></div>
+      <div class="body"><p>本文采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">署名-非商业性使用-相同方式共享 4.0 国际</a> 许可协议，转载请注明出处。</p>
+</div>
+    </section>
+    </div>
+</article>
+<div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">较新文章</div><a href="/2024/05/23/%E7%94%B5%E5%AD%90%E8%AE%BE%E8%AE%A1%E8%87%AA%E5%8A%A8%E5%8C%96%E5%AE%9E%E9%AA%8C%E7%9B%B8%E5%85%B3/">2024-05-23</a></div><div class="item" id="next"><div class="note">较早文章</div><a href="/2024/05/23/Multipass%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98%E7%9A%84%E4%B8%80%E4%BA%9B%E8%AE%B0%E5%BD%95/">2024-05-23</a></div></section></div>
+
+
+
+
+
+
+<footer class="page-footer footnote"><hr><div class="text"><p>本站由 <a href="/">Rimrose</a> 使用 <a target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.28.1">Stellar 1.28.1</a> 主题创建。<br>本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议，转载请注明出处。</p>
+</div></footer>
+<div class="main-mask" onclick="sidebar.dismiss()"></div></div><aside class="l_right">
+<div class="widgets">
+
+
+
+<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">本文目录</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">实验一：LED流水灯设计</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%AE%9E%E9%AA%8C%E7%9B%AE%E7%9A%84"><span class="toc-text">一、实验目的</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%AE%9E%E9%AA%8C%E5%86%85%E5%AE%B9%E5%8F%8A%E5%8E%9F%E7%90%86"><span class="toc-text">二、实验内容及原理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%AE%9E%E9%AA%8C%E5%86%85%E5%AE%B9"><span class="toc-text">1. 实验内容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%AE%9E%E9%AA%8C%E5%8E%9F%E7%90%86"><span class="toc-text">2. 实验原理</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%AE%9E%E9%AA%8C%E6%AD%A5%E9%AA%A4%E5%8F%8A%E7%BB%93%E6%9E%9C"><span class="toc-text">三、实验步骤及结果</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%BB%BA%E7%AB%8B%E5%B7%A5%E7%A8%8B"><span class="toc-text">1. 建立工程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E7%BC%96%E5%86%99%E4%BB%A3%E7%A0%81"><span class="toc-text">2. 编写代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%85%B6%E4%BB%96%E8%AE%BE%E7%BD%AE"><span class="toc-text">3. 其他设置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E7%BC%96%E8%AF%91%E4%B8%8B%E8%BD%BD"><span class="toc-text">4. 编译下载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E5%9B%BA%E5%8C%96%E7%A8%8B%E5%BA%8F%E5%88%B0flash"><span class="toc-text">5. 固化程序到flash</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#5-1-%E8%BD%AC%E6%8D%A2jic%E6%96%87%E4%BB%B6"><span class="toc-text">5.1. 转换jic文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-2-%E5%9B%BA%E5%8C%96%E5%88%B0flash"><span class="toc-text">5.2. 固化到flash</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-%E6%93%A6%E9%99%A4Flash%E4%B8%AD%E5%B7%B2%E6%9C%89%E7%9A%84%E7%A8%8B%E5%BA%8F"><span class="toc-text">6. 擦除Flash中已有的程序</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E5%AE%9E%E9%AA%8C%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95"><span class="toc-text">四、实验中遇到的问题及解决方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E6%BA%90%E7%A8%8B%E5%BA%8F%E5%92%8Ctestbench%E4%BB%A3%E7%A0%81"><span class="toc-text">五、源程序和testbench代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E5%BF%83%E5%BE%97%E4%BD%93%E4%BC%9A"><span class="toc-text">六、心得体会</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">实验二：数码管动态显示</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%AE%9E%E9%AA%8C%E7%9B%AE%E7%9A%84-1"><span class="toc-text">一、实验目的</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%AE%9E%E9%AA%8C%E5%86%85%E5%AE%B9%E5%8F%8A%E5%8E%9F%E7%90%86-1"><span class="toc-text">二、实验内容及原理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%AE%9E%E9%AA%8C%E5%86%85%E5%AE%B9-1"><span class="toc-text">1. 实验内容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%AE%9E%E9%AA%8C%E5%8E%9F%E7%90%86-1"><span class="toc-text">2. 实验原理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-%E7%A1%AC%E4%BB%B6%E4%BB%8B%E7%BB%8D"><span class="toc-text">2.1. 硬件介绍</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-%E6%95%B0%E7%A0%81%E7%AE%A1%E6%89%AB%E6%8F%8F%E5%8E%9F%E7%90%86"><span class="toc-text">2.2. 数码管扫描原理</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%AE%9E%E9%AA%8C%E6%AD%A5%E9%AA%A4%E5%8F%8A%E7%BB%93%E6%9E%9C-1"><span class="toc-text">三、实验步骤及结果</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1"><span class="toc-text">1. 程序设计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%A8%A1%E5%9D%97%E8%AE%BE%E8%AE%A1"><span class="toc-text">2. 模块设计</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-%E8%AF%91%E7%A0%81%E6%A8%A1%E5%9D%97"><span class="toc-text">2.1. 译码模块</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-%E6%95%B0%E7%A0%81%E7%AE%A1%E6%89%AB%E6%8F%8F%E6%A8%A1%E5%9D%97"><span class="toc-text">2.2. 数码管扫描模块</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-%E6%A8%A1-10-%E8%AE%A1%E6%95%B0%E5%99%A8%E6%A8%A1%E5%9D%97"><span class="toc-text">2.3. 模 10 计数器模块</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-4-%E6%A8%A1-6-%E8%AE%A1%E6%95%B0%E5%99%A8%E6%A8%A1%E5%9D%97"><span class="toc-text">2.4. 模 6 计数器模块</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%AE%9E%E9%AA%8C%E7%BB%93%E6%9E%9C"><span class="toc-text">3. 实验结果</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E5%AE%9E%E9%AA%8C%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95-1"><span class="toc-text">四、实验中遇到的问题及解决方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%97%AE%E9%A2%98"><span class="toc-text">问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="toc-text">解决方案</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E5%BF%83%E5%BE%97%E4%BD%93%E4%BC%9A"><span class="toc-text">五、心得体会</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">实验三：数字时钟设计</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%AE%9E%E9%AA%8C%E7%9B%AE%E7%9A%84-2"><span class="toc-text">一、实验目的</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%AE%9E%E9%AA%8C%E5%86%85%E5%AE%B9%E5%8F%8A%E5%8E%9F%E7%90%86-2"><span class="toc-text">二、实验内容及原理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%AE%9E%E9%AA%8C%E5%86%85%E5%AE%B9-2"><span class="toc-text">1. 实验内容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%AE%9E%E9%AA%8C%E5%8E%9F%E7%90%86-2"><span class="toc-text">2. 实验原理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-%E7%A1%AC%E4%BB%B6%E4%BB%8B%E7%BB%8D-1"><span class="toc-text">2.1. 硬件介绍</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-%E6%95%B0%E7%A0%81%E7%AE%A1%E6%89%AB%E6%8F%8F%E5%8E%9F%E7%90%86-1"><span class="toc-text">2.2. 数码管扫描原理</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%AE%9E%E9%AA%8C%E6%AD%A5%E9%AA%A4%E5%8F%8A%E7%BB%93%E6%9E%9C-2"><span class="toc-text">三、实验步骤及结果</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1-1"><span class="toc-text">1. 程序设计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%A8%A1%E5%9D%97%E8%AE%BE%E8%AE%A1-1"><span class="toc-text">2. 模块设计</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-%E8%AF%91%E7%A0%81%E6%A8%A1%E5%9D%97-1"><span class="toc-text">2.1. 译码模块</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-%E6%95%B0%E7%A0%81%E7%AE%A1%E6%89%AB%E6%8F%8F%E6%A8%A1%E5%9D%97-1"><span class="toc-text">2.2. 数码管扫描模块</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-%E6%A8%A1-10-%E8%AE%A1%E6%95%B0%E5%99%A8%E6%A8%A1%E5%9D%97-1"><span class="toc-text">2.3. 模 10 计数器模块</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-4-%E6%A8%A1-6-%E8%AE%A1%E6%95%B0%E5%99%A8%E6%A8%A1%E5%9D%97-1"><span class="toc-text">2.4. 模 6 计数器模块</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-5-%E6%A8%A1-24-%E8%AE%A1%E6%95%B0%E5%99%A8%E6%A8%A1%E5%9D%97"><span class="toc-text">2.5. 模 24 计数器模块</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E5%AE%9E%E9%AA%8C%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95-2"><span class="toc-text">四、实验中遇到的问题及解决方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B6%E4%B8%80"><span class="toc-text">其一</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B6%E4%BA%8C"><span class="toc-text">其二</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E5%BF%83%E5%BE%97%E4%BD%93%E4%BC%9A-1"><span class="toc-text">五、心得体会</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">实验四：正弦信号发生器设计</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%AE%9E%E9%AA%8C%E7%9B%AE%E7%9A%84-3"><span class="toc-text">一、实验目的</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%AE%9E%E9%AA%8C%E5%86%85%E5%AE%B9%E5%8F%8A%E5%8E%9F%E7%90%86-3"><span class="toc-text">二、实验内容及原理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%AE%9E%E9%AA%8C%E5%86%85%E5%AE%B9-3"><span class="toc-text">1. 实验内容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%AE%9E%E9%AA%8C%E5%8E%9F%E7%90%86-3"><span class="toc-text">2. 实验原理</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%AE%9E%E9%AA%8C%E6%AD%A5%E9%AA%A4%E5%8F%8A%E7%BB%93%E6%9E%9C-3"><span class="toc-text">三、实验步骤及结果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E5%AE%9E%E9%AA%8C%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95-3"><span class="toc-text">四、实验中遇到的问题及解决方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E5%BF%83%E5%BE%97%E4%BD%93%E4%BC%9A-2"><span class="toc-text">五、心得体会</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">实验五：任意波形发生器设计</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%AE%9E%E9%AA%8C%E7%9B%AE%E7%9A%84-4"><span class="toc-text">一、实验目的</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%AE%9E%E9%AA%8C%E5%86%85%E5%AE%B9%E5%8F%8A%E5%8E%9F%E7%90%86-4"><span class="toc-text">二、实验内容及原理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%AE%9E%E9%AA%8C%E5%86%85%E5%AE%B9-4"><span class="toc-text">1. 实验内容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%AE%9E%E9%AA%8C%E5%8E%9F%E7%90%86-4"><span class="toc-text">2. 实验原理</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%AE%9E%E9%AA%8C%E6%AD%A5%E9%AA%A4%E5%8F%8A%E7%BB%93%E6%9E%9C-4"><span class="toc-text">三、实验步骤及结果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E5%AE%9E%E9%AA%8C%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95-4"><span class="toc-text">四、实验中遇到的问题及解决方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E5%BF%83%E5%BE%97%E4%BD%93%E4%BC%9A-3"><span class="toc-text">五、心得体会</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">实验六：硬件消抖电路设计</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%AE%9E%E9%AA%8C%E7%9B%AE%E7%9A%84-5"><span class="toc-text">一、实验目的</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%AE%9E%E9%AA%8C%E5%86%85%E5%AE%B9%E5%8F%8A%E5%8E%9F%E7%90%86-5"><span class="toc-text">二、实验内容及原理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%AE%9E%E9%AA%8C%E5%86%85%E5%AE%B9%EF%BC%9A"><span class="toc-text">1. 实验内容：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%AE%9E%E9%AA%8C%E5%8E%9F%E7%90%86-5"><span class="toc-text">2. 实验原理:</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%AE%9E%E9%AA%8C%E6%AD%A5%E9%AA%A4%E5%8F%8A%E7%BB%93%E6%9E%9C-5"><span class="toc-text">三、实验步骤及结果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E5%AE%9E%E9%AA%8C%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95-5"><span class="toc-text">四、实验中遇到的问题及解决方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E5%BF%83%E5%BE%97%E4%BD%93%E4%BC%9A-4"><span class="toc-text">五、心得体会</span></a></li></ol></li></ol></div><div class="widget-footer">
+
+<a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12c0-4.714 0-7.071 1.464-8.536C4.93 2 7.286 2 12 2c4.714 0 7.071 0 8.535 1.464C22 4.93 22 7.286 22 12c0 4.714 0 7.071-1.465 8.535C19.072 22 16.714 22 12 22s-7.071 0-8.536-1.465C2 19.072 2 16.714 2 12Z"/><path stroke-linecap="round" stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/></g></svg><span>回到顶部</span></a><a class="buttom" onclick="util.scrollComment()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M10.46 1.25h3.08c1.603 0 2.86 0 3.864.095c1.023.098 1.861.3 2.6.752a5.75 5.75 0 0 1 1.899 1.899c.452.738.654 1.577.752 2.6c.095 1.004.095 2.261.095 3.865v1.067c0 1.141 0 2.036-.05 2.759c-.05.735-.153 1.347-.388 1.913a5.75 5.75 0 0 1-3.112 3.112c-.805.334-1.721.408-2.977.43a10.81 10.81 0 0 0-.929.036c-.198.022-.275.054-.32.08c-.047.028-.112.078-.224.232c-.121.166-.258.396-.476.764l-.542.916c-.773 1.307-2.69 1.307-3.464 0l-.542-.916a10.605 10.605 0 0 0-.476-.764c-.112-.154-.177-.204-.224-.232c-.045-.026-.122-.058-.32-.08c-.212-.023-.49-.03-.93-.037c-1.255-.021-2.171-.095-2.976-.429A5.75 5.75 0 0 1 1.688 16.2c-.235-.566-.338-1.178-.389-1.913c-.049-.723-.049-1.618-.049-2.76v-1.066c0-1.604 0-2.86.095-3.865c.098-1.023.3-1.862.752-2.6a5.75 5.75 0 0 1 1.899-1.899c.738-.452 1.577-.654 2.6-.752C7.6 1.25 8.857 1.25 10.461 1.25M6.739 2.839c-.914.087-1.495.253-1.959.537A4.25 4.25 0 0 0 3.376 4.78c-.284.464-.45 1.045-.537 1.96c-.088.924-.089 2.11-.089 3.761v1c0 1.175 0 2.019.046 2.685c.045.659.131 1.089.278 1.441a4.25 4.25 0 0 0 2.3 2.3c.515.214 1.173.294 2.429.316h.031c.398.007.747.013 1.037.045c.311.035.616.104.909.274c.29.17.5.395.682.645c.169.232.342.525.538.856l.559.944a.52.52 0 0 0 .882 0l.559-.944c.196-.331.37-.624.538-.856c.182-.25.392-.476.682-.645c.293-.17.598-.24.909-.274c.29-.032.639-.038 1.037-.045h.032c1.255-.022 1.913-.102 2.428-.316a4.25 4.25 0 0 0 2.3-2.3c.147-.352.233-.782.278-1.441c.046-.666.046-1.51.046-2.685v-1c0-1.651 0-2.837-.089-3.762c-.087-.914-.253-1.495-.537-1.959a4.25 4.25 0 0 0-1.403-1.403c-.464-.284-1.045-.45-1.96-.537c-.924-.088-2.11-.089-3.761-.089h-3c-1.651 0-2.837 0-3.762.089" clip-rule="evenodd"/><path fill="currentColor" d="M9 11a1 1 0 1 1-2 0a1 1 0 0 1 2 0m4 0a1 1 0 1 1-2 0a1 1 0 0 1 2 0m4 0a1 1 0 1 1-2 0a1 1 0 0 1 2 0"/></svg><span>参与讨论</span></a></div></widget>
+</div></aside><div class='float-panel blur'>
+  <button type='button' style='display:none' class='laptop-only rightbar-toggle mobile' onclick='sidebar.rightbar()'>
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg>
+  </button>
+  <button type='button' style='display:none' class='mobile-only leftbar-toggle mobile' onclick='sidebar.leftbar()'>
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 11c0-3.771 0-5.657 1.172-6.828C4.343 3 6.229 3 10 3h4c3.771 0 5.657 0 6.828 1.172C22 5.343 22 7.229 22 11v2c0 3.771 0 5.657-1.172 6.828C19.657 21 17.771 21 14 21h-4c-3.771 0-5.657 0-6.828-1.172C2 18.657 2 16.771 2 13z"/><path id="sep" stroke-linecap="round" d="M5.5 10h6m-5 4h4m4.5 7V3"/></g></svg>
+  </button>
+</div>
+</div><div class="scripts">
+<script type="text/javascript">
+  const ctx = {
+    date_suffix: {
+      just: `刚刚`,
+      min: `分钟前`,
+      hour: `小时前`,
+      day: `天前`,
+    },
+    root : `/`,
+  };
+
+  // required plugins (only load if needs)
+  if (`local_search`) {
+    ctx.search = {};
+    ctx.search.service = `local_search`;
+    if (ctx.search.service == 'local_search') {
+      let service_obj = Object.assign({}, `{"field":"all","path":"/search.json","content":true,"sort":"-date"}`);
+      ctx.search[ctx.search.service] = service_obj;
+    }
+  }
+  const def = {
+    avatar: `https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/avatar/round/3442075.svg`,
+    cover: `https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/cover/76b86c0226ffd.svg`,
+  };
+  const deps = {
+    jquery: `https://cdn.bootcdn.net/ajax/libs/jquery/3.7.1/jquery.min.js`,
+    marked: `https://cdn.bootcdn.net/ajax/libs/marked/4.0.18/marked.min.js`
+  }
+  
+
+</script>
+
+<script type="text/javascript">
+  const utils = {
+    // 懒加载 css https://github.com/filamentgroup/loadCSS
+    css: (href, before, media, attributes) => {
+      var doc = window.document;
+      var ss = doc.createElement("link");
+      var ref;
+      if (before) {
+        ref = before;
+      } else {
+        var refs = (doc.body || doc.getElementsByTagName("head")[0]).childNodes;
+        ref = refs[refs.length - 1];
+      }
+      var sheets = doc.styleSheets;
+      if (attributes) {
+        for (var attributeName in attributes) {
+          if (attributes.hasOwnProperty(attributeName)) {
+            ss.setAttribute(attributeName, attributes[attributeName]);
+          }
+        }
+      }
+      ss.rel = "stylesheet";
+      ss.href = href;
+      ss.media = "only x";
+      function ready(cb) {
+        if (doc.body) {
+          return cb();
+        }
+        setTimeout(function () {
+          ready(cb);
+        });
+      }
+      ready(function () {
+        ref.parentNode.insertBefore(ss, before ? ref : ref.nextSibling);
+      });
+      var onloadcssdefined = function (cb) {
+        var resolvedHref = ss.href;
+        var i = sheets.length;
+        while (i--) {
+          if (sheets[i].href === resolvedHref) {
+            return cb();
+          }
+        }
+        setTimeout(function () {
+          onloadcssdefined(cb);
+        });
+      };
+      function loadCB() {
+        if (ss.addEventListener) {
+          ss.removeEventListener("load", loadCB);
+        }
+        ss.media = media || "all";
+      }
+      if (ss.addEventListener) {
+        ss.addEventListener("load", loadCB);
+      }
+      ss.onloadcssdefined = onloadcssdefined;
+      onloadcssdefined(loadCB);
+      return ss;
+    },
+
+    js: (src, opt) => new Promise((resolve, reject) => {
+      var script = document.createElement('script');
+      if (src.startsWith('/')){
+        src = ctx.root + src.substring(1);
+      }
+      script.src = src;
+      if (opt) {
+        for (let key of Object.keys(opt)) {
+          script[key] = opt[key]
+        }
+      } else {
+        // 默认异步，如果需要同步，第二个参数传入 {} 即可
+        script.async = true
+      }
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    }),
+
+    jq: (fn) => {
+      if (typeof jQuery === 'undefined') {
+        utils.js(deps.jquery).then(fn)
+      } else {
+        fn()
+      }
+    },
+    
+    onLoading: (el) => {
+      if (el) {
+        $(el).append('<div class="loading-wrap"><svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"><path stroke-dasharray="60" stroke-dashoffset="60" stroke-opacity=".3" d="M12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3Z"><animate fill="freeze" attributeName="stroke-dashoffset" dur="1.3s" values="60;0"/></path><path stroke-dasharray="15" stroke-dashoffset="15" d="M12 3C16.9706 3 21 7.02944 21 12"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.3s" values="15;0"/><animateTransform attributeName="transform" dur="1.5s" repeatCount="indefinite" type="rotate" values="0 12 12;360 12 12"/></path></g></svg></div>');
+      }
+    },
+    onLoadSuccess: (el) => {
+      if (el) {
+        $(el).find('.loading-wrap').remove();
+      }
+    },
+    onLoadFailure: (el) => {
+      if (el) {
+        $(el).find('.loading-wrap svg').remove();
+        $(el).find('.loading-wrap').append('<svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path stroke-dasharray="60" stroke-dashoffset="60" d="M12 3L21 20H3L12 3Z"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.5s" values="60;0"/></path><path stroke-dasharray="6" stroke-dashoffset="6" d="M12 10V14"><animate fill="freeze" attributeName="stroke-dashoffset" begin="0.6s" dur="0.2s" values="6;0"/></path></g><circle cx="12" cy="17" r="1" fill="currentColor" fill-opacity="0"><animate fill="freeze" attributeName="fill-opacity" begin="0.8s" dur="0.4s" values="0;1"/></circle></svg>');
+        $(el).find('.loading-wrap').addClass('error');
+      }
+    },
+    request: (el, url, callback, onFailure) => {
+      let retryTimes = 3;
+      utils.onLoading(el);
+      function req() {
+        return new Promise((resolve, reject) => {
+          let status = 0; // 0 等待 1 完成 2 超时
+          let timer = setTimeout(() => {
+            if (status === 0) {
+              status = 2;
+              timer = null;
+              reject('请求超时');
+              if (retryTimes == 0) {
+                onFailure();
+              }
+            }
+          }, 5000);
+          fetch(url).then(function(response) {
+            if (status !== 2) {
+              clearTimeout(timer);
+              resolve(response);
+              timer = null;
+              status = 1;
+            }
+            if (response.ok) {
+              return response.json();
+            }
+            throw new Error('Network response was not ok.');
+          }).then(function(data) {
+            retryTimes = 0;
+            utils.onLoadSuccess(el);
+            callback(data);
+          }).catch(function(error) {
+            if (retryTimes > 0) {
+              retryTimes -= 1;
+              setTimeout(() => {
+                req();
+              }, 5000);
+            } else {
+              utils.onLoadFailure(el);
+              onFailure();
+            }
+          });
+        });
+      }
+      req();
+    },
+  };
+</script>
+
+<script>
+  const sidebar = {
+    leftbar: () => {
+      if (l_body) {
+        l_body.toggleAttribute('leftbar');
+        l_body.removeAttribute('rightbar');
+      }
+    },
+    rightbar: () => {
+      if (l_body) {
+        l_body.toggleAttribute('rightbar');
+        l_body.removeAttribute('leftbar');
+      }
+    },
+    dismiss: () => {
+      if (l_body) {
+        l_body.removeAttribute('leftbar');
+        l_body.removeAttribute('rightbar');
+      }
+    },
+    toggleTOC: () => {
+      document.querySelector('#data-toc').classList.toggle('collapse');
+    }
+  }
+</script>
+
+<!-- required -->
+<script src="/js/main.js?v=1.28.1" async></script>
+
+<!-- optional -->
+
+
+
+<script defer>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    ctx.services = Object.assign({}, JSON.parse(`{"mdrender":{"js":"/js/services/mdrender.js"},"siteinfo":{"js":"/js/services/siteinfo.js","api":null},"ghinfo":{"js":"/js/services/ghinfo.js"},"sites":{"js":"/js/services/sites.js"},"friends":{"js":"/js/services/friends.js"},"timeline":{"js":"/js/services/timeline.js"},"fcircle":{"js":"/js/services/fcircle.js"},"weibo":{"js":"/js/services/weibo.js"},"memos":{"js":"/js/services/memos.js"}}`));
+    for (let id of Object.keys(ctx.services)) {
+      const js = ctx.services[id].js;
+      if (id == 'siteinfo') {
+        ctx.cardlinks = document.querySelectorAll('a.link-card[cardlink]');
+        if (ctx.cardlinks?.length > 0) {
+          utils.js(js, { defer: true }).then(function () {
+            setCardLink(ctx.cardlinks);
+          });
+        }
+      } else {
+        const els = document.getElementsByClassName(`ds-${id}`);
+        if (els?.length > 0) {
+          utils.jq(() => {
+            if (id == 'timeline' || 'memos' || 'marked') {
+              utils.js(deps.marked).then(function () {
+                utils.js(js, { defer: true });
+              });
+            } else {
+              utils.js(js, { defer: true });
+            }
+          });
+        }
+      }
+    }
+  });
+</script>
+
+<script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    ctx.search = {
+      path: `/search.json`,
+    }
+    utils.js('/js/search/local-search.js', { defer: true });
+  });
+</script><script>
+  window.FPConfig = {
+    delay: 0,
+    ignoreKeywords: [],
+    maxRPS: 5,
+    hoverDelay: 25
+  };
+</script>
+<script defer src="https://cdn.bootcdn.net/ajax/libs/flying-pages/2.1.2/flying-pages.min.js"></script><script defer src="https://cdn.bootcdn.net/ajax/libs/vanilla-lazyload/17.8.4/lazyload.min.js"></script>
+<script>
+  // https://www.npmjs.com/package/vanilla-lazyload
+  // Set the options globally
+  // to make LazyLoad self-initialize
+  window.lazyLoadOptions = {
+    elements_selector: ".lazy",
+  };
+  // Listen to the initialization event
+  // and get the instance of LazyLoad
+  window.addEventListener(
+    "LazyLoad::Initialized",
+    function (event) {
+      window.lazyLoadInstance = event.detail.instance;
+    },
+    false
+  );
+  document.addEventListener('DOMContentLoaded', function () {
+    window.lazyLoadInstance?.update();
+  });
+</script><script>
+  ctx.fancybox = {
+    selector: `.timenode p>img`,
+    css: `https://cdn.bootcdn.net/ajax/libs/fancyapps-ui/5.0.22/fancybox/fancybox.min.css`,
+    js: `https://cdn.bootcdn.net/ajax/libs/fancyapps-ui/5.0.22/fancybox/fancybox.umd.min.js`
+  };
+  var selector = '[data-fancybox]:not(.error)';
+  if (ctx.fancybox.selector) {
+    selector += `, ${ctx.fancybox.selector}`
+  }
+  var needFancybox = document.querySelectorAll(selector).length !== 0;
+  if (!needFancybox) {
+    const els = document.getElementsByClassName('ds-memos');
+    if (els != undefined && els.length > 0) {
+      needFancybox = true;
+    }
+  }
+  if (needFancybox) {
+    utils.css(ctx.fancybox.css);
+    utils.js(ctx.fancybox.js, { defer: true }).then(function () {
+      Fancybox.bind(selector, {
+        hideScrollbar: false,
+        Thumbs: {
+          autoStart: false,
+        },
+        caption: (fancybox, slide) => {
+          return slide.triggerEl.alt || slide.triggerEl.dataset.caption || null
+        }
+      });
+    })
+  }
+</script>
+<script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    const swiper_api = document.getElementById('swiper-api');
+    if (swiper_api != undefined) {
+      utils.css(`https://unpkg.com/swiper@10.3.1/swiper-bundle.min.css`);
+      utils.js(`https://unpkg.com/swiper@10.3.1/swiper-bundle.min.js`, { defer: true }).then(function () {
+        const effect = swiper_api.getAttribute('effect') || '';
+        var swiper = new Swiper('.swiper#swiper-api', {
+          slidesPerView: 'auto',
+          spaceBetween: 8,
+          centeredSlides: true,
+          effect: effect,
+          rewind: true,
+          pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+          },
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+          },
+        });
+      })
+    }
+  });
+</script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    window.codeElements = document.querySelectorAll('.code');
+    if (window.codeElements.length > 0) {
+      ctx.copycode = {
+        default_text: `Copy`,
+        success_text: `Copied`,
+        toast: `复制成功`,
+      };
+      utils.js('/js/plugins/copycode.js');
+    }
+  });
+</script>
+
+
+<!-- inject -->
+
+</div></body></html>
