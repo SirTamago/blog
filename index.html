@@ -72,20 +72,30 @@
     <article id="post-个人网站搭建记录" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2024/05/23/%E4%B8%AA%E4%BA%BA%E7%BD%91%E7%AB%99%E6%90%AD%E5%BB%BA%E8%AE%B0%E5%BD%95/" class="article-date">
-  <time class="dt-published" datetime="2024-05-23T05:51:06.922Z" itemprop="datePublished">2024-05-23</time>
+  <time class="dt-published" datetime="2024-05-23T06:03:17.182Z" itemprop="datePublished">2024-05-23</time>
 </a>
     
   </div>
   <div class="article-inner">
     
     
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/05/23/%E4%B8%AA%E4%BA%BA%E7%BD%91%E7%AB%99%E6%90%AD%E5%BB%BA%E8%AE%B0%E5%BD%95/">搭建记录</a>
+    </h1>
+  
+
+      </header>
+    
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h2 id="基于Hexo的博客网站搭建"><a href="#基于Hexo的博客网站搭建" class="headerlink" title="基于Hexo的博客网站搭建"></a>基于Hexo的博客网站搭建</h2><p>首先跟着这个教程做：</p>
+        <h1 id="基于Hexo的博客网站搭建"><a href="#基于Hexo的博客网站搭建" class="headerlink" title="基于Hexo的博客网站搭建"></a>基于Hexo的博客网站搭建</h1><p>首先跟着这个教程做：</p>
 <blockquote>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/sinat_37781304/article/details/82729029?spm=1001.2014.3001.5506">hexo史上最全搭建教程-CSDN博客</a></p>
 </blockquote>
-<p>一直到第6步结束之前都没出现问题，但是在最后的<code>hexo deploy</code>之后，网页加载不出来样式。于是上网找解决方案，找到了一个可以解决的：</p>
+<h2 id="教程第一部分"><a href="#教程第一部分" class="headerlink" title="教程第一部分"></a>教程第一部分</h2><p>一直到第6步结束之前都没出现问题，但是在最后的<code>hexo deploy</code>之后，网页加载不出来样式。于是上网找解决方案，找到了一个可以解决的：</p>
 <blockquote>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/banjw_129/article/details/82261165">hexo + github pages搭建博客样式加载不出来_github搭建个人博客后不显示-CSDN博客</a></p>
 </blockquote>
@@ -100,7 +110,6 @@
 <p>跟着上边的教程又加了几行GitHub的服务器地址，成功把<code>sirtamago.github.io/blog</code>打到<code>rimrose.site</code>上了，但是我其实是想搞到<code>blog.rimrose.site</code>上的，不过只能先这样了。</p>
 <p>然后就又出现了一个问题，部署到<code>rimrose.stie</code>之后，样式又消失了。</p>
 <p>在这之后，试了一下下图的写法，也就是把主教程里第7步里边的<code>www</code>改成<code>blog</code>，再把网站文件夹里边的<code>CNAME</code>改成<code>blog.rimrose.site</code>，就可以把pages打到<code>blog.rimrose.site</code>上了，如下图</p>
-<p><img src="https://img-blog.csdnimg.cn/img_convert/6ae646523b70539689b04866baf844c9.png" alt="教程里添加的是www"></p>
 <p><img src="https://images.rimrose.site/images/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE_2024-05-23_120805.jpg"></p>
 <p><img src="https://images.rimrose.site/images/screenshot_2024-05-23_124820.jpg"></p>
 <p>继续回到样式加载不出来的问题上。</p>
@@ -130,13 +139,13 @@
 <p><code>Failed to connect to github.com port 443 after 21081 ms: Couldn&#39;t connect to server</code></p>
 <p>参考下边这个方法解决了</p>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_40296909/article/details/134285451">解决使用git时遇到Failed to connect to github.com port 443 after 21090 ms: Couldn‘t connect to server_git couldn’t connect to server-CSDN博客</a></p>
-<p>用图床时候发现一个问题，obsidian的图片链接不能含空格，但是博客园的可以加载出来。</p>
+<h2 id="教程第二部分"><a href="#教程第二部分" class="headerlink" title="教程第二部分"></a>教程第二部分</h2><h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>用图床时候发现一个问题，obsidian的图片链接不能含空格，但是博客园的可以加载出来。</p>
 <p>To be continued -&gt;</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://sirtamago.github.io/blog/2024/05/23/%E4%B8%AA%E4%BA%BA%E7%BD%91%E7%AB%99%E6%90%AD%E5%BB%BA%E8%AE%B0%E5%BD%95/" data-id="clwiu4m870002yke37tq8dfol" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="https://sirtamago.github.io/blog/2024/05/23/%E4%B8%AA%E4%BA%BA%E7%BD%91%E7%AB%99%E6%90%AD%E5%BB%BA%E8%AE%B0%E5%BD%95/" data-id="clwiuk83k0001hge35so9hjh4" data-title="搭建记录" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -182,7 +191,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://sirtamago.github.io/blog/2024/05/23/%E4%B8%80%E8%88%AC%E6%83%85%E5%86%B5%E4%B8%8B%E7%9A%84%E9%98%BF%E6%B3%A2%E7%BD%97%E5%B0%BC%E6%96%AF%E5%9C%86%E7%9A%84%E6%96%B9%E7%A8%8B%E7%9A%84%E6%8E%A8%E5%AF%BC%E8%BF%87%E7%A8%8B/" data-id="clwiu4m860001yke3hcw4eso7" data-title="一般情况下的阿波罗尼斯圆的方程的推导过程" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="https://sirtamago.github.io/blog/2024/05/23/%E4%B8%80%E8%88%AC%E6%83%85%E5%86%B5%E4%B8%8B%E7%9A%84%E9%98%BF%E6%B3%A2%E7%BD%97%E5%B0%BC%E6%96%AF%E5%9C%86%E7%9A%84%E6%96%B9%E7%A8%8B%E7%9A%84%E6%8E%A8%E5%AF%BC%E8%BF%87%E7%A8%8B/" data-id="clwiuk83o0002hge3fliph7b7" data-title="一般情况下的阿波罗尼斯圆的方程的推导过程" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -235,7 +244,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://sirtamago.github.io/blog/2024/05/22/hello-world/" data-id="clwiu4m820000yke3hn9c9ucc" data-title="Hello World" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="https://sirtamago.github.io/blog/2024/05/22/hello-world/" data-id="clwiuk83h0000hge3b2qoddfa" data-title="Hello World" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -292,7 +301,7 @@
       <ul>
         
           <li>
-            <a href="/2024/05/23/%E4%B8%AA%E4%BA%BA%E7%BD%91%E7%AB%99%E6%90%AD%E5%BB%BA%E8%AE%B0%E5%BD%95/">(no title)</a>
+            <a href="/2024/05/23/%E4%B8%AA%E4%BA%BA%E7%BD%91%E7%AB%99%E6%90%AD%E5%BB%BA%E8%AE%B0%E5%BD%95/">搭建记录</a>
           </li>
         
           <li>
