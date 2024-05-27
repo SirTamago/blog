@@ -2964,6 +2964,11 @@ table .code {
 #post-content h6 .headerlink {
   padding: 0 0 0 5px;
 }
+#post-content img {
+  max-width: 50%;
+  display: block;
+  margin: auto;
+}
 #reward {
   margin: 1em 0;
   color: var(--theme-text-rev);
