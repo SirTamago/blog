@@ -335,7 +335,7 @@ aside footer {
 #description p {
   margin: unset;
   text-align: center;
-  font-family: "JetBrains Mono Light";
+  font-family: 'JetBrains Mono';
 }
 .icp-title,
 .icp-content {
