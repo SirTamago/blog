@@ -2921,6 +2921,12 @@ table .code {
 }
 #post-content {
   padding-bottom: 1em;
+/*
+  img
+    max-height 600px
+    display: block
+    margin: auto
+  */
 }
 #post-content table {
   width: 100%;
@@ -2964,9 +2970,11 @@ table .code {
 #post-content h6 .headerlink {
   padding: 0 0 0 5px;
 }
-#post-content img {
-  max-height: 600px;
+#post-content .item-img img {
   display: block;
+  max-width: 100%;
+  max-height: 80vh;
+  object-fit: contain;
   margin: auto;
 }
 #reward {
