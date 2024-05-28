@@ -2103,7 +2103,7 @@ main:not(.up) .search #search-header input {
 }
 .link-main .link-descr {
   color: var(--theme-text);
-  font-family: "JetBrains Mono", BenderLight, "Microsoft JhengHei", FangSong, sans-serif, height 36px;
+  font-family: "JetBrains Mono", "Microsoft YaHei", BenderLight, FangSong, sans-serif, height 36px;
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
