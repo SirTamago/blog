@@ -2965,7 +2965,7 @@ table .code {
   padding: 0 0 0 5px;
 }
 #post-content img {
-  max-width: 50%;
+  max-height: 600px;
   display: block;
   margin: auto;
 }
