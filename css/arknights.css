@@ -2034,7 +2034,7 @@ main:not(.up) .search #search-header input {
   initial-value: transparent;
 }
 .link-card {
-  display: inline-block;
+  flex: 1;
   width: 320px;
   padding: unset;
   margin: 0.5em 1em;
