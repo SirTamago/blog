@@ -2121,11 +2121,6 @@ main:not(.up) .search #search-header input {
   position: relative;
   z-index: -1;
 }
-@media (max-width: 768px) {
-  .link-card {
-    margin: 0.5em 0; /* 调整边距以适应小屏幕 */
-  }
-}
 .expand-box {
   --ex-color: var(--theme-ex-header);
   margin: 1em;
