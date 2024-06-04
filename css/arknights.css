@@ -2121,6 +2121,22 @@ main:not(.up) .search #search-header input {
   position: relative;
   z-index: -1;
 }
+@media (max-width: 768px) {
+  .link-card {
+    width: 100%; /* 在小屏幕上卡片宽度为100% */
+    margin: 0.5em 0; /* 调整边距以适应小屏幕 */
+  }
+}
+@media (min-width: 769px) {
+  .link-card {
+    display: inline-block; /* 在大屏幕上保持原样 */
+    width: 320px; /* 原始宽度 */
+    padding: unset;
+    margin: 0.5em 1em;
+    position: relative;
+    z-index: 1;
+  }
+}
 .expand-box {
   --ex-color: var(--theme-ex-header);
   margin: 1em;
