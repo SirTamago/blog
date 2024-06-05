@@ -1995,7 +1995,6 @@ main:not(.up) .search #search-header input {
 .hide {
   transition: 0.1s;
   background: var(--theme-hide);
-  padding: 5px;
 }
 .hide p {
   display: inline;
@@ -2033,6 +2032,12 @@ main:not(.up) .search #search-header input {
   inherits: true;
   initial-value: transparent;
 }
+.link-container {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  flex-wrap: wrap;
+}
 .link-card {
   display: inline-block;
   width: 320px;
@@ -2048,7 +2053,7 @@ main:not(.up) .search #search-header input {
   --card-border: var(--theme-highlight);
 }
 .link-card:hover .link-main {
-  border-left: 2px solid var(--theme-highlight);
+  border-left: 3px solid var(--theme-highlight);
 }
 .link-card img {
   max-height: 100%;
@@ -2070,7 +2075,7 @@ main:not(.up) .search #search-header input {
 .link-main {
   transition: border-color 0.3s;
   background-color: var(--theme-bg-soft);
-  border-left: 2px solid var(--theme-text-light);
+  border-left: 3px solid var(--theme-text-light);
   border-block: inset 1px solid var(--theme-border-soft);
   display: flex;
   align-items: center;
@@ -2083,6 +2088,7 @@ main:not(.up) .search #search-header input {
 }
 .link-main .link-ico img {
   border-radius: 50%;
+  border: none;
 }
 .link-main .link-ico.link-full {
   width: 100%;
