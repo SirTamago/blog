@@ -2969,6 +2969,9 @@ table .code {
 #post-content h6 .headerlink {
   padding: 0 0 0 5px;
 }
+#post-content code {
+  padding: unset;
+}
 #post-content .item-img img {
   display: block;
   max-width: 100%;
