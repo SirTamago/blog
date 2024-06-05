@@ -1995,6 +1995,7 @@ main:not(.up) .search #search-header input {
 .hide {
   transition: 0.1s;
   background: var(--theme-hide);
+  padding: -1px;
 }
 .hide p {
   display: inline;
@@ -2053,7 +2054,7 @@ main:not(.up) .search #search-header input {
   --card-border: var(--theme-highlight);
 }
 .link-card:hover .link-main {
-  border-left: 3px solid var(--theme-highlight);
+  border-left: 2px solid var(--theme-highlight);
 }
 .link-card img {
   max-height: 100%;
@@ -2075,7 +2076,7 @@ main:not(.up) .search #search-header input {
 .link-main {
   transition: border-color 0.3s;
   background-color: var(--theme-bg-soft);
-  border-left: 3px solid var(--theme-text-light);
+  border-left: 2px solid var(--theme-text-light);
   border-block: inset 1px solid var(--theme-border-soft);
   display: flex;
   align-items: center;
@@ -2968,9 +2969,6 @@ table .code {
 #post-content h5 .headerlink,
 #post-content h6 .headerlink {
   padding: 0 0 0 5px;
-}
-#post-content code {
-  padding: unset;
 }
 #post-content .item-img img {
   display: block;
