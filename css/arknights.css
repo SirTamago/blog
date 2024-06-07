@@ -1949,7 +1949,6 @@ main:not(.up) .search #search-header input {
   width: 50px;
 }
 .link-main .link-ico img {
-  border-radius: 50%;
   border: none;
 }
 .link-main .link-ico.link-full {
@@ -1988,6 +1987,17 @@ main:not(.up) .search #search-header input {
 .link-background {
   position: relative;
   z-index: -1;
+}
+.link-ico {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-size: contain; /* 使背景图像适应容器大小，但不超过其原始大小 */
+  background-position: center; /* 将背景图像置于容器中心 */
+}
+.link-ico img {
+  max-height: 100%;
+  max-width: 100%;
 }
 .expand-box {
   --ex-color: var(--theme-ex-header);
