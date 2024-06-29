@@ -3448,6 +3448,17 @@ table .code {
   object-fit: contain;
   margin: auto;
 }
+#post-content .item-img img:after {
+  content: attr(alt);
+  display: block;
+/* 根据需要调整样式 */
+}
+#post-content .item-img .img-caption {
+  font-size: 0.9em; /* 注释的字体大小 */
+  color: #666; /* 注释的文字颜色 */
+  text-align: center; /* 文字居中对齐 */
+  margin-top: 0.5em; /* 图片与注释之间的间距 */
+}
 #reward {
   margin: 1em 0;
   color: var(--theme-text-rev);
