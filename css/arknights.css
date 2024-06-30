@@ -1999,28 +1999,6 @@ main:not(.up) .search #search-header input {
   max-height: 100%;
   max-width: 100%;
 }
-.mymark {
-  padding: -1px;
-}
-.mymark p {
-  display: inline;
-}
-.mymark.error {
-  background-color: #f00;
-  color: #fff;
-}
-.mymark.warning {
-  background-color: #a2991e;
-  color: #000;
-}
-.mymark.light {
-  background-color: #fff;
-  color: #000;
-}
-.mymark.dark {
-  background-color: #000;
-  color: #fff;
-}
 .quot {
   display: flex;
   align-items: center;
@@ -2031,22 +2009,43 @@ main:not(.up) .search #search-header input {
   margin: 0;
   font-size: 1.3em;
   font-family: 'Times New Roman', '锐字云字库大标宋简繁';
+  color: var(--theme-border-light);
+}
+.quot:before,
+.quot:after {
+  content: "";
+  display: inline-block;
+  height: 2em; /* 调整图标的高度 */
+  width: 2em; /* 调整图标的宽度 */
+  margin: 5px 5px;
 }
 .quot.one:before {
-  content: "";
-  display: inline-block;
-  height: 2em; /* 调整图标的高度 */
-  width: 2em; /* 调整图标的宽度 */
-  background: url("https://images.rimrose.site/images/left-1.png") no-repeat center/contain;
-  margin: 5px 10px;
+  background: url("../img/left-1.png") no-repeat center/contain;
 }
 .quot.one:after {
-  content: "";
-  display: inline-block;
-  height: 2em; /* 调整图标的高度 */
-  width: 2em; /* 调整图标的宽度 */
-  background: url("https://images.rimrose.site/images/right-1.png") no-repeat center/contain;
-  margin: 5px 10px;
+  background: url("../img/right-1.png") no-repeat center/contain;
+}
+.tip {
+  display: flex;
+  align-items: center; /* 垂直居中 */
+  padding: 10px;
+  margin: 5px;
+  color: var(--theme-border-light);
+}
+.tip.success {
+  background-color: rgba(0,255,0,0.7);
+  border-left: 5px solid #0f0;
+}
+.tip.warning {
+  background-color: rgba(255,255,0,0.7);
+  border-left: 5px solid #ff0;
+}
+.tip.failure {
+  background-color: rgba(255,0,0,0.7);
+  border-left: 5px solid #f00;
+}
+.tip .icon {
+  margin-right: 8px; /* 图标和文本之间的间距 */
 }
 .expand-box {
   --ex-color: var(--theme-ex-header);
@@ -3491,6 +3490,7 @@ table .code {
   padding: 0 0 0 5px;
 }
 #post-content .item-img img {
+  loading: lazy;
   display: block;
   max-width: 100%;
   max-height: 80vh;
