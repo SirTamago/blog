@@ -1999,6 +1999,55 @@ main:not(.up) .search #search-header input {
   max-height: 100%;
   max-width: 100%;
 }
+.mymark {
+  padding: -1px;
+}
+.mymark p {
+  display: inline;
+}
+.mymark.error {
+  background-color: #f00;
+  color: #fff;
+}
+.mymark.warning {
+  background-color: #a2991e;
+  color: #000;
+}
+.mymark.light {
+  background-color: #fff;
+  color: #000;
+}
+.mymark.dark {
+  background-color: #000;
+  color: #fff;
+}
+.quot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.quot p {
+  display: inline;
+  margin: 0;
+  font-size: 1.3em;
+  font-family: 'Times New Roman', '锐字云字库大标宋简繁';
+}
+.quot.one:before {
+  content: "";
+  display: inline-block;
+  height: 2em; /* 调整图标的高度 */
+  width: 2em; /* 调整图标的宽度 */
+  background: url("https://images.rimrose.site/images/left-1.png") no-repeat center/contain;
+  margin: 5px 10px;
+}
+.quot.one:after {
+  content: "";
+  display: inline-block;
+  height: 2em; /* 调整图标的高度 */
+  width: 2em; /* 调整图标的宽度 */
+  background: url("https://images.rimrose.site/images/right-1.png") no-repeat center/contain;
+  margin: 5px 10px;
+}
 .expand-box {
   --ex-color: var(--theme-ex-header);
   margin: 1em;
@@ -3447,17 +3496,6 @@ table .code {
   max-height: 80vh;
   object-fit: contain;
   margin: auto;
-}
-#post-content .item-img img:after {
-  content: attr(alt);
-  display: block;
-/* 根据需要调整样式 */
-}
-#post-content .item-img .img-caption {
-  font-size: 0.9em; /* 注释的字体大小 */
-  color: #666; /* 注释的文字颜色 */
-  text-align: center; /* 文字居中对齐 */
-  margin-top: 0.5em; /* 图片与注释之间的间距 */
 }
 #reward {
   margin: 1em 0;
