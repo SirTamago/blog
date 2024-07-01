@@ -2030,7 +2030,7 @@ main:not(.up) .search #search-header input {
   align-items: center; /* 垂直居中 */
   padding: 10px;
   margin: 5px;
-  color: var(--theme-border-light);
+  color: var(--theme-text-light);
 }
 .tip.success {
   background-color: rgba(0,255,0,0.7);
