@@ -2008,7 +2008,7 @@ main:not(.up) .search #search-header input {
   display: inline;
   margin: 0;
   font-size: 1.3em;
-  font-family: 'Times New Roman', '锐字云字库大标宋简繁';
+  font-family: 'REEJI-CloudDaBiaoSongGBT', 'Times New Roman';
   color: var(--theme-border-light);
 }
 .quot:before,
