@@ -1352,13 +1352,6 @@ nav li {
   margin: 7px 7px 2px 2px;
   transform: rotate(45deg);
 }
-#canvas-dust {
-  z-index: -65536;
-  pointer-events: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-}
 @media (max-width: 1023px) {
   .moving {
     pointer-events: none;
