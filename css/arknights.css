@@ -1982,7 +1982,9 @@ main:not(.up) .search #search-header input {
   z-index: -1;
 }
 .link-ico {
-  display: flex;
+  height: 50px;
+  width: 50px;
+  display: block;
   align-items: center;
   justify-content: center;
   background-size: contain; /* 使背景图像适应容器大小，但不超过其原始大小 */
