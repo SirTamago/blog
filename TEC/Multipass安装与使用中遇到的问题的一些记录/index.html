@@ -1,0 +1,330 @@
+<!DOCTYPE html><html lang="[&quot;zh-CN&quot;,&quot;en&quot;,&quot;default&quot;]" data-theme="light"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Multipass安装与使用中遇到的问题的一些记录 | Rimrose's Blog</title><noscript>开启JavaScript才能访问本站哦~</noscript><link rel="icon" href="https://images.rimrose.site/images/QQ图片20231031210606.ico"><!-- index.css--><link rel="stylesheet" href="/css/index.css?v=2.1.9"><!-- inject head--><link rel="canonical" href="https://sirtamago.github.io/blog/TEC/Multipass%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98%E7%9A%84%E4%B8%80%E4%BA%9B%E8%AE%B0%E5%BD%95/"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"><!-- aplayer--><!-- swiper--><!-- fancybox ui--><!-- katex--><!-- Open Graph--><meta name="description" content="按时间顺序记录首先是Multipass的安装（在这之前我应该已经安装又卸载过十几次），参考的教程为：轻量虚拟机 Multipass 的部署和使用 一、部署 在windows环境下进行部署，下载最新安装包后别着急执行，先进行multipass数据目录的配置： 以管理身份运行powershell：输入以"><!-- pwa--><meta name="apple-mobile-web-app-capable" content="Rimrose's Blog"><meta name="theme-color" content="var(--efu-main)"><meta name="apple-mobile-web-app-status-bar-style" content="var(--efu-main)"><link rel="bookmark" href="https://images.rimrose.site/images/QQ图片20231031210606.ico"><link rel="apple-touch-icon" href="https://images.rimrose.site/images/QQ图片20231031210606.ico" sizes="180x180"><script>console.log(' %c Solitude %c ' + '2.1.9' + ' %c https://github.com/everfu/hexo-theme-solitude',
+    'background:#35495e ; padding: 1px; border-radius: 3px 0 0 3px;  color: #fff',
+    'background:#ff9a9a ; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff',
+    'background:unset ; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff')
+</script><script>(()=>{
+        const saveToLocal = {
+            set: function setWithExpiry(key, value, ttl) {
+                if (ttl === 0)
+                    return
+                const now = new Date()
+                const expiryDay = ttl * 86400000
+                const item = {
+                    value: value,
+                    expiry: now.getTime() + expiryDay
+                }
+                localStorage.setItem(key, JSON.stringify(item))
+            },
+            get: function getWithExpiry(key) {
+                const itemStr = localStorage.getItem(key)
+
+                if (!itemStr) {
+                    return undefined
+                }
+                const item = JSON.parse(itemStr)
+                const now = new Date()
+
+                if (now.getTime() > item.expiry) {
+                    localStorage.removeItem(key)
+                    return undefined
+                }
+                return item.value
+            }
+        };
+        window.utils = {
+            saveToLocal: saveToLocal,
+            getCSS: (url, id = false) => new Promise((resolve, reject) => {
+              const link = document.createElement('link')
+              link.rel = 'stylesheet'
+              link.href = url
+              if (id) link.id = id
+              link.onerror = reject
+              link.onload = link.onreadystatechange = function() {
+                const loadState = this.readyState
+                if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+                link.onload = link.onreadystatechange = null
+                resolve()
+              }
+              document.head.appendChild(link)
+            }),
+            getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+              const script = document.createElement('script')
+              script.src = url
+              script.async = true
+              script.onerror = reject
+              script.onload = script.onreadystatechange = function() {
+                const loadState = this.readyState
+                if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+                script.onload = script.onreadystatechange = null
+                resolve()
+              }
+
+              Object.keys(attr).forEach(key => {
+                script.setAttribute(key, attr[key])
+              })
+
+              document.head.appendChild(script)
+            }),
+            addGlobalFn: (key, fn, name = false, parent = window) => {
+                const globalFn = parent.globalFn || {}
+                const keyObj = globalFn[key] || {}
+
+                if (name && keyObj[name]) return
+
+                name = name || Object.keys(keyObj).length
+                keyObj[name] = fn
+                globalFn[key] = keyObj
+                parent.globalFn = globalFn
+            },
+            addEventListenerPjax: (ele, event, fn, option = false) => {
+              ele.addEventListener(event, fn, option)
+              utils.addGlobalFn('pjax', () => {
+                  ele.removeEventListener(event, fn, option)
+              })
+          },
+        }
+    })()</script><!-- theme--><script>initTheme = () => {
+    let isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const cachedMode = utils.saveToLocal.get('theme');
+    if (cachedMode === undefined) {
+        const nowMode =
+            isDarkMode ? 'dark' : 'light'
+        document.documentElement.setAttribute('data-theme', nowMode);
+    } else {
+        document.documentElement.setAttribute('data-theme', cachedMode);
+    }
+    typeof rm === 'object' && rm.mode(cachedMode === 'dark' && isDarkMode)
+}
+initTheme()</script><!-- global head--><script>const GLOBAL_CONFIG = {
+    root: '/',
+    algolia: undefined,
+    localsearch: undefined,
+    runtime: '2023-04-20 00:00:00',
+    lazyload: {
+        enable: false,
+        error: '/img/error_load.avif'
+    },
+    copyright: false,
+    highlight: {"limit":200,"expand":true,"copy":true,"syntax":"highlight.js"},
+    randomlink: false,
+    lang: {"theme":{"dark":"已切换至深色模式","light":"已切换至浅色模式"},"copy":{"success":"复制成功","error":"复制失败"},"backtop":"返回顶部","time":{"day":"天前","hour":"小时前","just":"刚刚","min":"分钟前","month":"个月前"},"day":" 天","f12":"开发者模式已打开，请遵循GPL协议。","totalk":"无需删除空行，直接输入评论即可"},
+    aside: {
+        sayhello: {
+            morning: "✨ 早上好，新的一天开始了",
+            noon: "🍲 午餐时间",
+            afternoon: "🌞 下午好",
+            night: "早点休息",
+            goodnight: "晚安 😴",
+        },
+        sayhello2: [],
+        sayhello3: {
+            prefix: '好久不见，',
+            back: '欢迎再次回来，',
+        },
+    },
+    covercolor: {
+        enable: false
+    },
+    comment: false,
+    lightbox: 'null',
+    post_ai: false,
+    right_menu: false,
+    translate: {"translateDelay":0,"defaultEncoding":2},
+    lure: false,
+    expire: false,
+};</script><!-- page-config head--><script id="config-diff">var PAGE_CONFIG = {
+    is_post: true,
+    is_page: false,
+    is_home: false,
+    page: '',
+    toc: true,
+    comment: false,
+    ai_text: false,
+    color: false,
+}</script><!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.2.0"></head><body id="body"><!-- universe--><!-- background img--><!-- loading--><!-- console--><!-- sidebar--><div id="sidebar" style="zoom: 1;"><div id="menu-mask" style="display: none;"></div><div id="sidebar-menus"><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">11</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">5</div></a></div></div></div><span class="sidebar-menu-item-title">功能</span><div class="sidebar-menu-item"><span class="darkmode_switchbutton menu-child" onclick="sco.switchDarkMode()"><i class="solitude fa-solid fa-circle-half-stroke"></i><span>显示模式</span></span></div><span class="sidebar-menu-item-title">标签</span><div class="card-widget card-tags card-archives card-webinfo card-allinfo"><div class="card-tag-cloud"><a href="/tags/Photography/">Photography<sup>1</sup></a><a href="/tags/record/">record<sup>5</sup></a><a href="/tags/%E5%BE%85%E5%AE%8C%E5%96%84/">待完善<sup>1</sup></a><a href="/tags/math/">math<sup>2</sup></a><a href="/tags/study/">study<sup>3</sup></a></div></div></div></div><!-- keyboard--><!-- righhtside--><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav class="show" id="nav"><div id="nav-group"><div id="blog_name"><a id="site-name" href="/" title="返回博客主页"><span class="title">Rimrose's Blog</span><i class="solitude fa-solid fa-home"></i></a></div><div id="page-name-mask"><div id="page-name"><a id="page-name-text" onclick="sco.toTop()">Multipass安装与使用中遇到的问题的一些记录</a></div></div><div id="menus"></div><div id="nav-left"></div><div id="nav-right"><div class="nav-button" id="nav-totop" onclick="sco.toTop()"><a class="totopbtn"><i class="solitude fa-solid fa-arrow-up"></i><span id="percent">0</span></a></div><div id="toggle-menu"><a class="site-page"><i class="solitude fa-solid fa-bars"></i></a></div></div></div></nav><div class="coverdiv" id="coverdiv"><img class="nolazyload" id="post-cover" src="/img/default.avif" alt="Multipass安装与使用中遇到的问题的一些记录"></div><div id="post-info"><div id="post-firstinfo"><div class="meta-firstline"><a class="post-meta-original" title="该文章为原创文章，注意版权协议">原创</a><span class="post-meta-categories"><a class="post-meta-categories" href="/categories/TEC/">TEC</a></span><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/record/"><span class="tags-name tags-punctuation"><i class="solitude fa-solid fa-hashtag"></i>record</span></a></div></div></div></div><h1 class="post-title">Multipass安装与使用中遇到的问题的一些记录</h1><div id="post-meta"><div class="meta-secondline"></div></div></div><section class="main-hero-waves-area waves-area"><svg class="waves-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto"><defs><path id="gentle-wave" d="M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z"></path></defs><g class="parallax"><use href="#gentle-wave" x="48" y="0"></use><use href="#gentle-wave" x="48" y="3"></use><use href="#gentle-wave" x="48" y="5"></use><use href="#gentle-wave" x="48" y="7"></use></g></svg></section></header><main class="layout" id="content-inner"><div id="post"><article class="post-content article-container"><h2 id="按时间顺序记录"><a href="#按时间顺序记录" class="headerlink" title="按时间顺序记录"></a>按时间顺序记录</h2><p>首先是Multipass的安装（在这之前我应该已经安装又卸载过十几次），参考的教程为：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/hewei-blogs/articles/17569105.html">轻量虚拟机 Multipass 的部署和使用</a></p>
+<p><strong>一、部署</strong></p>
+<p>在windows环境下进行部署，下载最新安装包后别着急执行，先进行multipass数据目录的配置：</p>
+<p>以管理身份运行powershell：输入以下命令：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs PowerShell"><span class="hljs-built_in">Set-ItemProperty</span> <span class="hljs-literal">-Path</span> <span class="hljs-string">&quot;HKLM:System\CurrentControlSet\Control\Session Manager\Environment&quot;</span> <span class="hljs-literal">-Name</span> MULTIPASS_STORAGE <span class="hljs-literal">-Value</span> <span class="hljs-string">&quot;E:\MultipassData&quot;</span><br></code></pre></td></tr></table></figure>
+<p>运行下载的可执行文件，选择自定义目录安装。</p>
+<p>安装完成后查看版本：</p>
+<p>打开任意 Windows 命令行，键入命令查看版本</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs PowerShell">multipass <span class="hljs-literal">--version</span><br></code></pre></td></tr></table></figure>
+<p><strong>二、创建运行 ubuntu 实例</strong></p>
+<ol>
+<li>设置客户端口令，然后通过 命令查看支持的镜像列表：</li>
+</ol>
+<p>设置口令：设置multipass的口令为 multipass（原文有这个，但是其实我不知道有什么用，感觉多此一举）</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs PowerShell">multipass <span class="hljs-built_in">set</span> local.passphrase=multipass<br></code></pre></td></tr></table></figure>
+<p>通过命令查看支持的镜像列表（这个无所谓）</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs PowerShell">multipass find<br></code></pre></td></tr></table></figure>
+<p><img src="https://pic.imgdb.cn/item/65c10eef9f345e8d038b4b0b.png" alt=""></p>
+<ol>
+<li>通过命令创建实例（这里我的实例名用的是<code>rimrose</code>）：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs PoeweShell">multipass launch -n rimrose -c 4 -m 8G -d 64G<br></code></pre></td></tr></table></figure>
+<ul>
+<li>-n, –name: 名称</li>
+<li>-c, –cpus: cpu 核心数, 默认: 1</li>
+<li>-m, –mem: 内存大小, 默认: 1G</li>
+<li>-d, –disk: 硬盘大小, 默认: 5G</li>
+</ul>
+<p>不知道为什么，出现问题了（明明之前装了几次都没出现这样的问题）：</p>
+<p><img src="https://pic.imgdb.cn/item/65c10ef19f345e8d038b541c.png" alt=""></p>
+<p>我怀疑是Hyper-V的问题，查看一下<code>设置 -&gt; 系统 -&gt; 可选功能 -&gt; 更多Windows功能 -&gt; Hyper-V</code></p>
+<p><img src="https://pic.imgdb.cn/item/65c1116d9f345e8d0394e4e5.jpg" alt=""></p>
+<p>但是这里Hyper-V是打开了的</p>
+<p>那先跳过这里，尝试一下再次安装</p>
+<p>还是出现了问题：</p>
+<p><img src="https://pic.imgdb.cn/item/65c111f29f345e8d0396c44a.jpg" alt=""></p>
+<p>我选择把软件卸载重装</p>
+<p>使用GeekUninstaller卸载掉Multipass（这个软件会扫描文件和注册表的残留）</p>
+<p>然后右键管理员运行<code>multipass-1.13.0+win-win64.exe</code>，进行一个安装。这次安装过程中没有报错（上一次装的时候中间弹出一条我没看明白的Error）</p>
+<p>那么按照上边的步骤再次进行部署——然后又报错了，不过这个报错和上边这个很像</p>
+<p><img src="https://pic.imgdb.cn/item/65c1186c9f345e8d03ae0fda.jpg" alt=""></p>
+<p>这个时候我才注意到这个8192MB什么什么RAM，很明显是内存不够，这里放一下我电脑的内存使用情况</p>
+<p><img src="https://pic.imgdb.cn/item/65c119119f345e8d03b00aa9.jpg" alt=""></p>
+<p><img src="https://pic.imgdb.cn/item/65c119329f345e8d03b063f8.jpg" alt=""></p>
+<p>（尴尬的笑）</p>
+<p>然后我把内存改成4G就装上去了</p>
+<p><img src="https://pic.imgdb.cn/item/65c1196b9f345e8d03b108bf.jpg" alt=""></p>
+<ol>
+<li>通过命令查看运行的实例：</li>
+</ol>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs PowerShell">multipass list<br></code></pre></td></tr></table></figure>
+<p><img src="https://pic.imgdb.cn/item/65c119b89f345e8d03b1ec86.jpg" alt=""></p>
+<p>在<code>开始 -&gt; 所有应用</code>中找到multipass点击启动，然后就可以在任务栏看到图标</p>
+<p><img src="https://pic.imgdb.cn/item/65c11b529f345e8d03b69e36.jpg" alt=""></p>
+<p>看到这个界面，点击<code>Open Shell</code>即可打开Ubuntu的终端。</p>
+<p><strong>到这里为止，Multipass的安装就完成了</strong></p>
+<p>时候不早了，先关机，第二天有空再继续（这点其实很重要，因为涉及到重启系统，指不定第二天开机会遇到什么奇葩问题）</p>
+<p>—————————————分界线—————————————</p>
+<p>现在是2024.2.6，刚刚开机又出现下边的问题（说“又”是因为之前的十几次安装中我已经遇到过这个问题）</p>
+<p><img src="https://pic.imgdb.cn/item/65bf85ad871b83018adfabb9.png" alt=""></p>
+<p>然后我右键看到这个界面之后不久，应用图标消失了（？）</p>
+<p>在PowerShell里输入<code>multipass list</code>，显示如下：</p>
+<p><img src="https://pic.imgdb.cn/item/65c1cacf9f345e8d030cb772.png" alt=""></p>
+<p>再次点击应用图标启动软件，依然会出现<code>Failure retrieving instances</code>的问题</p>
+<p>现在是2024.2.12，不知道为什么，我的虚拟机突然能运行了；在这之前，也就是6号第一次重新开机到现在为止的时间段里边，每次开机都是<code>Failure retrieving instances</code></p>
+<p><img src="https://pic.imgdb.cn/item/65c9bb649f345e8d03a5c5ae.jpg" alt=""></p>
+<p>所以趁着它能跑起来，我先把需要的东西给弄了，比如ros2（主要是想试着搞一下这篇博文里的东西 <a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44827364/article/details/104156116?spm=1001.2014.3001.5506">https://blog.csdn.net/weixin_44827364/article/details/104156116?spm=1001.2014.3001.5506</a> ）</p>
+<p><img src="https://pic.imgdb.cn/item/65ca0c139f345e8d039ae7b7.jpg" alt=""></p>
+<p>成功了</p>
+<p>不过用ros2需要GUI，所以下边装一下（参考 <a target="_blank" rel="noopener" href="https://www.cnblogs.com/taylorshi/p/16039901.html">https://www.cnblogs.com/taylorshi/p/16039901.html</a> ）</p>
+<p>先更新一下包索引：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo apt-get update<br></code></pre></td></tr></table></figure></p>
+<p><img src="https://pic.imgdb.cn/item/65cb10e09f345e8d03467061.jpg" alt=""></p>
+<p>接下来开启安装</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo apt-get install ubuntu-desktop xrdp -y<br></code></pre></td></tr></table></figure>
+<p>这将一次性安装<code>ubuntu-desktop</code>和<code>xrdp</code>两个软件</p>
+<p><img src="https://pic.imgdb.cn/item/65cb114a9f345e8d0347adc6.jpg" alt=""></p>
+<p>稍等片刻之后，安装完成</p>
+<p><img src="https://pic.imgdb.cn/item/65cb11759f345e8d03484040.jpg" alt=""></p>
+<p>接下来创建一个登录用户名用来登录桌面</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo adduser <span class="hljs-variable">$userName</span><br></code></pre></td></tr></table></figure>
+<p><img src="https://pic.imgdb.cn/item/65cb12139f345e8d034a1bf3.jpg" alt="最后这个Full Name什么的应该不是必要的"></p>
+<p>并且给这个用户赋予访问权限</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo usermod -aG sudo <span class="hljs-variable">$userName</span><br></code></pre></td></tr></table></figure>
+<p><img src="https://pic.imgdb.cn/item/65cb20919f345e8d0375c532.jpg" alt=""></p>
+<p>然后获取当前Ubuntu实例IP，在PowerShell中输入</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs PowerShell">multipass list<br></code></pre></td></tr></table></figure>
+<p><img src="https://pic.imgdb.cn/item/65cb28509f345e8d038dac18.jpg" alt=""></p>
+<p>可以看到这里的ip是<code>172.19.113.37</code>（在Ubuntu的命令行里输入<code>ip a</code>也可以看到）</p>
+<p>通过RDP客户端远程Ubuntu</p>
+<p>用windows自带的搜索来搜索<code>远程</code>，找到<code>远程桌面连接</code></p>
+<p><img src="https://pic.imgdb.cn/item/65cb28f89f345e8d038fa838.jpg" alt=""></p>
+<p>打开它，输入刚才的IP地址，点击<code>连接</code>，在弹出的对话框选择<code>是</code>，这时我们可以看到一个登录对话框</p>
+<p><img src="https://pic.imgdb.cn/item/65cb295f9f345e8d0390dde3.jpg" alt=""></p>
+<p>输入之前设定的用来登录桌面的用户名和密码，然后点击<code>OK</code></p>
+<p><img src="https://pic.imgdb.cn/item/65cb298f9f345e8d03916bae.jpg" alt=""></p>
+<p>这样我们就看到了Ubuntu的桌面引导，说明我们已经来到桌面了</p>
+<p><img src="https://pic.imgdb.cn/item/65cb29c59f345e8d03920d22.jpg" alt=""></p>
+<p>等待软件更新</p>
+<p><img src="https://pic.imgdb.cn/item/65cb2a189f345e8d0392fec7.jpg" alt=""></p>
+<p>这就是真正的Ubuntu桌面了，这太酷了</p>
+<p><img src="https://pic.imgdb.cn/item/65cb2f5c9f345e8d03a294e2.jpg" alt=""></p>
+<p>不过这时候有个问题，在这个用户下使用不了ros2命令，也许是因为ros2安装位置不在这个用户的目录下，而且不互通</p>
+<p>所以在这个用户下再次安装一遍ros2</p>
+<p><img src="https://pic.imgdb.cn/item/65cb317b9f345e8d03a972b4.jpg" alt="安装成功"></p>
+<p><img src="https://pic.imgdb.cn/item/65cb32169f345e8d03ab32e6.jpg" alt=""></p>
+<p>到这里先告一段落，因为博主出去玩了，而且电脑已经三天没关了，我打算尝试一下先关闭multipass再关机，看下次开机会不会再出错</p>
+<p>右键点击任务栏中的multipass图标，选中正在运行的虚拟机，点击<code>Stop</code></p>
+<p><img src="https://pic.imgdb.cn/item/65cba0aa9f345e8d034d33fc.jpg" alt=""></p>
+<p>等待主机名称后边的<code>Running</code>消失后再点击<code>Quit</code></p>
+<p><img src="https://pic.imgdb.cn/item/65cba0f99f345e8d034e3c58.jpg" alt=""></p>
+<p>然后关机</p>
+<p>现在是2024.2.14，很不幸，再次出现了<code>Failure retrieving instances</code>的错误</p>
+<p><img src="https://pic.imgdb.cn/item/65cc4f429f345e8d03b10450.jpg" alt=""></p>
+<p>现在我做一个大胆的猜想，会不会是multipass开机自启造成了这样的问题？所以试着把它的自启动关掉</p>
+<p><img src="https://pic.imgdb.cn/item/65cc53729f345e8d03bcbcbd.jpg" alt=""></p>
+<p>下次开机再说吧</p>
+<p>现在是2024.2.15，开机之后我点应用图标启动multipass，但还是出现了<code>Failure retrieving instances</code>的错误</p>
+<p>现在是2024.2.20，刚刚我突然想用wallpaper engine，但是打开的时候有一个这样的提示：</p>
+<p><img src="https://pic.imgdb.cn/item/65d4c9279f345e8d0353ecd7.jpg" alt=""></p>
+<p>提示说的没问题，我切到某几张视频壁纸的时候就无法播放了，很难受；这时候我觉得我之前搞得什么虚拟机啥的（还有别的软件或者系统本身）在使用过程中遇到各种奇怪的bug，也许和Windows的insider版本有关系，所以我决定从insider版本切换回稳定版</p>
+<p><img src="https://pic.imgdb.cn/item/65d4c7da9f345e8d034ee60c.jpg" alt="我电脑现在的Windows版本"></p>
+<p><img src="https://pic.imgdb.cn/item/65d4c9f29f345e8d0356f199.jpg" alt="这个倒是有半个月没有更新了"></p>
+<p><img src="https://pic.imgdb.cn/item/65d4cc3d9f345e8d035f3f99.jpg" alt=""></p>
+<p>快进了一下，现在是2024.2.21的下午，我凌晨一点把系统重装回了win11稳定版，现在的系统信息如下</p>
+<p><img src="https://pic.imgdb.cn/item/65d5c8039f345e8d038de3cf.jpg" alt=""></p>
+<p><img src="https://pic.imgdb.cn/item/65d5c8259f345e8d038e3ba7.jpg" alt=""></p>
+<p>本来想着说下午直接装个Ubuntu实体机的，但是感觉有点麻烦，先搞一下multipass试试</p>
+<p>（此处省略一大堆步骤）</p>
+<p>这里我又觉得multipass不如实体机来的方便，所以决定先搞实体机</p>
+<p><img src="https://pic.imgdb.cn/item/65d5c99e9f345e8d0392a70a.jpg" alt="一定是Windows Update干的！"></p>
+<p>现在是2024.2.21，晚上的23：21，我把ubuntu实体机装好了，不需要虚拟机了（墨镜）</p>
+<p><strong><em>To be continued —&gt;</em></strong></p>
+<h2 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h2><h3 id="01"><a href="#01" class="headerlink" title="01"></a>01</h3><p>系统重启后遇到下边的情况：<code>Failure retrieving instances</code></p>
+<p><img src="https://pic.imgdb.cn/item/65bf85ad871b83018adfabb9.png" alt=""></p>
+<p>Google了一下解决方案，在 <a target="_blank" rel="noopener" href="https://github.com/canonical/multipass/issues/2223">https://github.com/canonical/multipass/issues/2223</a> 这里找到了答案。</p>
+<p>在终端里输入</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs PowerShell"><span class="hljs-built_in">Get-CimInstance</span> Win32_ComputerSystem | <span class="hljs-built_in">Select-Object</span> <span class="hljs-literal">-ExpandProperty</span> HypervisorPresent<br></code></pre></td></tr></table></figure>
+<p>出现<code>True</code>，然后再输入</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs PowerShell"><span class="hljs-built_in">Enable-WindowsOptionalFeature</span> <span class="hljs-literal">-Online</span> <span class="hljs-literal">-FeatureName</span> Microsoft<span class="hljs-literal">-Hyper-V</span> <span class="hljs-literal">-All</span><br></code></pre></td></tr></table></figure>
+<p>等待进度条走满，输入<code>yes</code>确认重启，之后就打开了</p>
+<p><img src="https://pic.imgdb.cn/item/65bf85b0871b83018adfbc34.png" alt=""></p>
+<p>但是又遇到问题了，这个虚拟机点击了start之后会变成unknown state。这时点击Quit，并且在任务管理器找到multipassd.exe，结束任务，再以管理员身份打开cmd，输入<code>multipassd</code>，这时在PowerShell里输入<code>multipass list</code>，可以看到有虚拟机，但是状态依然是unknown。这时关闭cmd，进程multipass.exe也随之关闭，在PowerShell里输入<code>multipass list</code>也看不到东西，会输出<code>list failed: cannot connect to the multipass socket</code>。这时点击multipass的应用图标打开软件，会发现再次出现错误Failure retrieving instances。</p>
+</article><div class="post-copyright"><div class="post-copyright__author_group"><a class="post-copyright__author_img" href="/about/"><img class="post-copyright__author_img_front" src="https://images.rimrose.site/images/QQ图片20231031210606.ico"></a><div class="post-copyright__author_name">Rimrose's Blog</div><div class="post-copyright__author_desc"></div></div><div class="post-tools" id="post-tools"><div class="post-tools-left"><div id="quit-box" onclick="RemoveRewardMask()"></div></div></div><div class="post-copyright__notice"><span class="post-copyright-info">本文是原创文章，采用<a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0</a>协议，完整转载请注明来自<a href="/">Rimrose's Blog</a></span></div></div><div class="post-tools-right"><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/record/"><span class="tags-punctuation"><i class="solitude fa-solid fa-hashtag"></i>record<span class="tagsPageCount">5</span></span></a></div></div></div><nav class="needEndHide pagination-post" id="pagination"><div class="next-post pull-full"><a href="/TEC/%E7%94%B5%E5%AD%90%E8%AE%BE%E8%AE%A1%E8%87%AA%E5%8A%A8%E5%8C%96%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A/"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">电子设计自动化实验报告</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-content"><div class="card-info-avatar is-center"><div class="author-info__top-group"><div class="author-info__sayhi" id="author-info__sayhi" onclick="sco.changeSayHelloText()">sayhello.morning</div></div></div><div class="avatar-img-group"><img class="avatar-img" alt="头像" src="/img/avatar.avif"></div><div class="author-info__description_group"><div class="author-info__description"></div><div class="author-info__description2"></div></div><div class="author-info__bottom-group"><a class="author-info__bottom-group-left" href="/about/"><div class="author-info__name">Rimrose</div><div class="author-info__desc"></div></a><div class="card-info-social-icons is-center"></div></div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="solitude fa-solid fa-bars"></i><span>文章目录</span></div><div class="toc-content" id="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8C%89%E6%97%B6%E9%97%B4%E9%A1%BA%E5%BA%8F%E8%AE%B0%E5%BD%95"><span class="toc-text">按时间顺序记录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-text">遇到的问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#01"><span class="toc-text">01</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="solitude fa-solid fa-map"></i><span>最近发布</span></div><div class="aside-list"><a class="aside-list-item" href="/TEC/Multipass%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98%E7%9A%84%E4%B8%80%E4%BA%9B%E8%AE%B0%E5%BD%95/" title="Multipass安装与使用中遇到的问题的一些记录"><div class="thumbnail"><img alt="Multipass安装与使用中遇到的问题的一些记录" src="/img/default.avif"></div><div class="content"><span class="title" href="/TEC/Multipass%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98%E7%9A%84%E4%B8%80%E4%BA%9B%E8%AE%B0%E5%BD%95/" title="Multipass安装与使用中遇到的问题的一些记录">Multipass安装与使用中遇到的问题的一些记录</span><span class="article-recent_post_categories" href="/TEC/Multipass%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98%E7%9A%84%E4%B8%80%E4%BA%9B%E8%AE%B0%E5%BD%95/">TEC</span></div></a><a class="aside-list-item" href="/TEC/%E7%94%B5%E5%AD%90%E8%AE%BE%E8%AE%A1%E8%87%AA%E5%8A%A8%E5%8C%96%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A/" title="电子设计自动化实验报告"><div class="thumbnail"><img alt="电子设计自动化实验报告" src="/img/default.avif"></div><div class="content"><span class="title" href="/TEC/%E7%94%B5%E5%AD%90%E8%AE%BE%E8%AE%A1%E8%87%AA%E5%8A%A8%E5%8C%96%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A/" title="电子设计自动化实验报告">电子设计自动化实验报告</span><span class="article-recent_post_categories" href="/TEC/%E7%94%B5%E5%AD%90%E8%AE%BE%E8%AE%A1%E8%87%AA%E5%8A%A8%E5%8C%96%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A/">TEC</span></div></a><a class="aside-list-item" href="/REC/SpineModel/" title="在博客里放一只SpineModel"><div class="thumbnail"><img alt="在博客里放一只SpineModel" src="/img/default.avif"></div><div class="content"><span class="title" href="/REC/SpineModel/" title="在博客里放一只SpineModel">在博客里放一只SpineModel</span><span class="article-recent_post_categories" href="/REC/SpineModel/">REC</span></div></a><a class="aside-list-item" href="/REC/2024-06-10_at_night/" title="关于味觉嗅觉听觉和视觉"><div class="thumbnail"><img alt="关于味觉嗅觉听觉和视觉" src="/img/default.avif"></div><div class="content"><span class="title" href="/REC/2024-06-10_at_night/" title="关于味觉嗅觉听觉和视觉">关于味觉嗅觉听觉和视觉</span><span class="article-recent_post_categories" href="/REC/2024-06-10_at_night/">REC</span></div></a><a class="aside-list-item" href="/REC/ABOUT_ME/" title="About me"><div class="thumbnail"><img alt="About me" src="/img/default.avif"></div><div class="content"><span class="title" href="/REC/ABOUT_ME/" title="About me">About me</span><span class="article-recent_post_categories" href="/REC/ABOUT_ME/">REC</span></div></a></div></div></div></div></main><footer id="footer"><div id="footer-bar"><div class="footer-bar-links"><div class="footer-bar-left"><div class="copyright">© 2023 - 2024 By&nbsp;<a class="footer-bar-link" href="/">Rimrose</a></div></div><div class="footer-bar-right"><a class="footer-bar-link" target="_blank" rel="noopener" href="https://github.com/everfu/hexo-theme-solitude" alt="Theme">Theme</a></div></div></div></footer></div><!-- right_menu--><!-- inject body--><div><script src="/js/utils.js?v=2.1.9"></script><script src="/js/main.js?v=2.1.9"></script><script src="/js/third_party/waterfall.min.js?v=2.1.9"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/pjax/0.2.8/pjax.min.js"></script><script src="/js/tw_cn.js?v=2.1.9"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/node-snackbar/0.1.16/snackbar.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js"></script><div class="js-pjax"></div></div><!-- pjax--><script>const pjax = new Pjax({
+    elements: 'a:not([target="_blank"])',
+    selectors: ["title","#body-wrap","#site-config","meta[name=\"description\"]",".js-pjax","meta[property^=\"og:\"]","#config-diff",".rs_show",".rs_hide"],
+    cacheBust: false,
+    analytics: false,
+    scrollRestoration: false
+})
+
+document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+})
+
+document.addEventListener('pjax:complete', () => {
+    window.refreshFn()
+
+    document.querySelectorAll('script[data-pjax]').forEach(item => {
+        const newScript = document.createElement('script')
+        const content = item.text || item.textContent || item.innerHTML || ""
+        Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+        newScript.appendChild(document.createTextNode(content))
+        item.parentNode.replaceChild(newScript, item)
+    })
+
+    GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+})
+
+document.addEventListener('pjax:error', (e) => {
+    if (e.request.status === 404) {
+        pjax.loadUrl('/404.html')
+    }
+})</script><!-- google adsense--><!-- search--><!-- Tianli-Talk--><!-- music--></body></html>
+        <script>
+            const posts = ["TEC/Multipass安装与使用中遇到的问题的一些记录/","TEC/电子设计自动化实验报告/","REC/SpineModel/","REC/2024-06-10_at_night/","REC/ABOUT_ME/","TEC/微机原理上机实验相关/","TEC/电子设计自动化实验相关/","REC/2023Photos/","TEC/yolov5s_record/","TEC/一般情况下的阿波罗尼斯圆的方程的推导过程/","TEC/平方数列求和的一种非正常求法/"];
+            function toRandomPost() {
+                const randomPost = posts[Math.floor(Math.random() * posts.length)];
+                pjax.loadUrl(GLOBAL_CONFIG.root + randomPost);
+            }
+        </script>
