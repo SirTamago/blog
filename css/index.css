@@ -8991,10 +8991,10 @@ div#banners .bannerText {
   }
 }
 [data-theme=dark] {
-  --efu-theme: #8eaccd;
-  --efu-theme-op: rgba(142,172,205,0.137);
-  --efu-theme-op-deep: rgba(142,172,205,0.867);
-  --efu-theme-none: rgba(142,172,205,0);
+  --efu-theme: #b78c49;
+  --efu-theme-op: rgba(183,140,73,0.137);
+  --efu-theme-op-deep: rgba(183,140,73,0.867);
+  --efu-theme-none: rgba(183,140,73,0);
   --efu-blue: #0084ff;
   --efu-red: #ff3842;
   --efu-pink: #d44040;
@@ -9036,11 +9036,11 @@ div#banners .bannerText {
   --efu-hltools-bg: #21232a;
 }
 [data-theme=light] {
-  --efu-theme: #ff8080;
-  --efu-theme-op: rgba(255,128,128,0.137);
-  --efu-theme-op-deep: rgba(255,128,128,0.867);
+  --efu-theme: #00b77e;
+  --efu-theme-op: rgba(0,183,126,0.137);
+  --efu-theme-op-deep: rgba(0,183,126,0.867);
   --efu-theme-op-light: rgba(66,89,239,0.051);
-  --efu-theme-none: rgba(255,128,128,0);
+  --efu-theme-none: rgba(0,183,126,0);
   --efu-blue: #425aef;
   --efu-red: #f04a63;
   --efu-pink: #ff7c7c;
@@ -9104,77 +9104,69 @@ figure.highlight table::-webkit-scrollbar {
   border-radius: 6px;
   display: initial;
 }
-figure.highlight .keyword {
-  color: #569cd6;
+figure.highlight .keyword,
+figure.highlight .type {
+  color: #0033b3;
 }
-figure.highlight .attr,
-figure.highlight .variable {
-  color: #569cd6;
+figure.highlight .variable,
+figure.highlight .literal {
+  color: #000;
 }
 figure.highlight .number {
-  color: #b5cea8;
+  color: #1750eb;
 }
 figure.highlight .string {
-  color: #ce9178;
+  color: #067d17;
 }
-figure.highlight .built_in,
-figure.highlight .title,
+figure.highlight .built_in {
+  color: #000;
+}
+figure.highlight .comment {
+  color: #8c8c8c;
+}
 figure.highlight .params {
-  color: #dcdcaa;
+  color: #000;
 }
-figure.highlight .emphasis {
-  color: #6a9955;
+figure.highlight .title.function_ {
+  color: #00627a;
 }
-figure.highlight .addition {
-  color: #35cd4b;
+figure.highlight .title.class_ {
+  color: #000;
 }
-figure.highlight .deletion {
-  color: #f00;
+figure.highlight .meta {
+  color: #9e880d;
 }
-figure.highlight .preprocessor {
-  color: $highlight-preprocessor;
+[data-theme=dark] figure.highlight .keyword,
+[data-theme=dark] figure.highlight .type {
+  color: #cf8e6d;
 }
-figure.highlight .include {
-  color: $highlight-include;
-}
-figure.highlight .type {
-  color: $highlight-type;
-}
-[data-theme=dark] figure.highlight .keyword {
-  color: #569cd6;
-}
-[data-theme=dark] figure.highlight .attr,
-[data-theme=dark] figure.highlight .variable {
-  color: #569cd6;
+[data-theme=dark] figure.highlight .variable,
+[data-theme=dark] figure.highlight .literal {
+  color: #bcbec4;
 }
 [data-theme=dark] figure.highlight .number {
-  color: #b5cea8;
+  color: #2aacb8;
 }
 [data-theme=dark] figure.highlight .string {
-  color: #ce9178;
+  color: #6aab73;
 }
-[data-theme=dark] figure.highlight .built_in,
-[data-theme=dark] figure.highlight .title,
+[data-theme=dark] figure.highlight .built_in {
+  color: #bcbec4;
+}
+[data-theme=dark] figure.highlight .comment {
+  color: #7a7e85;
+}
 [data-theme=dark] figure.highlight .params {
-  color: #dcdcaa;
+  color: #bcbec4;
 }
-[data-theme=dark] figure.highlight .emphasis {
-  color: #6a9955;
+[data-theme=dark] figure.highlight .title.function_ {
+  color: #56a8f5;
 }
-[data-theme=dark] figure.highlight .addition {
-  color: #35cd4b;
+[data-theme=dark] figure.highlight .title.class_ {
+  color: #bcbec4;
 }
-[data-theme=dark] figure.highlight .deletion {
-  color: #f00;
-}
-[data-theme=dark] figure.highlight .preprocessor {
-  color: $highlight-preprocessor;
-}
-[data-theme=dark] figure.highlight .include {
-  color: $highlight-include;
-}
-[data-theme=dark] figure.highlight .type {
-  color: $highlight-type;
+[data-theme=dark] figure.highlight .meta {
+  color: #b3ae60;
 }
 figure pre {
   margin: 0;
