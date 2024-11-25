@@ -9109,10 +9109,10 @@ figure.highlight .attr,
 figure.highlight .variable,
 figure.highlight .literal,
 figure.highlight .property {
-  color: #00f;
+  color: #ff79c6;
 }
 figure.highlight .number {
-  color: #098658;
+  color: #bd93f9;
 }
 figure.highlight .string {
   color: #a31515;
@@ -9136,21 +9136,21 @@ figure.highlight .deletion {
 [data-theme=dark] figure.highlight .attr,
 [data-theme=dark] figure.highlight .variable,
 [data-theme=dark] figure.highlight .property {
-  color: #569cd6;
+  color: #ff79c6;
 }
 [data-theme=dark] figure.highlight .number {
-  color: #b5cea8;
+  color: #bd93f9;
 }
 [data-theme=dark] figure.highlight .string {
-  color: #ce9178;
+  color: #f1fa8c;
 }
 [data-theme=dark] figure.highlight .built_in,
 [data-theme=dark] figure.highlight .title,
 [data-theme=dark] figure.highlight .params {
-  color: #dcdcaa;
+  color: #50fa7b;
 }
 [data-theme=dark] figure.highlight .emphasis {
-  color: #6a9955;
+  color: #8be9fd;
 }
 [data-theme=dark] figure.highlight .addition {
   color: #35cd4b;
