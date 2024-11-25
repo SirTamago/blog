@@ -9104,27 +9104,26 @@ figure.highlight table::-webkit-scrollbar {
   border-radius: 6px;
   display: initial;
 }
-figure.highlight .keyword,
+figure.highlight .keyword {
+  color: #569cd6;
+}
 figure.highlight .attr,
-figure.highlight .variable,
-figure.highlight .literal,
-figure.highlight .property {
-  color: #ff79c6;
+figure.highlight .variable {
+  color: #569cd6;
 }
 figure.highlight .number {
-  color: #bd93f9;
+  color: #b5cea8;
 }
 figure.highlight .string {
-  color: #a31515;
+  color: #ce9178;
 }
 figure.highlight .built_in,
 figure.highlight .title,
-figure.highlight .params,
-figure.highlight .name {
-  color: #795e26;
+figure.highlight .params {
+  color: #dcdcaa;
 }
 figure.highlight .emphasis {
-  color: #0451a5;
+  color: #6a9955;
 }
 figure.highlight .addition {
   color: #35cd4b;
@@ -9132,31 +9131,50 @@ figure.highlight .addition {
 figure.highlight .deletion {
   color: #f00;
 }
-[data-theme=dark] figure.highlight .keyword,
+figure.highlight .preprocessor {
+  color: $highlight-preprocessor;
+}
+figure.highlight .include {
+  color: $highlight-include;
+}
+figure.highlight .type {
+  color: $highlight-type;
+}
+[data-theme=dark] figure.highlight .keyword {
+  color: #569cd6;
+}
 [data-theme=dark] figure.highlight .attr,
-[data-theme=dark] figure.highlight .variable,
-[data-theme=dark] figure.highlight .property {
-  color: #ff79c6;
+[data-theme=dark] figure.highlight .variable {
+  color: #569cd6;
 }
 [data-theme=dark] figure.highlight .number {
-  color: #bd93f9;
+  color: #b5cea8;
 }
 [data-theme=dark] figure.highlight .string {
-  color: #f1fa8c;
+  color: #ce9178;
 }
 [data-theme=dark] figure.highlight .built_in,
 [data-theme=dark] figure.highlight .title,
 [data-theme=dark] figure.highlight .params {
-  color: #50fa7b;
+  color: #dcdcaa;
 }
 [data-theme=dark] figure.highlight .emphasis {
-  color: #8be9fd;
+  color: #6a9955;
 }
 [data-theme=dark] figure.highlight .addition {
   color: #35cd4b;
 }
 [data-theme=dark] figure.highlight .deletion {
   color: #f00;
+}
+[data-theme=dark] figure.highlight .preprocessor {
+  color: $highlight-preprocessor;
+}
+[data-theme=dark] figure.highlight .include {
+  color: $highlight-include;
+}
+[data-theme=dark] figure.highlight .type {
+  color: $highlight-type;
 }
 figure pre {
   margin: 0;
