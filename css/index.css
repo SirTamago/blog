@@ -8991,10 +8991,10 @@ div#banners .bannerText {
   }
 }
 [data-theme=dark] {
-  --efu-theme: #b78c49;
-  --efu-theme-op: rgba(183,140,73,0.137);
-  --efu-theme-op-deep: rgba(183,140,73,0.867);
-  --efu-theme-none: rgba(183,140,73,0);
+  --efu-theme: #e7d69e;
+  --efu-theme-op: #e7d69e 23;
+  --efu-theme-op-deep: #e7d69e dd;
+  --efu-theme-none: #e7d69e 0;
   --efu-blue: #0084ff;
   --efu-red: #ff3842;
   --efu-pink: #d44040;
@@ -9036,11 +9036,11 @@ div#banners .bannerText {
   --efu-hltools-bg: #21232a;
 }
 [data-theme=light] {
-  --efu-theme: #00b77e;
-  --efu-theme-op: rgba(0,183,126,0.137);
-  --efu-theme-op-deep: rgba(0,183,126,0.867);
+  --efu-theme: #ea785d;
+  --efu-theme-op: #ea785d 23;
+  --efu-theme-op-deep: #ea785d dd;
   --efu-theme-op-light: rgba(66,89,239,0.051);
-  --efu-theme-none: rgba(0,183,126,0);
+  --efu-theme-none: #ea785d 0;
   --efu-blue: #425aef;
   --efu-red: #f04a63;
   --efu-pink: #ff7c7c;
