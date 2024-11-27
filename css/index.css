@@ -2568,14 +2568,14 @@ span.tags-punctuation i {
   opacity: 0.1;
   width: 100%;
   height: 100%;
-  background-image: url("https://images.rimrose.site/images/__chihaya_anon_and_nagasaki_soyo_bang_dream_and_1_more__9ab83211e83a8bc027919be9ca00f51b.jpg");
+  background-image: url("/img/bg-light.jpg");
   background-size: cover;
   background-position: center;
   pointer-events: none;
   background-repeat: no-repeat;
 }
 [data-theme=dark] #global_bg {
-  background-image: url("https://images.rimrose.site/images/10fb98f0d99d156a19129451107c31ed.jpg");
+  background-image: url("/img/bg-dark.jpg");
 }
 .article-container {
   overflow-wrap: break-word;
