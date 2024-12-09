@@ -265,7 +265,7 @@
             //image: 'https://images.rimrose.site/images/Scene-1.png',
             image: "https://rimrose.top/img/Scene_1000px.png",
             initialState: {
-                i: .08,
+                i: .001,
                 s: .1,
                 d: .99,
                 r: 1,
