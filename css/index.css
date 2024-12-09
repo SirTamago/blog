@@ -80,9 +80,72 @@ details[open]>summary:hover:after {
     padding: 0 16px;
   }
 }
-.article-container img.inline-img {
-  display: inline-block;
-  margin: 0;
+.article-container a.tag-link {
+  background: var(--efu-secondbg);
+  border-radius: 8px !important;
+  display: flex;
+  border: var(--style-border);
+  flex-direction: column;
+  padding: 0.5rem 1rem !important;
+  border-width: 1px;
+  margin: 1rem 0;
+  max-width: 600px /* 设置最大宽度 */;
+  width: 90% /* 占据父容器的90%，使其居中并有适当的边距 */;
+  margin-left: auto;
+  margin-right: auto;
+/* 新增：调整 tag-link-tips 样式，使副标题的亮度稍微暗一点 */
+}
+.article-container a.tag-link:hover {
+  background: var(--efu-main);
+  border: var(--style-border-hover) !important;
+}
+.article-container a.tag-link i {
+  transition: 0.3s;
+  margin-left: auto;
+  opacity: 0.6;
+}
+.article-container a.tag-link .tag-link-bottom {
+  display: flex;
+  margin-top: 0.5rem;
+  align-items: center;
+  justify-content: space-around;
+}
+.article-container a.tag-link .tag-link-left {
+  width: 60px;
+  min-width: 60px;
+  height: 60px;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.article-container a.tag-link .tag-link-right {
+  margin-left: 1rem;
+  max-width: calc(100% - 76px - 1rem);
+}
+.article-container a.tag-link .tag-link-right .tag-link-title {
+  font-weight: bold;
+  color: var(--efu-fontcolor) /* 保持原样，标题颜色 */;
+}
+.article-container a.tag-link .tag-link-right .tag-link-sitename {
+  color: var(--efu-gray-darker) /* 副标题颜色调整 */;
+  opacity: 0.8 /* 副标题亮度稍暗 */;
+}
+.article-container a.tag-link .tag-link-tips {
+  border-bottom: var(--style-border);
+  padding-bottom: 4px;
+  font-size: 12px;
+  color: var(--efu-gray) /* 修改颜色为稍暗的灰色 */;
+  font-weight: 400;
+  opacity: 0.7 /* 使提示文字亮度稍暗 */;
+  transition: 0.3s;
+}
+@media (max-width: 768px) {
+  .article-container a.tag-link {
+    width: 100%;
+    max-width: none;
+  }
 }
 .checkbox {
   display: flex;
