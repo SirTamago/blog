@@ -89,8 +89,6 @@ details[open]>summary:hover:after {
   padding: 0.5rem 1rem !important;
   border-width: 1px;
   margin: 1rem 0;
-  max-width: 600px /* 设置最大宽度 */;
-  width: 90% /* 占据父容器的90%，使其居中并有适当的边距 */;
   margin-left: auto;
   margin-right: auto;
 /* 新增：调整 tag-link-tips 样式，使副标题的亮度稍微暗一点 */
@@ -116,9 +114,17 @@ details[open]>summary:hover:after {
   height: 60px;
   background-size: cover;
   background-position: center;
+  border-radius: 8px;
+  background-color: var(--efu-card-bg);
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.article-container a.tag-link .tag-link-left i {
+  padding: 0;
+  margin: auto;
+  font-size: 24px;
+  color: var(--efu-fontcolor);
 }
 .article-container a.tag-link .tag-link-right {
   margin-left: 1rem;
