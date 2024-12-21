@@ -274,7 +274,7 @@ initTheme()</script><!-- global head--><script>const GLOBAL_CONFIG = {
     height: 300px; /* 固定高度 */
     overflow: hidden; /* 防止图片超出容器 */
     position: relative;
-    transition: 0.5s ease-in-out; /* 只在宽度上添加过渡效果 */
+    transition: 0.3s ease-in-out; /* 只在宽度上添加过渡效果 */
     text-align: left; /* 确保文字与卡片左侧对齐 */
 }
 
@@ -285,7 +285,7 @@ initTheme()</script><!-- global head--><script>const GLOBAL_CONFIG = {
     background-image: url('https://lain.bgm.tv/r/400/pic/cover/l/db/8e/276_1Cr5K.jpg'); /* 2:3 图片地址 */
     background-size: cover; /* 默认使用cover，适应2:3图片 */
     background-position: center;
-    transition: background-image 0.5s ease-in-out;
+    transition: background-image 0.3s ease-in-out;
     position: absolute;
     top: 0;
     left: 0;
@@ -317,13 +317,13 @@ initTheme()</script><!-- global head--><script>const GLOBAL_CONFIG = {
 /* 最左侧卡片恢复时，从右端开始收缩 */
 .card-container:first-child .card {
     transform-origin: left center; /* 鼠标离开时从右侧压缩 */
-    transition: background-image 0.5s ease-in-out;
+    transition: background-image 0.3s ease-in-out;
 }
 
 /* 最右侧卡片恢复时，从左端开始收缩 */
 .card-container:last-child .card {
     transform-origin: right center; /* 鼠标离开时从左侧压缩 */
-    transition: background-image 0.5s ease-in-out;
+    transition: background-image 0.3s ease-in-out;
 }
 
 /* 文字样式 */
@@ -420,7 +420,7 @@ document.addEventListener('pjax:error', (e) => {
     }
 })</script><!-- google adsense--><!-- search--><!-- Tianli-Talk--><!-- music--><div class="needEndHide" id="nav-music"><div id="nav-music-hoverTips" onclick="sco.musicToggle()">音乐已暂停</div><meting-js id="2619645817" server="netease" type="song" mutex="true" preload="none" theme="var(--efu-main)" data-lrctype="0" order="random" volume="0.3"></meting-js></div></body></html>
         <script>
-            const posts = ["TEC/MyAlist/","TEC/modifications_to_solitude/","TEC/Multipass安装与使用中遇到的问题的一些记录/","TEC/电子设计自动化实验报告/","REC/SpineModel/","REC/2024-06-10_at_night/","REC/ABOUT_ME/","TEC/Modifications_to_Arknights_theme/","REC/Record_of_website_construction/","TEC/微机原理上机实验相关/","REC/2023Photos/","TEC/yolov5s_record/","TEC/平方数列求和的一种非正常求法/","TEC/一般情况下的阿波罗尼斯圆的方程的推导过程/"];
+            const posts = ["TEC/MyAlist/","TEC/modifications_to_solitude/","TEC/Multipass安装与使用中遇到的问题的一些记录/","TEC/电子设计自动化实验报告/","REC/SpineModel/","REC/2024-06-10_at_night/","REC/ABOUT_ME/","TEC/Modifications_to_Arknights_theme/","REC/Record_of_website_construction/","TEC/微机原理上机实验相关/","REC/2023Photos/","TEC/yolov5s_record/","TEC/一般情况下的阿波罗尼斯圆的方程的推导过程/","TEC/平方数列求和的一种非正常求法/"];
             function toRandomPost() {
                 const randomPost = posts[Math.floor(Math.random() * posts.length)];
                 pjax.loadUrl(GLOBAL_CONFIG.root + randomPost);
