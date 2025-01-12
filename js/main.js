@@ -493,8 +493,9 @@ const addHighlight = () => {
   const $isPrismjs = syntax === 'prismjs';
   const $isShowTool = highlight.enable || copy || expand || limit;
   const expandClass = expand ? '' : 'closed';
-  const $syntaxHighlight = syntax === 'highlight.js' ? document.querySelectorAll('figure.highlight') : document.querySelectorAll('pre[class*="language-"]');
-  
+  //const $syntaxHighlight = syntax === 'highlight.js' ? document.querySelectorAll('figure.highlight') : document.querySelectorAll('pre[class*="language-"]');
+  const $syntaxHighlight = syntax === 'highlight.js' || syntax === 'shiki' ? document.querySelectorAll('figure.highlight') : document.querySelectorAll('pre[class*="language-"]');
+
   if (!(($isShowTool || limit) && $syntaxHighlight.length)) return;
 
   const copyEle = copy ? `<i class="solitude fas fa-copy copy-button"></i>` : '<i></i>';
