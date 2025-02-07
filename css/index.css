@@ -89,13 +89,17 @@ details[open]>summary:hover:after {
   padding: 0.5rem 1rem !important;
   border-width: 1px;
   margin: 1rem 0;
-  margin-left: auto;
-  margin-right: auto;
-/* 新增：调整 tag-link-tips 样式，使副标题的亮度稍微暗一点 */
 }
 .article-container a.tag-link:hover {
   background: var(--efu-main);
   border: var(--style-border-hover) !important;
+}
+.article-container a.tag-link:hover .tag-link-tips {
+  color: var(--efu-white);
+  border-bottom-color: var(--efu-white);
+}
+.article-container a.tag-link:hover i {
+  opacity: 1;
 }
 .article-container a.tag-link i {
   transition: 0.3s;
@@ -108,50 +112,34 @@ details[open]>summary:hover:after {
   align-items: center;
   justify-content: space-around;
 }
-.article-container a.tag-link .tag-link-left {
+.article-container a.tag-link .tag-link-bottom .tag-link-left {
   width: 60px;
   min-width: 60px;
   height: 60px;
   background-size: cover;
-  background-position: center;
   border-radius: 8px;
   background-color: var(--efu-card-bg);
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.article-container a.tag-link .tag-link-left i {
+.article-container a.tag-link .tag-link-bottom .tag-link-left i {
   padding: 0;
   margin: auto;
   font-size: 24px;
   color: var(--efu-fontcolor);
 }
-.article-container a.tag-link .tag-link-right {
+.article-container a.tag-link .tag-link-bottom .tag-link-right {
   margin-left: 1rem;
   max-width: calc(100% - 76px - 1rem);
 }
-.article-container a.tag-link .tag-link-right .tag-link-title {
-  font-weight: bold;
-  color: var(--efu-fontcolor) /* 保持原样，标题颜色 */;
-}
-.article-container a.tag-link .tag-link-right .tag-link-sitename {
-  color: var(--efu-gray-darker) /* 副标题颜色调整 */;
-  opacity: 0.8 /* 副标题亮度稍暗 */;
-}
-.article-container a.tag-link .tag-link-tips {
+.article-container .tag-link-tips {
   border-bottom: var(--style-border);
   padding-bottom: 4px;
   font-size: 12px;
-  color: var(--efu-gray) /* 修改颜色为稍暗的灰色 */;
+  color: var(--efu-gray);
   font-weight: 400;
-  opacity: 0.7 /* 使提示文字亮度稍暗 */;
   transition: 0.3s;
-}
-@media (max-width: 768px) {
-  .article-container a.tag-link {
-    width: 100%;
-    max-width: none;
-  }
 }
 .note {
   position: relative;
@@ -370,6 +358,10 @@ div.timenode:hover .meta:after {
   background: var(--efu-theme-op);
   transform: scale(1);
 }
+.bubble {
+  display: inline-flex;
+  position: relative;
+}
 .bubble-content {
   display: inline-block;
   color: var(--efu-lighttext);
@@ -382,27 +374,33 @@ div.timenode:hover .meta:after {
   transition: all 0.2s ease-in-out;
   color: var(--efu-hovertext);
 }
-.bubble-content:hover + .bubble-notation .bubble-item {
-  transform: translate(-40px, 10px) rotateX(0deg);
+.bubble-content:hover + .bubble-notation {
+  top: calc(100% + 0.5em);
   transition: all 0.5s ease-in-out;
   opacity: 1;
 }
 .bubble-notation {
-  display: inline-block;
-}
-.bubble-item {
-  transition: all 0.5s ease-in-out;
-  opacity: 0;
-  z-index: 99;
   display: flex;
   position: absolute;
-  transform: translate(-40px, 10px) rotateX(90deg);
-  width: auto;
-  height: auto;
-  max-width: 400px;
-  overflow: hidden;
-  padding: 20px 10px 10px 10px;
-  clip-path: polygon(5px 10px, 20px 10px, 30px 0, 40px 10px, calc(100% - 5px) 10px, 100% 15px, 100% calc(100% - 5px), calc(100% - 5px) 100%, 5px 100%, 0 calc(100% - 5px), 0 15px, 5px 10px);
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0.3rem 0.6rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s;
+  border-radius: 12px;
+}
+.bubble-notation::before {
+  content: '';
+  position: absolute;
+  top: -70%;
+  left: 50%;
+  transform: translateX(-50%) translateY(100%);
+  border: 0.5em solid transparent;
+  border-bottom-color: var(--efu-lighttext);
+  transition: all 0.3s;
+  transition-property: border-color transform;
 }
 .spoiler.blur-text {
   filter: blur(3px) !important;
@@ -427,7 +425,7 @@ div.timenode:hover .meta:after {
 .spoiler.block-text:focus {
   color: inherit !important;
   user-select: auto !important;
-  background-color: var(--efu-theme-op) !important;
+  background-color: transparent !important;
 }
 .red {
   color: var(--efu-red);
