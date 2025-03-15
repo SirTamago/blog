@@ -1,0 +1,18 @@
+/* Spine 小部件容器 */
+#spine-widget {
+    position: fixed;
+    bottom: 12px; /* 与 SakanaWidget 保持一致 */
+    right: 0; /* 与 SakanaWidget 保持一致 */
+    width: 250px; /* 宽度 */
+    height: 250px; /* 高度 */
+    background-color: rgba(0,0,0,0); /* 背景颜色（半透明白色） */
+    overflow: hidden; /* 隐藏超出部分 */
+    cursor: pointer; /* 手型光标，表示可点击 */
+    z-index: 999; /* 与 SakanaWidget 保持一致 */
+}
+
+/* 画布 */
+#spine-canvas {
+    width: 100%; /* 宽度占满容器 */
+    height: 100%; /* 高度占满容器 */
+}
