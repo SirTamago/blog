@@ -1,5 +1,5 @@
 // 全局配置
-const spine_model_path = "../spine-widget/assets/";
+const spine_model_path = "https://rimrose.top/spine-widget/assets/";
 var MODELS = [ // 模型列表
     "build_char_336_folivo_epoque_22",
     "build_char_336_folivo", // 替换为其他模型名称
