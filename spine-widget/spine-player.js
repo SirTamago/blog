@@ -1,5 +1,5 @@
 // 全局配置
-const assetsPath = "../spine-widget/assets/";
+const spine_model_path = "../spine-widget/assets/";
 var MODELS = [ // 模型列表
     "build_char_336_folivo_epoque_22",
     "build_char_336_folivo", // 替换为其他模型名称
@@ -55,9 +55,9 @@ function init() {
     activeSkeleton = RANDOM_MODEL ? MODELS[Math.floor(Math.random() * MODELS.length)] : MODELS[0];
 
     // 加载资源
-    assetManager.loadBinary(assetsPath + activeSkeleton + ".skel"); // 加载 .skel 文件
-    assetManager.loadText(assetsPath + activeSkeleton + ".atlas");
-    assetManager.loadTexture(assetsPath + activeSkeleton + ".png");
+    assetManager.loadBinary(spine_model_path + activeSkeleton + ".skel"); // 加载 .skel 文件
+    assetManager.loadText(spine_model_path + activeSkeleton + ".atlas");
+    assetManager.loadTexture(spine_model_path + activeSkeleton + ".png");
 
     // 添加点击事件监听器
     var widget = document.getElementById("spine-widget");
@@ -119,8 +119,8 @@ function loadSkeleton(name, initialAnimation, premultipliedAlpha, skin) {
     if (skin === undefined) skin = "default";
 
     // 加载纹理图集
-    var atlas = new spine.TextureAtlas(assetManager.get(assetsPath + name + ".atlas"), function(path) {
-        return assetManager.get(assetsPath + path);
+    var atlas = new spine.TextureAtlas(assetManager.get(spine_model_path + name + ".atlas"), function(path) {
+        return assetManager.get(spine_model_path + path);
     });
 
     // 创建附件加载器
@@ -129,7 +129,7 @@ function loadSkeleton(name, initialAnimation, premultipliedAlpha, skin) {
     // 使用 SkeletonBinary 加载 .skel 文件
     var skeletonBinary = new spine.SkeletonBinary(atlasLoader);
     skeletonBinary.scale = SCALE; // 设置缩放比例
-    var skeletonData = skeletonBinary.readSkeletonData(assetManager.get(assetsPath + name + ".skel"));
+    var skeletonData = skeletonBinary.readSkeletonData(assetManager.get(spine_model_path + name + ".skel"));
 
     // 获取模型支持的动作列表
     availableAnimations = skeletonData.animations.map(anim => anim.name);
