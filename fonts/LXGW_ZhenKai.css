@@ -1,0 +1,63 @@
+/* 霞鹜臻楷字体子集化CSS定义 */
+@font-face {
+    font-family: 'LXGW ZhenKai';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('files/subset-common-1.woff2') format('woff2');
+    unicode-range: U+4E00-4EFF; /* 常用汉字区块1 */
+}
+
+@font-face {
+    font-family: 'LXGW ZhenKai';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('files/subset-common-2.woff2') format('woff2');
+    unicode-range: U+4F00-4FFF; /* 常用汉字区块2 */
+}
+
+@font-face {
+    font-family: 'LXGW ZhenKai';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('files/subset-common-3.woff2') format('woff2');
+    unicode-range: U+3400-4DBF; /* 扩展汉字区块 */
+}
+
+@font-face {
+    font-family: 'LXGW ZhenKai';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('files/subset-punctuation.woff2') format('woff2');
+    unicode-range: U+3000-303F, U+FF00-FFEF; /* 中文标点符号 */
+}
+
+@font-face {
+    font-family: 'LXGW ZhenKai';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('files/subset-numbers.woff2') format('woff2');
+    unicode-range: U+0030-0039, U+FF10-FF19; /* 数字 */
+}
+
+@font-face {
+    font-family: 'LXGW ZhenKai';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('files/subset-letters.woff2') format('woff2');
+    unicode-range: U+0041-005A, U+0061-007A, U+FF21-FF3A, U+FF41-FF5A; /* 字母 */
+}
+
+@font-face {
+    font-family: 'LXGW ZhenKai';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('files/subset-kana.woff2') format('woff2');
+    unicode-range: U+3040-309F, U+30A0-30FF; /* 日文假名 */
+}
