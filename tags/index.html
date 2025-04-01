@@ -230,7 +230,7 @@ document.addEventListener('pjax:error', (e) => {
   </script>
   <!-- hexo injector body_end end --></body></html>
         <script>
-            const posts = ["2023Photos/","2024-06-10_at_night/","ABOUT_ME/","2024/","Apollonian_circles/","Modifications_to_Arknights_theme/","Problems_of_Multipass/","SpineModel/","Modifications_to_Solitude_theme/","Sum_of_squares_sequence/","yolov5s_record/","微机原理上机实验相关/","电子设计自动化实验报告/","Tutorial_for_ZZU_Dorm_Electricity_Balance/"];
+            const posts = ["2023Photos/","2024-06-10_at_night/","ABOUT_ME/","Apollonian_circles/","2024/","Modifications_to_Arknights_theme/","Modifications_to_Solitude_theme/","Problems_of_Multipass/","SpineModel/","yolov5s_record/","Sum_of_squares_sequence/","微机原理上机实验相关/","电子设计自动化实验报告/","Tutorial_for_ZZU_Dorm_Electricity_Balance/"];
             function toRandomPost() {
                 const randomPost = posts[Math.floor(Math.random() * posts.length)];
                 pjax.loadUrl(GLOBAL_CONFIG.root + randomPost);
