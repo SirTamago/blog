@@ -7681,7 +7681,7 @@ span.tagsPageCount {
   color: var(--efu-white);
 }
 #about-page .author-content-item.like-technology::after {
-  box-shadow: 0 -69px 203px 11px #050b20 inset;
+  box-shadow: 0 -69px 100px 10px #050b20 inset;
   position: absolute;
   content: '';
   width: 100%;
@@ -7696,13 +7696,85 @@ span.tagsPageCount {
   overflow: hidden;
 }
 #about-page .author-content-item.like-music::after {
-  box-shadow: 0 -69px 203px 11px #0e0e0e inset;
+  box-shadow: 0 -69px 100px 10px #0e0e0e inset;
   position: absolute;
   content: '';
   width: 100%;
   height: 100%;
   top: 0;
   left: 0;
+}
+#about-page .author-content-item.comic {
+  min-height: 400px;
+  color: var(--efu-white);
+  position: relative;
+}
+#about-page .author-content-item.comic .comic-box {
+  width: 110%;
+  height: 100%;
+  display: flex;
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+}
+#about-page .author-content-item.comic .comic-box::after {
+  box-shadow: 0 -69px 100px 10px #04120f inset;
+  position: absolute;
+  content: '';
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+}
+#about-page .author-content-item.comic .author-content-item-tips,
+#about-page .author-content-item.comic .author-content-item-title,
+#about-page .author-content-item.comic .content-bottom {
+  z-index: 3;
+  color: var(--efu-white);
+}
+#about-page .author-content-item.comic .comic-item {
+  height: 100%;
+  color: var(--efu-white);
+  width: 20%;
+  transform: skew(-10deg, 0deg);
+  transition: 0.8s;
+  position: relative;
+  overflow: hidden;
+}
+#about-page .author-content-item.comic .comic-item:hover {
+  width: 46%;
+}
+#about-page .author-content-item.comic .comic-item:hover .comic-item-cover {
+  left: 16%;
+  transform: skew(10deg, 0deg) scale(1.6);
+}
+#about-page .author-content-item.comic .comic-item .comic-item-cover {
+  position: absolute;
+  top: 0;
+  left: -50%;
+  height: 100%;
+  transform: skew(10deg, 0deg);
+  object-fit: cover;
+  transition: scale 0.2s, all 0.8s;
+}
+#about-page .author-content-item.comic .comic-item .comic-item-cover img {
+  height: 100%;
+  max-width: none;
+  transition: 0.8s;
+}
+@media screen and (max-width: 1400px) {
+  #about-page .author-content-item.comic .comic-box {
+    width: 120%;
+    height: 100%;
+  }
+}
+@media screen and (max-width: 768px) {
+  #about-page .author-content-item.comic .comic-box {
+    width: 109%;
+    height: 100%;
+  }
 }
 #games {
   margin-top: 26px;
