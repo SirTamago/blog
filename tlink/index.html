@@ -198,7 +198,7 @@ initTheme()</script><!-- global head--><script>const GLOBAL_CONFIG = {
 
     const loadTwikoo = () => {
         if (typeof twikoo === 'object') setTimeout(init,0)
-        else utils.getScript('https://cdnjs.cloudflare.com/ajax/libs/twikoo/1.6.40/twikoo.all.min.js').then(init)
+        else utils.getScript('https://cdnjs.cloudflare.com/ajax/libs/twikoo/1.6.42/twikoo.all.min.js').then(init)
     }
 
     if ('Twikoo' === 'Twikoo' || false) {
@@ -278,7 +278,7 @@ document.addEventListener('pjax:error', (e) => {
   </script>
   <!-- hexo injector body_end end --></body></html>
         <script>
-            const posts = ["2023Photos/","2024-06-10_at_night/","2024/","ABOUT_ME/","Apollonian_circles/","Delete_a_404_dir_in_windows11/","Modifications_to_Arknights_theme/","Modifications_to_Solitude_theme/","Problems_of_Multipass/","RSS_bangumi_download/","SpineModel/","Sum_of_squares_sequence/","微机原理上机实验相关/","yolov5s_record/","电子设计自动化实验报告/","Tutorial_for_ZZU_Dorm_Electricity_Balance/"];
+            const posts = ["2023Photos/","2024-06-10_at_night/","ABOUT_ME/","Apollonian_circles/","2024/","Modifications_to_Arknights_theme/","Problems_of_Multipass/","RSS_bangumi_download/","Modifications_to_Solitude_theme/","SpineModel/","Sum_of_squares_sequence/","yolov5s_record/","Delete_a_404_dir_in_windows11/","微机原理上机实验相关/","电子设计自动化实验报告/","Tutorial_for_ZZU_Dorm_Electricity_Balance/"];
             function toRandomPost() {
                 const randomPost = posts[Math.floor(Math.random() * posts.length)];
                 pjax.loadUrl(GLOBAL_CONFIG.root + randomPost);
