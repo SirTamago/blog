@@ -2159,8 +2159,8 @@ body {
   min-height: 100%;
   background: var(--efu-background);
   color: var(--efu-fontcolor);
-  font-size: 16px;
-  font-family: Hiragino Sans GB, Microsoft YaHei, LXGW WenKai Screen, PingFang SC,;
+  font-size: 18px;
+  font-family: LXGW Bright Medium, Microsoft YaHei, PingFang SC, SimSun;
   line-height: 2;
   -webkit-tap-highlight-color: transparent;
   margin: 0;
@@ -2259,7 +2259,7 @@ kbd,
 samp,
 pre {
   font-family: JetBrains mono, Microsoft YaHei, SimSun;
-  font-size: 14px;
+  font-size: 16px;
 }
 small {
   font-size: 80%;
